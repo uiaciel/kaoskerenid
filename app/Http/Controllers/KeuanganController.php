@@ -15,10 +15,20 @@ class KeuanganController extends Controller
      */
     public function index()
     {
-        $keuangans = Keuangan::All();
+        // $keuangans = Keuangan::orderBy('created_at', 'desc')->limit(100)->get();
+        $pemasukan = Keuangan::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
+        ->where('jenis', 'Pemasukan')
+        ->get();
+
+        $pengeluaran = Keuangan::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
+        ->where('jenis', 'Pengeluaran')
+        ->get();
 
         return view('keuangans.index', [
-            'keuangans' => $keuangans,
+            'pemasukans' => $pemasukan,
+            'pengeluarans' => $pengeluaran
         ]);
     }
 

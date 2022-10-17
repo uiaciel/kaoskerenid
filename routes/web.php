@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/design', DesignController::class);
     Route::resource('/stok', StokController::class);
     Route::resource('/datastok', DatastokController::class);
+    Route::resource('/report', ReportController::class);
 
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah']);

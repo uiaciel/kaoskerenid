@@ -28,7 +28,7 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/atlantis.css">
+    <link rel="stylesheet" href="/css/atlantis2.css">
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="/css/demo.css">
@@ -40,7 +40,7 @@
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    @laravelPWA
 
 </head>
 
@@ -49,6 +49,7 @@
         <div class="wrapper horizontal-layout-3">
 
             <div class="main-header no-box-shadow" data-background-color="blue2">
+                
                 <div class="nav-top">
                     <div class="container d-flex flex-row">
                         <button class="navbar-toggler sidenav-toggler2 ml-auto" type="button" data-toggle="collapse"
@@ -59,62 +60,55 @@
                         </button>
                         <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
                         <!-- Logo Header -->
-                        <a href="/home" class="logo d-flex align-items-center">
+                        <a href="/home" class="logo d-flex align-items-center text-white">
                             <img src="/img/logo.svg" alt="navbar brand" class="navbar-brand">
+                           
                         </a>
                         <!-- End Logo Header -->
 
                         <!-- Navbar Header -->
                         <nav class="navbar navbar-header-left navbar-expand-lg p-0">
                             <ul class="navbar-nav page-navigation pl-md-3">
-                                <h3 class="title-menu d-flex d-lg-none">
-                                    Menu
+                                <h3 class="title-menu d-flex d-lg-none"> 
+                                    Menu 
                                     <div class="close-menu"> <i class="flaticon-cross"></i></div>
                                 </h3>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('order.index') }}" role="button">
-                                        Order
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('klien.index') }}" role="button">
-                                        Klien
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('produk.index') }}" role="button">
-                                        Produk
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('stok.index') }}" role="button">
-                                        Stok
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('keuangan.index') }}" role="button">
-                                        Keuangan
-                                    </a>
-                                </li>
-
-
-
-                                {{-- <li class="nav-item dropdown">
+                                
+                                <li class="nav-item active dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pages
+                                        ORDERS
                                     </a>
                                     <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="starter-template.html">Action</a>
-                                        <a class="dropdown-item" href="starter-template.html">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="starter-template.html">Something else here</a>
+                                        <a class="dropdown-item" href="/home">TERBARU</a>
+                                        <a class="dropdown-item" href="{{route('order.index')}}">SEMUA</a>
+                                        
+                                        
                                     </div>
-                                </li> --}}
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('klien.index')}}" role="button"aria-haspopup="true" aria-expanded="false">
+                                        KLIEN
+                                    </a>
+                                    
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('produk.index')}}" role="button"aria-haspopup="true" aria-expanded="false">
+                                        PRODUK
+                                    </a>
+                                    
+                                </li>
+                                
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        ADMIN
+                                    </a>
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{route('keuangan.index')}}">KEUANGAN</a>
+                                        <a class="dropdown-item" href="{{route('stok.index')}}">STOK</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{{route('stok.index')}}">REPORT</a>
+                                    </div>
+                                </li>
                             </ul>
                         </nav>
                         <nav class="navbar navbar-header navbar-expand-lg p-0">
@@ -443,9 +437,9 @@
         
   
 
-        {{-- <!-- jQuery UI -->
+        <!-- jQuery UI -->
         <script src="/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-        <script src="/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>--}}
+        <script src="/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
 
         <!-- jQuery Scrollbar -->
         <script src="/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script> 
@@ -470,8 +464,7 @@
 
         
 
-        <!-- Bootstrap Toggle -->
-        {{-- <script src="/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script> --}}
+        
 
         <!-- jQuery Vector Maps -->
         <script src="/js/plugin/jqvmap/jquery.vmap.min.js"></script>
@@ -512,12 +505,21 @@
         <!-- Atlantis JS -->
         <script src="/js/atlantis2.min.js"></script>
 
+        <!-- Bootstrap Toggle -->
+        <script src="/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
         <!-- Atlantis DEMO methods, don't include it in your project! -->
         {{-- <script src="/js/demo.js"></script> --}}
 
         <script>
             $(document).ready(function() {
                 $('#data').DataTable();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $('.datatable').DataTable();
             });
         </script>
         <script>
@@ -767,8 +769,23 @@
             });
         </script>
         <script>
+            $("button").click(function(){
+            $("#myCopy").select();
+            document.execCommand('copy');
+            // alert('Berhasil di copy');
+        });
+
+        document.querySelector("button").onclick = function(){
+            document.querySelector("textarea").select();
+            document.execCommand('copy');
+        }
+        </script>
+        
+        <script>
             document.getElementById('date').valueAsDate = new Date();
         </script>
+
+        
 
 
         @notifyJs

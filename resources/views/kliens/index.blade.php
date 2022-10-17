@@ -1,9 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Page Title')
 @section('content')
-@extends('layouts.app')
-@section('title', 'Page Title')
-@section('content')
 <div class="row">
     <div class="col-lg-8">
         <div class="card">
@@ -27,15 +24,15 @@
                 </div>
             </div>
             <div class="table-responsive mt-4">
-                <table class="table table-bordered" id="data">
+                <table class="table table-bordered nowrap" id="data">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">HP</th>
+                            <th >No</th>
+                            <th >Nama</th>
+
+                            <th >HP</th>
                             
-                            <th scope="col">Action</th>
+                            <th >Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,11 +40,28 @@
 
                         <tr class="">
                             <td scope="row">{{$index+1}}</td>
-                            <td>{{$klien->nama}}</td>
-                            <td>{{$klien->alamat}}</td>
+                            <td>{{ Str::of($klien->nama)->limit(10)}}</td>
+
                             <td>{{$klien->hp}}</td>
                             
-                            <td><a href="{{route('klien.edit', $klien->id)}}" class="btn btn-sm btn-round btn-primary">Edit</a></td>
+                            <td>
+
+                                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                    <a href="{{route('klien.edit', $klien->id)}}" role="button" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-print"></i></button>
+                                  
+                                    <div class="btn-group" role="group">
+                                        <form action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input name="klien_id" value="{{$klien->id}}" hidden>
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-cart-plus"></i> Order</button>
+                                        </form>
+                                    </div>
+                                  </div>
+
+                                  
+
+                            </td>
                         </tr>
 
                         @endforeach
@@ -113,6 +127,4 @@
 </form>
     </div>
 </div>
-@endsection
-
 @endsection

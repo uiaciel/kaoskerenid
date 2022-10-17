@@ -143,7 +143,7 @@
 <div class="card mb-3">
 <div class="card-header">
     <div class="card-head-row">
-        <div class="card-title">Klien Baru</div>
+        <div class="card-title"><i class="fas fa-user-plus"></i> Klien Baru</div>
         
     </div>
 </div>
