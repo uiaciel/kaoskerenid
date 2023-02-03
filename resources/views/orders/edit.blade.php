@@ -111,7 +111,7 @@
                                     <label>Pengambilan</label>
                                     <div class="input-group mb-3">
                                         {{-- <div id="foo" data-date="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"></div> --}}
-                                        <input class="form-control" id="date"
+                                        <input class="form-control" id="foo"
                                             value="{{ \Carbon\Carbon::parse($order->pengambilan)->format('Y-m-d') }}"
                                             name="pengambilan">
 
