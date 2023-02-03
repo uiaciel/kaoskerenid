@@ -165,202 +165,204 @@
                     </div>
 
                 </div>
-        </div>
-        @endforeach
-        @foreach ($aktiforder as $order)
-            <div class="card mb-3">
-                <div class="card-header">
-                    <div class="d-flex bd-highlight justify-content-sm-between align-items-lg-center">
-                        <div class="p-2 flex-xl-grow-1 bd-highlight text-weight"><a href="/order/{{ $order->inv }}">
-                                <h5>{{ $order->klien->nama }}</h5>
-                            </a> <small>#{{ $order->inv }}</small>
+            @endforeach
+            @foreach ($aktiforder as $order)
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <div class="d-flex bd-highlight justify-content-sm-between align-items-lg-center">
+                            <div class="p-2 flex-xl-grow-1 bd-highlight text-weight"><a
+                                    href="/order/{{ $order->inv }}">
+                                    <h5>{{ $order->klien->nama }}</h5>
+                                </a> <small>#{{ $order->inv }}</small>
 
-                        </div>
+                            </div>
 
-                        <form method="POST" enctype="multipart/form-data"
-                            action="{{ route('order.update', $order->id) }}">
-                            <input type="hidden" name="_method" value="PUT">
-                            @csrf
-                            <input name="stok" value="{{ $order->stok }}" hidden>
-                            <input name="judul" value="{{ $order->judul }}" hidden>
-                            <input name="detail" value="{{ $order->detail }}" hidden>
-                            <input name="pembayaran" value="{{ $order->pembayaran }}" hidden>
-                            <input name="pengambilan" value="{{ $order->pengambilan }}" hidden>
-                            <input name="qty" value="{{ $order->qty }}" hidden>
-                            <div class="p-2 bd-highlight">
-                                <div class="input-group">
+                            <form method="POST" enctype="multipart/form-data"
+                                action="{{ route('order.update', $order->id) }}">
+                                <input type="hidden" name="_method" value="PUT">
+                                @csrf
+                                <input name="stok" value="{{ $order->stok }}" hidden>
+                                <input name="judul" value="{{ $order->judul }}" hidden>
+                                <input name="detail" value="{{ $order->detail }}" hidden>
+                                <input name="pembayaran" value="{{ $order->pembayaran }}" hidden>
+                                <input name="pengambilan" value="{{ $order->pengambilan }}" hidden>
+                                <input name="qty" value="{{ $order->qty }}" hidden>
+                                <div class="p-2 bd-highlight">
+                                    <div class="input-group">
 
-                                    <select class="custom-select" id="inputGroupSelect04" name="status"
-                                        aria-label="Example select with button addon">
-                                        <option>{{ $order->status }}</option>
-                                        <option value="CANCEL">CANCEL</option>
-                                        <option value="REQUEST DESIGN">REQUEST DESIGN</option>
-                                        <option value="KONFRIM">KONFRIM</option>
-                                        <option value="DESIGN OK">DESIGN OK</option>
-                                        <option value="PRODUKSI">PRODUKSI</option>
-                                        <option value="BERES">BERES</option>
-                                        <option value="SELESAI">SELESAI</option>
-                                    </select>
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-sm" type="submit"><i
-                                                class="fas fa-check"></i></button>
+                                        <select class="custom-select" id="inputGroupSelect04" name="status"
+                                            aria-label="Example select with button addon">
+                                            <option>{{ $order->status }}</option>
+                                            <option value="CANCEL">CANCEL</option>
+                                            <option value="REQUEST DESIGN">REQUEST DESIGN</option>
+                                            <option value="KONFRIM">KONFRIM</option>
+                                            <option value="DESIGN OK">DESIGN OK</option>
+                                            <option value="PRODUKSI">PRODUKSI</option>
+                                            <option value="BERES">BERES</option>
+                                            <option value="SELESAI">SELESAI</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary btn-sm" type="submit"><i
+                                                    class="fas fa-check"></i></button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                @if ($designs->where('order_id', $order->id)->count() > 1)
-                    <div id="{{ $order->inv }}" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#{{ $order->inv }}" data-slide-to="0" class="active"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            @foreach ($designs->where('order_id', $order->id) as $sliders)
-                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img src="{{ $sliders->path }}" class="d-block w-100" alt="...">
-                                </div>
-                            @endforeach
-
+                            </form>
                         </div>
-                        <a class="carousel-control-prev" href="#{{ $order->inv }}" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#{{ $order->inv }}" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
-                @else
-                    @foreach ($designs->where('order_id', $order->id) as $desiis)
-                        <img class="card-img-top" src="{{ $desiis->path }}" alt="Card image cap">
-                    @endforeach
-                @endif
 
-                <div class="card-body">
-                    <h5 class="card-title">{{ $order->judul }}</h5>
-                    <p class="card-text">{{ $order->detail }}</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Qty : {{ $order->qty }} pcs/ Stok : {{ $order->stok }}/ Pembayaran
-                        : <span class="text-primary">{{ $order->pembayaran }}</span></li>
-                    <li class="list-group-item">Deadline : {{ $order->pengambilan }}</li>
-                </ul>
-                <div class="card-footer">
-                    @foreach ($files->where('order_id', $order->id) as $file)
-                        <ul>
-                            <li><a href="{{ $file->path }}"
-                                    download>{{ Str::remove('storage/' . $order->klien->hp . '/', $file->path) }}</a>
-                            </li>
-                        </ul>
-                    @endforeach
-                </div>
-            </div>
-        @endforeach
-    </div>
-    <div class="col-lg-3 col-md-6">
+                    @if ($designs->where('order_id', $order->id)->count() > 1)
+                        <div id="{{ $order->inv }}" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#{{ $order->inv }}" data-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                @foreach ($designs->where('order_id', $order->id) as $sliders)
+                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                        <img src="{{ $sliders->path }}" class="d-block w-100" alt="...">
+                                    </div>
+                                @endforeach
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <form action="{{ route('klien.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="card mb-3">
-                <div class="card-header">
-                    Klien Baru
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="email2">Nama</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Tulis Nama">
-                    </div>
-                    <div class="form-group">
-                        <label for="email2">No Whatsapp</label>
-                        <input type="text" class="form-control" name="hp" placeholder="08xx">
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">Alamat</label>
-                        <textarea class="form-control" name="alamat" rows="5">
-        </textarea>
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="order" value="1">
-                            <span class="form-check-sign">Langsung buat Orderan</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </form>
-        <div class="card mb-3">
-            <div class="card-body">
-                <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="" class="form-label">Tanggal</label>
-                        <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
-                            aria-describedby="helpId">
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Nominal</label>
-                        <input type="text" name="nominal" id="" class="form-control" placeholder=""
-                            aria-describedby="helpId">
-                        <small id="helpId" class="text-muted">Ketik Angka saja</small>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Jenis</label>
-                        <select class="form-control" name="jenis" id="">
+                            </div>
+                            <a class="carousel-control-prev" href="#{{ $order->inv }}" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#{{ $order->inv }}" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    @else
+                        @foreach ($designs->where('order_id', $order->id) as $desiis)
+                            <img class="card-img-top" src="{{ $desiis->path }}" alt="Card image cap">
+                        @endforeach
+                    @endif
 
-                            <option>Pengeluaran</option>
-                            <option>Pemasukan</option>
-                        </select>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $order->judul }}</h5>
+                        <p class="card-text">{{ $order->detail }}</p>
                     </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Kategori</label>
-                        <select class="form-control" name="kategori" id="">
-                            <option value="orderan">Orderan</option>
-                            <option value="ongkos cetak">Ongkos Cetak</option>
-                            <option value="Makan Cemilan">Makan</option>
-                            <option value="Listrik">Listrik</option>
-                            <option value="Internet">Internet</option>
-                            <option value="Belanja Bahan">Belanja Bahan</option>
-                            <option value="Belanja Sablon">Belanja Sablon</option>
-                        </select>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Qty : {{ $order->qty }} pcs/ Stok : {{ $order->stok }}/ Pembayaran
+                            : <span class="text-primary">{{ $order->pembayaran }}</span></li>
+                        <li class="list-group-item">Deadline : {{ $order->pengambilan }}</li>
+                    </ul>
+                    <div class="card-footer">
+                        @foreach ($files->where('order_id', $order->id) as $file)
+                            <ul>
+                                <li><a href="{{ $file->path }}"
+                                        download>{{ Str::remove('storage/' . $order->klien->hp . '/', $file->path) }}</a>
+                                </li>
+                            </ul>
+                        @endforeach
                     </div>
-                    <input type="text" name="order_id" id="" class="form-control" placeholder=""
-                        aria-describedby="helpId" hidden>
-
-                    <div class="mb-3">
-                        <label for="" class="form-label">Metode</label>
-                        <select class="form-control" name="metode" id="">
-                            <option>Transfer</option>
-                            <option>Tunai</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
-        <div class="list-group mb-3">
-            <a href="#" class="list-group-item list-group-item-action active">
-                KLIEN BARU
-            </a>
-            @foreach ($kliens as $klien)
-                <a href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=KaosKerenID"
-                    class="list-group-item list-group-item-action"><i class="fa-brands fa-whatsapp"></i>
-                    {{ $klien->nama }}</a>
+                </div>
             @endforeach
-
         </div>
-    </div>
+        <div class="col-lg-3 col-md-6">
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('klien.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Klien Baru
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="email2">Nama</label>
+                            <input type="text" class="form-control" name="nama" placeholder="Tulis Nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="email2">No Whatsapp</label>
+                            <input type="text" class="form-control" name="hp" placeholder="08xx">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Alamat</label>
+                            <textarea class="form-control" name="alamat" rows="5">
+        </textarea>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="order" value="1">
+                                <span class="form-check-sign">Langsung buat Orderan</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label">Tanggal</label>
+                            <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nominal</label>
+                            <input type="text" name="nominal" id="" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                            <small id="helpId" class="text-muted">Ketik Angka saja</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Jenis</label>
+                            <select class="form-control" name="jenis" id="">
+
+                                <option>Pengeluaran</option>
+                                <option>Pemasukan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Kategori</label>
+                            <select class="form-control" name="kategori" id="">
+                                <option value="orderan">Orderan</option>
+                                <option value="ongkos cetak">Ongkos Cetak</option>
+                                <option value="Makan Cemilan">Makan</option>
+                                <option value="Listrik">Listrik</option>
+                                <option value="Internet">Internet</option>
+                                <option value="Belanja Bahan">Belanja Bahan</option>
+                                <option value="Belanja Sablon">Belanja Sablon</option>
+                            </select>
+                        </div>
+                        <input type="text" name="order_id" id="" class="form-control" placeholder=""
+                            aria-describedby="helpId" hidden>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Metode</label>
+                            <select class="form-control" name="metode" id="">
+                                <option>Transfer</option>
+                                <option>Tunai</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="list-group mb-3">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    KLIEN BARU
+                </a>
+                @foreach ($kliens as $klien)
+                    <a href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=KaosKerenID"
+                        class="list-group-item list-group-item-action"><i class="fa-brands fa-whatsapp"></i>
+                        {{ $klien->nama }}</a>
+                @endforeach
+
+            </div>
+        </div>
     </div>
 @endsection
