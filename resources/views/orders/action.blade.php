@@ -1,0 +1,1 @@
+<a href="{{route('order.show', $inv)}}">{{$inv}}</a>

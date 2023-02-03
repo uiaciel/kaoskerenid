@@ -1,0 +1,61 @@
+<?php
+
+use App\Http\Controllers\DatastokController;
+use App\Http\Controllers\DesignController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KeuanganController;
+use App\Http\Controllers\KlienController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderanController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\StokController;
+use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/status/{id}', [ReportController::class, 'status'])->name('statusinv');
+
+Auth::routes([
+    'register' => true, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/klien/export', [KlienController::class, 'export'])->name('klien.export');
+
+    Route::resource('/order', OrderController::class);
+    Route::resource('/klien', KlienController::class);
+    Route::resource('/produk', ProdukController::class);
+    Route::resource('/orderan', OrderanController::class);
+    Route::resource('/keuangan', KeuanganController::class);
+    Route::resource('/design', DesignController::class);
+    Route::resource('/stok', StokController::class);
+    Route::resource('/datastok', DatastokController::class);
+    Route::resource('/report', ReportController::class);
+    Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
+    Route::get('/nota/{id}', [HomeController::class, 'nota']);
+    Route::get('/tambah/{id}', [HomeController::class, 'tambah']);
+    Route::get('/list/produk/{id}', [HomeController::class, 'listproduk']);
+    Route::post('/tambahproduk', [HomeController::class, 'tambahproduk'])->name('tambahproduk');
+    Route::get('/klien/export/bulanini', [KlienController::class, 'bulanini']);
+    Route::get('/d/produk/id/{orderanid}', [OrderanController::class, 'destroyall'])->name('hapus.semuaproduk');
+});
