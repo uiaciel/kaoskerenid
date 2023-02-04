@@ -544,15 +544,19 @@
 =============================
 _INV : {{ $order->inv }}_
 Atas Nama : {{ $order->klien->nama }}
+
 *Detail Order :*
 {{ $order->detail }}
+
 *Rincian :*
 @foreach ($orderan as $index => $ord)
 {{ $ord->qty }} x {{ $ord->produk->kategori }} - {{ $ord->produk->nama }} Rp {{ number_format($ord->produk->harga, 0, ',', '.') }}
 @endforeach
+
 Harga : Rp {{ number_format($total, 0, ',', '.') }}
 Ongkos Kirim : Rp {{ number_format($order->ongkir, 0, ',', '.') }}
 *TOTAL : Rp {{ number_format($grandtotal, 0, ',', '.') }}*
+
 _Pembayaran Via Transfer :_
 - BCA 5035139653 an Suria,
 - BNI 0749326737 an Suria,
@@ -561,9 +565,10 @@ _Pembayaran Via Transfer :_
 - JENIUS 90011534446 $kaoskerenid
 atau bisa juga
 _Bayar pakai Gopay, Dana, Ovo, QRIS_ ke nomor *08811722125*
+
 Harap mengirimkan foto bukti transfer/pembayaran kepada kami. _Pesanan akan Kami proses setelah melakukan pembayaran_
 *Estimasi Pengerjaan 2-3 hari kerja setelah pembayaran sesuai antrian order.*
-Cek Status Order : https://web.kaoskeren.id/status/{{ $order->inv }}
+
 =============================
 Instagram store : kaoskerenid
                                             </textarea>

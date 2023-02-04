@@ -779,7 +779,7 @@
     </script>
     <script>
         $.ajax({
-            url: 'http://localhost:8000/list/produk/all',
+            url: '{{ route('listproduk', 'all') }}',
             type: "GET",
             dataType: "json",
             success: function(data) {
