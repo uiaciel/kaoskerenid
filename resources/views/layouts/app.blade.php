@@ -573,11 +573,15 @@
     <!-- Datatables -->
     <script src="../../vendor/datatables/datatables.min.js"></script>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <!-- Github buttons -->
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
 
     <!-- Volt JS -->
     <script src="../../assets/js/volt.js"></script>
+
 
 
     <script>
@@ -764,17 +768,16 @@
     </script> --}}
     <script>
         $(document).ready(function() {
-            $('.select2-single').select2({
+            $('.select2-multiple').select2({
                 width: "100%"
             });
             // Select2 Single  with Placeholder
-            $('.select2-single-placeholder').select2({
+            $('.selectklien').select2({
                 placeholder: "Cari Orderan disini",
                 allowClear: true,
                 width: "100%"
             });
-            // Select2 Multiple
-            $('.select2-multiple').select2();
+
         });
     </script>
     <script>

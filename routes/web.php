@@ -3,6 +3,8 @@
 use App\Http\Controllers\DatastokController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KatalogController;
+use App\Http\Controllers\KatalogprodukController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\KlienController;
 use App\Http\Controllers\OrderController;
@@ -39,6 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/stok', StokController::class);
     Route::resource('/datastok', DatastokController::class);
     Route::resource('/report', ReportController::class);
+    Route::resource('/katalog', KatalogController::class);
+    Route::resource('/katalogproduk', KatalogprodukController::class);
     Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah']);

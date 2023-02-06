@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="table-responsive mt-4">
-                    <table class="table table-bordered" id="data">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -23,11 +23,105 @@
                                     <td>{{ $produk->nama }}</td>
                                     <td>{{ $produk->kategori }}</td>
                                     <td>{{ $produk->harga }}</td>
-                                    <td>{{ $produk->status }}</td>
-                                    <td><a href="{{ route('produk.edit', $produk->id) }}"
-                                            class="btn btn-sm btn-round btn-primary">Edit</a></td>
+                                    <td>
+
+                                        <form action="{{ route('produk.update', $produk->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            <input type="hidden" name="_method" value="PUT">
+                                            @csrf
+                                            <input type="text" class="form-control" name="kategori"
+                                                value="{{ $produk->kategori }}" hidden>
+                                            <input type="text" class="form-control" name="nama"
+                                                value="{{ $produk->nama }}" hidden>
+
+                                            <input type="number" class="form-control" name="harga"
+                                                value="{{ $produk->harga }}" hidden>
+
+
+                                            @if ($produk->status == 'Aktif')
+                                                <input type="text" class="form-control" name="status" value="Non Aktif"
+                                                    hidden>
+                                                <button type="submit" class="btn btn-sm btn-primary"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Klik! Non Aktifkan"><i class="bi bi-toggle-on"></i></button>
+                                            @else
+                                                <input type="text" class="form-control" name="status" value="Aktif"
+                                                    hidden>
+                                                <button type="submit" class="btn btn-sm btn-white"><i
+                                                        class="bi bi-toggle-off"></i></button>
+                                            @endif
+
+
+
+
+                                        </form>
+
+
+
+                                    </td>
+                                    <td>
+                                        {{-- <a href="{{ route('produk.edit', $produk->id) }}"
+                                            class="btn btn-sm btn-round btn-primary">Edit</a> --}}
+                                        <button type="button" class="btn btn-sm btn-round btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#pro{{ $produk->id }}">
+                                            Edit
+                                        </button>
+                                    </td>
+                                    <div class="modal fade" id="pro{{ $produk->id }}" tabindex="-1"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                        aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitleId">Produk</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('produk.update', $produk->id) }}" method="POST"
+                                                        enctype="multipart/form-data">
+                                                        <input type="hidden" name="_method" value="PUT">
+                                                        @csrf
+                                                        <div class="form-group">
+                                                            <label for="status">Status</label>
+                                                            <select class="form-control" name="status">
+                                                                <option value="{{ $produk->status }}">
+                                                                    {{ $produk->status }}
+                                                                </option>
+                                                                <option value="Aktif">Aktif</option>
+                                                                <option value="Non Aktif">Non Aktif</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="email2">Kategori</label>
+                                                            <input type="text" class="form-control" name="kategori"
+                                                                value="{{ $produk->kategori }}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="email2">Nama Produk</label>
+                                                            <input type="text" class="form-control" name="nama"
+                                                                value="{{ $produk->nama }}">
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="email2">Harga</label>
+                                                            <input type="number" class="form-control" name="harga"
+                                                                value="{{ $produk->harga }}">
+                                                        </div>
+
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </tr>
                             @endforeach
+
+
+
                         </tbody>
                     </table>
                 </div>

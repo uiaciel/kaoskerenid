@@ -334,15 +334,18 @@
                 <div class="card-body">
                     <!-- Button trigger modal -->
                     @foreach ($designs as $image)
-                        <a href="" data-toggle="modal" data-target="#mockup-{{ $image->id }}">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#mockup-{{ $image->id }}">
                             <img src="{{ $image->path }}" width="100px;" loading="lazy" />
                         </a>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="mockup-{{ $image->id }}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content ">
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="mockup-{{ $image->id }}" tabindex="-1"
+                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                            aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md"
+                                role="document">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">MOCKUP</h5>
                                         <form action="{{ route('design.destroy', $image->id) }}" method="POST">
@@ -350,25 +353,27 @@
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
+
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body text-center">
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                    <div class="modal-body">
+                                        <img src="{{ $image->path }}" class="img-fluid" loading="lazy" />
 
-                                                <img src="{{ $image->path }}" class="img-fluid" loading="lazy" />
-
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
-
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    <button type="button" class="btn btn-primary btn-sm btn-block mt-2" data-toggle="modal"
-                        data-target="#exampleModal">
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#gallery">
                         Gallery
                     </button>
                 </div>
@@ -575,54 +580,55 @@ Instagram store : kaoskerenid
             </div>
         </div>
     </div>
-
-
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="gallery" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
             <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Gallery</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
-                        <button type="submit" class="btn btn-primary btn-sm">upload</button>
-                        <div class="form-group">
-                            <label class="form-label">Pilih Gambar</label>
-                            <div class="row">
+                        <label class="form-label">Pilih Gambar</label>
+                        <div class="row">
 
-                                @foreach ($alldesign->where('kategori', 'MOCKUP') as $alld)
-                                    <div class="col-12 col-sm-2">
-                                        <label class="imagecheck mb-4">
-                                            <input name="imagecheck" type="checkbox" value="{{ $alld->path }}"
-                                                class="imagecheck-input">
-                                            <figure class="imagecheck-figure">
-                                                <img src="{{ $alld->path }}" alt="title" class="imagecheck-image"
-                                                    loading="lazy">
-                                            </figure>
-                                            <input type="text" name="kategori" value="Mockup" hidden>
-                                            <input type="text" name="order_id" value="{{ $order->id }}" hidden>
-                                            <input type="text" name="klien_id" value="{{ $order->klien->id }}"
-                                                hidden>
+                            @foreach ($alldesign->where('kategori', 'MOCKUP') as $alld)
+                                <div class="col-12 col-sm-2">
+                                    <label class="imagecheck mb-4">
+                                        <input name="imagecheck" type="checkbox" value="{{ $alld->path }}"
+                                            class="imagecheck-input">
+                                        <figure class="imagecheck-figure">
+                                            <img src="{{ $alld->path }}" alt="title" class="imagecheck-image"
+                                                loading="lazy">
+                                        </figure>
+                                        <input type="text" name="kategori" value="Mockup" hidden>
+                                        <input type="text" name="order_id" value="{{ $order->id }}" hidden>
+                                        <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
 
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    </label>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                        <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </div>
-
             </form>
         </div>
+
     </div>
+    </div>
+
+
+
+
+
+
+
 @endsection

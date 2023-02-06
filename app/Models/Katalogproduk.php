@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orderan extends Model
+class Katalogproduk extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     public function produk()
     {
         return $this->belongsTo('App\Models\Produk', 'produk_id');

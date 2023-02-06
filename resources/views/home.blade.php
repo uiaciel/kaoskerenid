@@ -52,12 +52,11 @@
 
         </div>
         <div class="col-lg-6 col-md-6">
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
 
                 <div class="card-body">
-                    <select class="form-control select2-single"
-                        onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"
-                        id="exampleFormControlSelect1">
+                    <select class="form-control selectklien"
+                        onchange="this.options[this.selectedIndex].value && (window.location.href = this.options[this.selectedIndex].value)">
                         <option>== CARI KLIEN ===</option>
                         @foreach ($allkliens as $aktif)
                             <option value="/klien/{{ $aktif->id }}">{{ $aktif->nama }} - {{ $aktif->hp }}</option>
@@ -65,7 +64,7 @@
 
                     </select>
                 </div>
-            </div>
+            </div> --}}
             @foreach ($lunas as $orderx)
                 <div class="card mb-3">
                     <div class="card-header border-bottom align-items-center d-flex justify-content-xl-between">
@@ -190,7 +189,7 @@
                                 <div class="p-2 bd-highlight">
                                     <div class="input-group">
 
-                                        <select class="custom-select" id="inputGroupSelect04" name="status"
+                                        <select class="custom-select " id="inputGroupSelect04" name="status"
                                             aria-label="Example select with button addon">
                                             <option>{{ $order->status }}</option>
                                             <option value="CANCEL">CANCEL</option>
