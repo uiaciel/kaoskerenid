@@ -343,16 +343,12 @@
                         <div class="modal fade" id="mockup-{{ $image->id }}" tabindex="-1"
                             data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                             aria-labelledby="modalTitleId" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md"
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
                                 role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">MOCKUP</h5>
-                                        <form action="{{ route('design.destroy', $image->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+
 
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -362,9 +358,14 @@
 
                                     </div>
                                     <div class="modal-footer">
+                                        <form action="{{ route('design.destroy', $image->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -408,15 +409,13 @@
                                     download>{{ Str::remove('storage/' . $order->klien->hp . '/', $file->path) }}</a></li>
                         </ul>
                     @endforeach
-
                     <p>
-
-                        <button class="btn btn-primary btn-sm btn-block mt-2" type="button" data-bs-toggle="collapse"
-                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Semua File EPS
-                        </button>
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#contentId" aria-expanded="false"
+                            aria-controls="contentId">
+                            SHOW EPS
+                        </a>
                     </p>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="contentId">
                         <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @foreach ($alldesign->where('kategori', 'EPS') as $paths)
@@ -432,8 +431,8 @@
                             @endforeach
                             <button type="submit" class="btn btn-primary btn-sm">upload</button>
                         </form>
-
                     </div>
+
                 </div>
             </div>
         </div>
