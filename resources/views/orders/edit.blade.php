@@ -411,7 +411,7 @@
 
                     <p>
 
-                        <button class="btn btn-primary btn-sm btn-block mt-2" type="button" data-toggle="collapse"
+                        <button class="btn btn-primary btn-sm btn-block mt-2" type="button" data-bs-toggle="collapse"
                             data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             Semua File EPS
                         </button>
@@ -420,15 +420,6 @@
                         <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @foreach ($alldesign->where('kategori', 'EPS') as $paths)
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <input type="checkbox" aria-label="Checkbox for following text input">
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" value="{{ $paths->path }}"
-                                        aria-label="Text input with checkbox">
-                                </div>
                                 <div class="form-group form-check">
                                     <input name="imagecheck" type="checkbox" value="{{ $paths->path }}"
                                         class="form-check-input">
