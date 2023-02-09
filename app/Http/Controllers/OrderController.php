@@ -19,23 +19,47 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            return DataTables::of(Order::query()
-                ->select('id', 'judul', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
-                ->OrderBy('created_at', 'desc')
-                ->with(['klien' => function ($query) {
-                    $query->select('id', 'nama');
-                }]))
+            if (!empty($request->filter_periode)) {
 
-                ->editColumn('created_at', function ($order) {
-                    return $order->created_at ? with(new Carbon($order->created_at))->format('d F Y') : '';
-                })
 
-                ->addColumn('action', 'orders.action')
-                ->toJson();
+
+                $data = Order::select('id', 'judul', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
+                    ->with(['klien' => function ($query) {
+                        $query->select('id', 'nama');
+                    }])
+                    ->orderBy('created_at', 'desc')
+                    ->where('created_at', '>', Carbon::now()->subDays($request->filter_periode))
+                    ->get();
+
+                return DataTables::of($data)
+
+                    ->editColumn('created_at', function ($order) {
+                        return $order->created_at ? with(new Carbon($order->created_at))->format('d F Y') : '';
+                    })
+
+                    ->addColumn('action', 'orders.action')
+                    ->toJson();
+            } else {
+
+                return DataTables::of(Order::query()
+                    ->select('id', 'judul', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
+                    ->OrderBy('created_at', 'desc')
+                    ->with(['klien' => function ($query) {
+                        $query->select('id', 'nama');
+                    }]))
+
+                    ->editColumn('created_at', function ($order) {
+                        return $order->created_at ? with(new Carbon($order->created_at))->format('d F Y') : '';
+                    })
+
+                    ->addColumn('action', 'orders.action')
+                    ->toJson();
+            }
         }
 
         return view('orders.index');
     }
+
     public function create()
     {
         return view('orders.create');

@@ -689,13 +689,20 @@
         });
     </script>
 
-
     <script>
-        $(function() {
-            $('#orders-table').DataTable({
+        $(document).ready(function() {
+            var table = $('#orders-table').DataTable({
+                pageLength: 10,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('order.index') !!}', // memanggil route yang menampilkan data json
+                searching: true,
+                dom: 'lrt',
+                ajax: {
+                    "url": "{{ route('order.index') }}",
+                    "data": function(d) {
+                        d.filter_periode = $('#filter_periode').val();
+                    }
+                },
                 columns: [{ // mengambil & menampilkan kolom sesuai tabel database
                         data: 'id',
                         name: 'id'
@@ -738,9 +745,21 @@
 
 
                 ]
+
             });
+
+            $('#filter-search').keyup(function() {
+                table.search($(this).val()).draw();
+            })
+
+            //filter Berdasarkan periode
+            $('#filter_periode').change(function() {
+                table.draw();
+            });
+
         });
     </script>
+
 
     <script>
         $(document).ready(function() {
