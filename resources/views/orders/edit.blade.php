@@ -320,7 +320,7 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">MOCKUP</label>
                                     <input type="file" class="form-control" name="mockup" multiple="">
-                                    <input type="text" name="kategori" value="Mockup" hidden>
+                                    <input type="text" name="kategori" value="MOCKUP" hidden>
                                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                     <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
                                     <input type="text" name="klienpath" value="{{ $order->klien->hp }}" hidden>
@@ -597,7 +597,7 @@ Instagram store : kaoskerenid
                         <label class="form-label">Pilih Gambar</label>
                         <div class="row">
 
-                            @foreach ($alldesign->where('kategori', 'Mockup') as $alld)
+                            @foreach ($alldesign->where('kategori', 'MOCKUP') as $alld)
                                 <div class="col-12 col-sm-2">
                                     <label class="imagecheck mb-4">
                                         <input name="imagecheck" type="checkbox" value="{{ $alld->path }}"
@@ -606,7 +606,7 @@ Instagram store : kaoskerenid
                                             <img src="{{ $alld->path }}" alt="title" class="imagecheck-image"
                                                 loading="lazy">
                                         </figure>
-                                        <input type="text" name="kategori" value="Mockup" hidden>
+                                        <input type="text" name="kategori" value="MOCKUP" hidden>
                                         <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                         <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
 
