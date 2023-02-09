@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Kaoskerenid') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="title" content="Web Internal Sablon Satuan - Kaoskerenid">
     <meta name="author" content="Uiaciel">
@@ -591,7 +591,7 @@
     </script>
 
 
-    {{-- <script>
+    <script>
         $(document).ready(function() {
             $('.input-daterange').datepicker({
                 todayBtn: 'linked',
@@ -656,7 +656,7 @@
 
 
         });
-    </script> --}}
+    </script>
 
     <script>
         $(function() {

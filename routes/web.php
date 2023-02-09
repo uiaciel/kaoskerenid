@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/tambah/{id}', [HomeController::class, 'tambah']);
     Route::get('/list/produk/{id}', [HomeController::class, 'listproduk'])->name('listproduk');
     Route::post('/tambahproduk', [HomeController::class, 'tambahproduk'])->name('tambahproduk');
+    Route::get('/belanja', [HomeController::class, 'belanja'])->name('belanja');
     Route::get('/klien/export/bulanini', [KlienController::class, 'bulanini']);
     Route::get('/d/produk/id/{orderanid}', [OrderanController::class, 'destroyall'])->name('hapus.semuaproduk');
 });

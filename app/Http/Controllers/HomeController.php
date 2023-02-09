@@ -57,8 +57,6 @@ class HomeController extends Controller
             ->OrderBy('updated_at', 'desc')
             ->get();
 
-
-
         $orders = Order::select('klien_id', 'inv')
             ->where('status', 'KONFRIM')
             ->orWhere('status', 'DESIGN OK')
@@ -104,9 +102,6 @@ class HomeController extends Controller
     }
     public function nota($id)
     {
-
-
-
 
         $order = Order::where('inv', $id)->first();
         $orderan = Orderan::where('order_id', $order->id)->get();
@@ -187,5 +182,18 @@ class HomeController extends Controller
         $idorder = Order::where('id', $inv)->first();
         Session::flash('flash_message', 'Orderan berhasil di tambahkan');
         return redirect()->route('order.show', $idorder->inv);
+    }
+
+    public function belanja()
+    {
+        $aktiforder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan')
+            ->whereNot('pembayaran', 'BELUM BAYAR')
+            ->whereNot('status', 'CANCEL')
+            ->OrderBy('updated_at', 'desc')
+            ->get();
+
+        return view('orders.belanja', [
+            'orders' => $aktiforder
+        ]);
     }
 }

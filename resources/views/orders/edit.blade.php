@@ -597,7 +597,7 @@ Instagram store : kaoskerenid
                         <label class="form-label">Pilih Gambar</label>
                         <div class="row">
 
-                            @foreach ($alldesign->where('kategori', 'MOCKUP') as $alld)
+                            @foreach ($alldesign->where('kategori', 'Mockup') as $alld)
                                 <div class="col-12 col-sm-2">
                                     <label class="imagecheck mb-4">
                                         <input name="imagecheck" type="checkbox" value="{{ $alld->path }}"

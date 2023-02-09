@@ -1,5 +1,18 @@
 @extends('layouts.app')
-@section('title', 'Page Title')
+@section('title')
+    <div class="container text-white py-2">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="mr-3">
+                <h2 class="mb-3">Daftar Produk
+                </h2>
+
+            </div>
+            <div class="ml-auto">
+                <a href="{{ route('produk.create') }}" class="btn btn-primary">Buat Baru</a>
+            </div>
+        </div>
+    </div>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-lg-12">
@@ -104,7 +117,7 @@
                                                                 value="{{ $produk->nama }}">
                                                         </div>
 
-                                                        <div class="form-group">
+                                                        <div class="form-group mb-3">
                                                             <label for="email2">Harga</label>
                                                             <input type="number" class="form-control" name="harga"
                                                                 value="{{ $produk->harga }}">
