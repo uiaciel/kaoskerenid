@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
     <div class="container text-white py-2">
-        <div class="d-flex flex-column flex-lg-row align-items-center">
-            <div class="mr-3">
+        <div class="d-flex">
+            <div class="mr-3 flex-grow-1">
                 <h2 class="mb-3"><a href="/klien/{{ $order->klien->id }}">{{ $order->klien->nama }}</a> #{{ $order->inv }}
                 </h2>
-                <h5 class="op-7 mb-3">{{ $order->klien->hp }} - {{ $order->qty }}pcs</h5>
+                <h5 class="op-7 mb-3">{{ Str::replaceFirst('0', '+62', $order->klien->hp) }} - {{ $order->qty }}pcs</h5>
             </div>
-            <div class="ml-auto">
+            <div>
 
             </div>
         </div>
@@ -142,8 +142,8 @@
                                             id="exampleRadios2" value="kirim"> <label class="form-check-label"
                                             for="exampleRadios2">KIRIM KURIR</label>
                                     </div>
-                                    <div class="form-check"><input class="form-check-input" type="radio"
-                                            name="pengiriman" id="exampleRadios3" value="cod" disabled="disabled">
+                                    <div class="form-check"><input class="form-check-input" type="radio" name="pengiriman"
+                                            id="exampleRadios3" value="cod" disabled="disabled">
                                         <label class="form-check-label" for="exampleRadios3">COD</label>
                                     </div>
                                 </div>
@@ -255,9 +255,9 @@
                     <a href="#" class="btn btn-primary btn-round" style="align-items: center"
                         data-bs-toggle="modal" data-bs-target="#PembayaranModal" role="button"><i
                             class="bi bi-wallet"></i></a>
-                    <a href="/nota/{{ $order->inv }}" target="_blank" class="btn btn-success btn-round"><i
+                    <a href="/nota/{{ $order->inv }}" target="_blank" class="btn btn-info btn-round"><i
                             class="bi bi-printer"></i></a>
-                    <button onclick="myFunction()" id="bntcopy" class="btn btn-success btn-danger"><i
+                    <button onclick="myFunction()" id="bntcopy" class="btn btn-info btn-danger"><i
                             class="bi bi-receipt"></i>
                     </button>
                 </div>
@@ -319,14 +319,23 @@
                             <div class="bd-highlight">
                                 <div class="form-group">
                                     <label for="exampleFormControlFile1">MOCKUP</label>
+                                </div>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#gallery">
+                                        <i class="bi bi-file-earmark-image"></i>
+                                    </button>
                                     <input type="file" class="form-control" name="mockup" multiple="">
-                                    <input type="text" name="kategori" value="MOCKUP" hidden>
+                                    <input type="text" name="kategori" value="EPS" hidden>
                                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                     <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
                                     <input type="text" name="klienpath" value="{{ $order->klien->hp }}" hidden>
+                                    <button type="submit" class="btn btn-info">Upload</button>
+
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success">Upload</button>
+
+
 
                         </div>
                     </form>
@@ -373,10 +382,7 @@
                     @endforeach
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#gallery">
-                        Gallery
-                    </button>
+
                 </div>
             </div>
             <div class="card mb-3">
@@ -386,14 +392,20 @@
                         <div class="d-flex justify-content-between align-items-center ">
 
                             <div class="bd-highlight">
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">EPS</label>
+                                </div>
                                 <div class="input-group">
-
+                                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#contentId"
+                                        aria-expanded="false" aria-controls="contentId">
+                                        <i class="bi bi-vector-pen"></i>
+                                    </a>
                                     <input type="file" class="form-control" name="mockup" multiple="">
                                     <input type="text" name="kategori" value="EPS" hidden>
                                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                     <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
                                     <input type="text" name="klienpath" value="{{ $order->klien->hp }}" hidden>
-                                    <button type="submit" class="btn btn-success">Upload</button>
+                                    <button type="submit" class="btn btn-info">Upload</button>
                                 </div>
                             </div>
 
@@ -409,12 +421,7 @@
                                     download>{{ Str::remove('storage/' . $order->klien->hp . '/', $file->path) }}</a></li>
                         </ul>
                     @endforeach
-                    <p>
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#contentId" aria-expanded="false"
-                            aria-controls="contentId">
-                            SHOW EPS
-                        </a>
-                    </p>
+
                     <div class="collapse" id="contentId">
                         <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
@@ -479,7 +486,7 @@
                                         <option value="Transfer">Transfer</option>
                                         <option value="Tunai">Tunai</option>
                                     </select>
-                                    <button type="submit" class="btn btn-md btn-success">LUNAS</button>
+                                    <button type="submit" class="btn btn-md btn-info">LUNAS</button>
 
                                 </div>
                                 <input type="date" class="form-control" name="tanggal"

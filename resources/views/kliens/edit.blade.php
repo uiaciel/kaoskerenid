@@ -95,8 +95,10 @@
                         <tbody>
                             @foreach ($orders as $index => $order)
                                 <tr class="">
-                                    <td scope="row">1</td>
-                                    <td><a href="/order/{{ $order->inv }}">{{ $order->inv }}</a></td>
+                                    <td scope="row">{{ $loop->iteration }}</td>
+                                    <td><a href="/order/{{ $order->inv }}" data-bs-toggle="tooltip"
+                                            data-bs-placement="bottom"
+                                            title="{{ $order->detail }}">{{ $order->inv }}</a></td>
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->qty }} pcs</td>
                                     <td>{{ $order->status }}</td>

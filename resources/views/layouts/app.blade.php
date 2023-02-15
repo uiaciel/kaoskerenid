@@ -14,9 +14,9 @@
     <meta name="description" content="Website pencatat pesanan Sablon Satuan Kaoskerenid.">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/icons/ios/120.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/icon-72x72.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/ios/16.png">
     <link rel="manifest" href="../../assets/img/favicon/site.webmanifest">
     <link rel="mask-icon" href="../../assets/img/favicon/safari-pinned-tab.svg" color="#ffffff">
     <meta name="msapplication-TileColor" content="#ffffff">
@@ -44,8 +44,8 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark navbar-theme-primary p-3">
         <div class="container-fluid">
             <a class="navbar-brand me-lg-5" href="{{ url('/') }}">
-                <img class="navbar-brand-dark" src="../../assets/img/brand/light.svg" alt="Volt logo" /> <img
-                    class="navbar-brand-light" src="../../assets/img/brand/dark.svg" alt="Volt logo" />
+                <img class="navbar-brand-dark" src="../../assets/icons/ios/72.png" alt="Volt logo" /> <img
+                    class="navbar-brand-light" src="assets/icons/ios/72.png" alt="Volt logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
                 aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
