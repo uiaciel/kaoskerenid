@@ -326,7 +326,7 @@
                                         <i class="bi bi-file-earmark-image"></i>
                                     </button>
                                     <input type="file" class="form-control" name="mockup" multiple="">
-                                    <input type="text" name="kategori" value="EPS" hidden>
+                                    <input type="text" name="kategori" value="MOCKUP" hidden>
                                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                     <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
                                     <input type="text" name="klienpath" value="{{ $order->klien->hp }}" hidden>

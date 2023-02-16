@@ -89,6 +89,7 @@
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Qty</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Pembayaran</th>
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
@@ -102,6 +103,7 @@
                                     <td>{{ $order->created_at }}</td>
                                     <td>{{ $order->qty }} pcs</td>
                                     <td>{{ $order->status }}</td>
+                                    <td>{{ $order->pembayaran }}</td>
                                     <td>Rp.{{ $order->total }}</td>
                                 </tr>
                             @endforeach

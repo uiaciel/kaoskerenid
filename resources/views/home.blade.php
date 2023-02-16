@@ -162,11 +162,12 @@
                             <div class="me-3 fw-bold">
                                 {{ $orderx->qty }} Pcs</div>
                             <div class="me-3">
-                                {{ $orderx->status }}/{{ $orderx->pembayaran }}
+                                {{ $orderx->stok }}/{{ $orderx->pembayaran }}
                             </div>
 
                             <div class="fw-bold">
-                                <i class="bi bi-alarm"></i> {{ $orderx->pengambilan }}
+                                <i class="bi bi-alarm"></i>
+                                {{ \Carbon\Carbon::parse($orderx->pengambilan)->diffForHumans() }}
                             </div>
 
 
@@ -270,11 +271,12 @@
                             <div class="me-3 fw-bold">
                                 {{ $order->qty }} Pcs</div>
                             <div class="me-3 text-danger">
-                                {{ $order->status }}/{{ $order->pembayaran }}
+                                {{ $order->stok }}/{{ $order->pembayaran }}
                             </div>
 
                             <div class="fw-bold">
-                                <i class="bi bi-alarm"></i> {{ $order->pengambilan }}
+                                <i class="bi bi-alarm"></i>
+                                {{ \Carbon\Carbon::parse($order->pengambilan)->diffForHumans() }}
                             </div>
 
 
