@@ -18,7 +18,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="table-responsive mt-4">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="data">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>

@@ -13,8 +13,8 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="users-table">
-                        <thead>
+                    <table class="table table-flush" id="users-table">
+                         <thead class="thead-light">
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>

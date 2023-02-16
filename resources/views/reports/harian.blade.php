@@ -164,6 +164,7 @@
         <div class="col-md-6">
             <div class="card full-height">
                 <div class="card-body">
+                    {!! $chart->container() !!}
                     <div class="card-title">Overall statistics</div>
                     <div class="card-category">Daily information about statistics in system</div>
                     <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
@@ -387,4 +388,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
 @endsection

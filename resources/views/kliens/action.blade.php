@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between">
-    <div class="input-group mb-3">
+    <div class="input-group">
         <a href="{{ route('klien.show', $id) }}" role="button" class="btn btn-primary"><i
                 class="bi bi-pencil-square"></i></a>
         <button type="button" class="btn btn-success"><i class="bi bi-printer"></i></button>
