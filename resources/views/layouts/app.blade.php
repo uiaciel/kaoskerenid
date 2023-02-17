@@ -24,6 +24,7 @@
 
     <!-- Scripts -->
     @vite('resources/sass/app.scss')
+    @laravelPWA
 
     <!-- Sweet Alert -->
     {{-- <link type="text/css" href="../../vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet"> --}}
