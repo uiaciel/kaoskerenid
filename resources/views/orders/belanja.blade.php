@@ -7,7 +7,7 @@
                     <h5>PERLU Belanja</h5>
                 </a>
                 @forelse ($orders->where('stok', 'KOSONG') as $order)
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="/order/{{ $order->inv }} class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{ $order->klien->nama }} {{ $order->qty }} pcs</h5>
                             <div>
@@ -56,7 +56,7 @@
                     <h5>List Stok Ready</h5>
                 </a>
                 @forelse ($orders->where('stok', 'READY') as $order)
-                    <a href="#" class="list-group-item list-group-item-action">
+                    <a href="/order/{{ $order->inv }}" class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{ $order->klien->nama }} {{ $order->qty }} pcs</h5>
                             <div>
