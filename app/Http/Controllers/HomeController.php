@@ -187,8 +187,13 @@ class HomeController extends Controller
     public function belanja()
     {
         $aktiforder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan')
-            ->whereNot('pembayaran', 'BELUM BAYAR')
-            ->whereNot('status', 'CANCEL')
+            ->wherenot('pembayaran', 'BELUM BAYAR')
+            ->where(function ($query) {
+                $query->where('status', 'KONFRIM')
+                    ->orWhere('status', 'DESIGN OK')
+                    ->orWhere('status', 'REQUEST DESIGN')
+                    ->orWhere('status', 'PRODUKSI');
+            })
             ->OrderBy('updated_at', 'desc')
             ->get();
 
