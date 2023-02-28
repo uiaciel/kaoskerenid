@@ -38,10 +38,10 @@
 
     <style>
         #btn-back-to-top {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
         }
     </style>
 
@@ -542,44 +542,44 @@
     <main class="container">
         @yield('content')
         <!-- Back to top button -->
-       
+
     </main>
     <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
         <i class="bi bi-arrow-up-square-fill"></i>
-        </button>
+    </button>
     <!-- Core -->
     <script src="../../vendor/jquery/jquery.3.2.1.min.js"></script>
     <script src="../../vendor/@popperjs/core/dist/umd/popper.min.js"></script>
     <script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script>
-            //Get the button
+        //Get the button
         let mybutton = document.getElementById("btn-back-to-top");
 
         // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () {
-        scrollFunction();
+        window.onscroll = function() {
+            scrollFunction();
         };
 
         function scrollFunction() {
-        if (
-            document.body.scrollTop > 20 ||
-            document.documentElement.scrollTop > 20
-        ) {
-            mybutton.style.display = "block";
-        } else {
-            mybutton.style.display = "none";
-        }
+            if (
+                document.body.scrollTop > 20 ||
+                document.documentElement.scrollTop > 20
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
         }
         // When the user clicks on the button, scroll to the top of the document
         mybutton.addEventListener("click", backToTop);
 
         function backToTop() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
         }
     </script>
-    
+
     <!-- Vendor JS -->
     {{-- <script src="../../vendor/onscreen/dist/on-screen.umd.min.js"></script> --}}
 
@@ -616,6 +616,7 @@
     <link href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 
     <!-- Github buttons -->
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}

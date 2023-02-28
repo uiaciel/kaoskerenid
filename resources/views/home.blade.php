@@ -139,7 +139,7 @@
                             @if ($designs->where('order_id', $orderx->id)->count() > 1)
                                 @foreach ($designs->where('order_id', $orderx->id) as $slider)
                                     <div class="col-md-4">
-                                        <img src="{{ $slider->path }}" class="rounded mx-auto d-block" alt="...">
+                                        <img src="{{ $slider->path }}" class="img-fluid" alt="...">
                                     </div>
                                 @endforeach
                             @else

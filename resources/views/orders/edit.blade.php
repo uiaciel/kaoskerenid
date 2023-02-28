@@ -103,9 +103,15 @@
                                 <div class="form-group">
                                     <label>QTY</label>
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control" name="qty"
-                                            value="{{ $order->qty }}">
+                                        <input type="number"
+                                            class="form-control @if ($order->qty == null) is-invalid @endif"
+                                            name="qty" value="{{ $order->qty }}">
                                         <span class="input-group-text" id="basic-addon2">pcs</span>
+                                        @if ($order->qty == null)
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                Masukan Jumlah quantity order
+                                            </div>
+                                        @endif
                                     </div>
 
                                     <label>Pengambilan</label>
@@ -142,8 +148,8 @@
                                             id="exampleRadios2" value="kirim"> <label class="form-check-label"
                                             for="exampleRadios2">KIRIM KURIR</label>
                                     </div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="pengiriman"
-                                            id="exampleRadios3" value="cod" disabled="disabled">
+                                    <div class="form-check"><input class="form-check-input" type="radio"
+                                            name="pengiriman" id="exampleRadios3" value="cod" disabled="disabled">
                                         <label class="form-check-label" for="exampleRadios3">COD</label>
                                     </div>
                                 </div>

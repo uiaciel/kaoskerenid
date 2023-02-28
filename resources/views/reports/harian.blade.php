@@ -65,7 +65,7 @@
                     @forelse ($pemasukanharian as $harian)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="/order/{{ $harian->order->inv }}">{{ $harian->metode }}</a>
-                            <span class="badge badge-primary badge-pill">Rp
+                            <span class="badge bg-primary bg-pill">Rp
                                 {{ number_format($harian->nominal, 0, ',', '.') }}</span>
                         </li>
                     @empty
@@ -140,7 +140,7 @@
                     @forelse ($pengeluaranharian as $hari)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="">Rp {{ number_format($hari->nominal, 0, ',', '.') }}</a>
-                            <span class="badge badge-primary badge-pill">{{ $hari->metode }}</span>
+                            <span class="badge bg-primary bg-pill">{{ $hari->metode }}</span>
                         </li>
                     @empty
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -231,7 +231,7 @@
                 <div class="card-body">
                     <div class="card-title">Total Pendapatan</div>
                     <div class="row py-3">
-                        <div class="col-md-5 d-flex flex-column justify-content-around">
+                        <div class="col-md-12 d-flex flex-column justify-content-around">
                             <div>
                                 <h6 class="fw-bold text-uppercase text-success op-8">Pendapatan</h6>
                                 <h3 class="fw-bold">Rp
@@ -243,24 +243,7 @@
                                     {{ number_format($pengeluarans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div id="chart-container">
-                                <div class="chartjs-size-monitor"
-                                    style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                                    <div class="chartjs-size-monitor-expand"
-                                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                    </div>
-                                    <div class="chartjs-size-monitor-shrink"
-                                        style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                    </div>
-                                </div>
-                                <canvas id="totalIncomeChart" width="314" height="134"
-                                    style="display: block; width: 349px; height: 150px;"
-                                    class="chartjs-render-monitor"></canvas>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -274,13 +257,13 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Jumlah dari {{ $orders->count() }} order
-                        <span class="badge badge-primary badge-pill">{{ $orders->pluck('qty')->sum() }} pcs</span>
+                        <span class="badge bg-primary bg-pill">{{ $orders->pluck('qty')->sum() }} pcs</span>
                     </li>
 
                     @forelse  ($orders as $order)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="/order/{{ $order->inv }}">#{{ $order->inv }} - {{ $order->klien->nama }}</a>
-                            <span class="badge badge-primary badge-pill">{{ $order->qty }} pcs</span>
+                            <span class="badge bg-primary bg-pill text-white">{{ $order->qty }} pcs</span>
                         </li>
                     @empty
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -308,7 +291,7 @@
                     @forelse ($kliens as $klien)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $klien->nama }}
-                            <span class="badge badge-success"><i class="fab fa-whatsapp"></i> <a
+                            <span class="badge bg-primary"><i class="fab fa-whatsapp"></i> <a
                                     href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=Hai+Sablon+Satuan"
                                     class="text-white">CHAT</a></span>
                         </li>
@@ -329,14 +312,14 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Total Pemasukan
-                        <span class="badge badge-primary badge-pill">Rp
+                        <span class="badge bg-primary bg-pill">Rp
                             {{ number_format($pemasukans->pluck('nominal')->sum(), 0, ',', '.') }}</span>
                     </li>
 
                     @forelse ($pemasukans as $pemasukan)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a href="/order/{{ $pemasukan->order->inv }}">{{ $pemasukan->metode }}</a>
-                            <span class="badge badge-primary badge-pill">Rp
+                            <span class="badge bg-primary bg-pill text-white">Rp
                                 {{ number_format($pemasukan->nominal, 0, ',', '.') }}</span>
                         </li>
                     @empty
@@ -357,11 +340,13 @@
                 <div class="card-body">
                     <h3>Data Orderan Periode {{ $bt }}</h3>
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
+                        <table class="table table-hover">
+                            <thead class="bg-dark text-white">
                                 <tr>
                                     <th>No</th>
+                                    <th>Status</th>
                                     <th>Order</th>
+                                    <th>Klien</th>
                                     <th>Qty</th>
                                     <th>Total</th>
                                 </tr>
@@ -370,16 +355,14 @@
                                 @foreach ($periode as $index => $periode)
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
-                                        <td>{{ $periode->inv }}</td>
+                                        <td>{{ $periode->status }}</td>
+                                        <td><a href="/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
+                                        <td>{{ $periode->klien->nama }}</td>
                                         <td>{{ $periode->qty }}</td>
                                         <td>{{ $periode->total }}</td>
                                     </tr>
                                 @endforeach
-                                <tr>
-                                    <td scope="row"></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>

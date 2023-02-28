@@ -92,7 +92,21 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        //
+        $periode = Order::where('periode', $id)
+            ->wherenot('pembayaran', 'BELUM BAYAR')
+            ->where(function ($query) {
+                $query->where('status', 'KONFRIM')
+                    ->orWhere('status', 'DESIGN OK')
+                    ->orWhere('status', 'REQUEST DESIGN')
+                    ->orWhere('status', 'PRODUKSI');
+            })
+            ->OrderBy('updated_at', 'desc')
+            ->get();
+
+        return view('reports.bulanan', [
+            'periode' => $periode,
+            'id' => $id,
+        ]);
     }
     /**
      * Show the form for editing the specified resource.
