@@ -10,6 +10,7 @@ use App\Models\Orderan;
 use App\Models\Design;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -92,20 +93,25 @@ class ReportController extends Controller
      */
     public function show($id)
     {
-        $periode = Order::where('periode', $id)
-            ->wherenot('pembayaran', 'BELUM BAYAR')
-            ->where(function ($query) {
-                $query->where('status', 'KONFRIM')
-                    ->orWhere('status', 'DESIGN OK')
-                    ->orWhere('status', 'REQUEST DESIGN')
-                    ->orWhere('status', 'PRODUKSI');
-            })
+
+        $aktiforder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'total')
+
+            ->wherenot('status', 'CANCEL')
+            ->where('periode', $id)
             ->OrderBy('updated_at', 'desc')
+            ->get();
+
+        $periode =
+            DB::table('orders')
+            ->select(DB::raw('DATE(created_at) as Tanggal'), DB::raw('count(*) as Jumlah'), DB::raw('sum(total) as Total'))
+            ->where('periode', $id)
+            ->groupBy('Tanggal')
             ->get();
 
         return view('reports.bulanan', [
             'periode' => $periode,
             'id' => $id,
+            'orders' => $aktiforder
         ]);
     }
     /**
