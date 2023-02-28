@@ -35,13 +35,29 @@
         </div>
     </div>
     <h3 class="text-white mb-3">Jumlah Per Hari</h3>
-    <div class="row">
+    <div class="row mb-3">
         @foreach ($periode as $day)
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <div class="card">
                     <div class="card-body">
                         @foreach ($day as $tanggal => $dayy)
                             {{ $tanggal }} : <strong>{{ $dayy }}</strong><br />
+                        @endforeach
+                    </div>
+
+                </div>
+
+            </div>
+        @endforeach
+    </div>
+    <h3 class="text-white mb-3">Pembayaran Per Hari</h3>
+    <div class="row mb-3">
+        @foreach ($pemasukans as $pem)
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        @foreach ($pem as $tanggals => $dayys)
+                            {{ $tanggals }} : <strong>{{ $dayys }}</strong><br />
                         @endforeach
                     </div>
 

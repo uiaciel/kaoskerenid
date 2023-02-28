@@ -98,7 +98,7 @@ class ReportController extends Controller
 
             ->wherenot('status', 'CANCEL')
             ->where('periode', $id)
-            ->OrderBy('updated_at', 'desc')
+            ->OrderBy('created_at', 'desc')
             ->get();
 
         $periode =
@@ -108,10 +108,20 @@ class ReportController extends Controller
             ->groupBy('Tanggal')
             ->get();
 
+        $pemasukans =
+            DB::table('keuangans')
+            ->select(DB::raw('DATE(tanggal) as Tanggal'), DB::raw('count(*) as Jumlah'), DB::raw('sum(nominal) as Total'))
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->where('jenis', 'Pemasukan')
+            ->groupBy('Tanggal')
+            ->get();
+
         return view('reports.bulanan', [
             'periode' => $periode,
             'id' => $id,
-            'orders' => $aktiforder
+            'orders' => $aktiforder,
+            'pemasukans' => $pemasukans,
         ]);
     }
     /**
