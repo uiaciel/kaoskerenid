@@ -10,11 +10,8 @@
 <form action="{{ route('klien.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card">
-        <div class="card-header">
-            <div class="card-head-row">
-                <div class="card-title">Klien Baru</div>
-
-            </div>
+        <div class="card-header bg-primary text-white p-2">
+            KLIEN BARU
         </div>
         <div class="card-body">
 
@@ -30,7 +27,7 @@
             </div>
             <div class="form-floating mb-3">
 
-                <textarea class="form-control" name="alamat" rows="5"></textarea>
+                <textarea class="form-control" name="alamat" id="comment" style="height: 100px"></textarea>
                 <label for="comment">Alamat</label>
             </div>
             <div class="form-check">

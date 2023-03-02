@@ -30,6 +30,7 @@ Auth::routes([
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/produk/list', [ProdukController::class, 'list']);
     Route::get('/klien/export', [KlienController::class, 'export'])->name('klien.export');
 
     Route::resource('/order', OrderController::class);
@@ -45,10 +46,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/katalogproduk', KatalogprodukController::class);
     Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
-    Route::get('/tambah/{id}', [HomeController::class, 'tambah']);
+    Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
     Route::get('/list/produk/{id}', [HomeController::class, 'listproduk'])->name('listproduk');
     Route::post('/tambahproduk', [HomeController::class, 'tambahproduk'])->name('tambahproduk');
     Route::get('/belanja', [HomeController::class, 'belanja'])->name('belanja');
     Route::get('/klien/export/bulanini', [KlienController::class, 'bulanini']);
     Route::get('/d/produk/id/{orderanid}', [OrderanController::class, 'destroyall'])->name('hapus.semuaproduk');
+    Route::post('/update/produk', [ProdukController::class, 'listupdate'])->name('updateproduk');
 });

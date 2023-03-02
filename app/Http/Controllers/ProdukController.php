@@ -6,6 +6,7 @@ use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+
 class ProdukController extends Controller
 {
     /**
@@ -86,7 +87,7 @@ class ProdukController extends Controller
         $produk->status = $request->status;
         $produk->save();
 
-        Session::flash('flash_message', 'Produk berhasil di update');
+        toast('Data berhasil diupdate', 'success');
         return redirect()->back();
     }
     /**
@@ -95,8 +96,32 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produk $produk)
+    public function list()
     {
-        //
+        $data = Produk::orderBy('kategori', 'ASC')->get();
+
+        return view('produks.list', [
+            'datas' => $data
+        ]);
+    }
+
+    public function listupdate(Request $request)
+    {
+        $id = array_filter($request->id);
+        $status = array_filter($request->status);
+
+
+        foreach ($id as $key => $value) {
+            $data = array(
+                'status' => $status[$key],
+
+            );
+
+            Produk::where('id', $value)
+                ->update($data);
+        }
+
+        Session::flash('flash_message', 'Produk berhasil di update');
+        return redirect()->back();
     }
 }

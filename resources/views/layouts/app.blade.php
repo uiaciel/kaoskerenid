@@ -78,10 +78,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('order.index') }}">Semua Order</a></li>
                             <li><a class="dropdown-item" href="{{ url('/home') }}">Orderan Akif</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -93,8 +90,10 @@
                             Admin
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/belanja">BELANJA</a></li>
                             <li><a class="dropdown-item" href="{{ route('keuangan.index') }}">KEUANGAN</a></li>
                             <li><a class="dropdown-item" href="{{ route('stok.index') }}">STOK</a></li>
+                            <li><a class="dropdown-item" href="/produk/list">PRODUK</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -542,7 +541,7 @@
     <main class="container">
         @yield('content')
         <!-- Back to top button -->
-
+        @include('sweetalert::alert')
     </main>
     <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
         <i class="bi bi-arrow-up-square-fill"></i>

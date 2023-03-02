@@ -298,36 +298,9 @@
         <div class="col-lg-3 col-md-6">
 
 
-            <form action="{{ route('klien.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="card border-0 mb-3">
-                    <div class="card-header bg-primary text-white p-2">
-                        KLIEN BARU
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="email2">Nama</label>
-                            <input type="text" class="form-control" name="nama" placeholder="Tulis Nama">
-                        </div>
-                        <div class="form-group">
-                            <label for="email2">No Whatsapp</label>
-                            <input type="text" class="form-control" name="hp" placeholder="08xx">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Alamat</label>
-                            <textarea class="form-control" name="alamat" rows="5">
-        </textarea>
-                        </div>
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="order" value="1">
-                                <span class="form-check-sign">Langsung buat Orderan</span>
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </form>
+            <div class="card mb-3">
+                @include('kliens.create')
+            </div>
             <div class="card mb-3">
                 <div class="card-body">
                     <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">

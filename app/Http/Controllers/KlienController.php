@@ -40,13 +40,16 @@ class KlienController extends Controller
                 'user_id' => Auth::id(),
                 'alamat' => $request->alamat,
             ]);
+
             $order = new Order;
             $order->periode = Carbon::now()->format("M-Y");
             $order->inv = Carbon::now()->format("dm-") . Str::random(3) . Carbon::now()->format("y");
             $order->klien_id = $klien->id;
             $order->user_id = Auth::id();
             $order->save();
-            return redirect()->route('order.show', $order->inv)->with('flash', [
+
+
+            return redirect()->route('tambah', $order->inv)->with('flash', [
                 'message' => 'Orderan berhasil dibuat'
             ]);
         } else {

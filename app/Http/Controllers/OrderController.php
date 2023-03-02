@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
 class OrderController extends Controller
@@ -143,6 +144,10 @@ class OrderController extends Controller
         $order->ongkir = $request->ongkir;
         $order->pembayaran = $request->pembayaran;
         $order->save();
+
+        $alertnya = $order->inv . " Berhasil di update";
+
+        toast($alertnya, 'success');
         return redirect()->back()
             ->with('success', 'Order update successfully.');
     }
