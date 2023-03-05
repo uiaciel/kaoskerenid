@@ -7,17 +7,20 @@
             @foreach ($katalogs as $katalog)
                 <div class="card mb-3">
                     <div class="card-header d-flex justify-content-between">
+                        <form action="{{ route('katalog.destroy', $katalog->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
                         <h4>{{ $katalog->nama }}</h4>
 
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#modalId{{ $katalog->id }}">
-                            Edit
+                            Add
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                            data-bs-target="#modalId{{ $katalog->id }}">
-                            Delete
-                        </button>
+
+
 
                         <!-- Modal Body -->
                         <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -27,7 +30,7 @@
                                 role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="modalTitleId">Modal title</h5>
+                                        <h5 class="modal-title" id="modalTitleId">{{ $katalog->nama }}</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -35,16 +38,7 @@
                                         <form action="{{ route('katalogproduk.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
-                                            <div class="mb-3">
 
-
-                                                <label for="" class="form-label">{{ $katalog->nama }}</label>
-                                                <input type="text" class="form-control" name="katalog_id" id=""
-                                                    aria-describedby="helpId" placeholder="" value="{{ $katalog->id }}">
-                                                <small id="helpId" class="form-text text-muted">Help text</small>
-
-
-                                            </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Produk</label>
                                                 <select multiple class="form-select form-select-lg" name="produk_id[]"
@@ -61,11 +55,7 @@
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -86,8 +76,14 @@
                                     <tr class="">
                                         <td scope="row">Item</td>
                                         <td>{{ $pro->produk->nama }}</td>
-                                        <td>{{ $pro->produk->harga }}</td>
-                                        <td><button type="button" class="btn btn-danger">X</button></td>
+                                        <td class="fs-4 text-end">{{ $pro->produk->harga }}</td>
+                                        <td>
+                                            <form action="{{ route('katalogproduk.destroy', $pro->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">X</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

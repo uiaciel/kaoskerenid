@@ -7,7 +7,7 @@
                     <h5>PERLU Belanja</h5>
                 </a>
                 @forelse ($orders->where('stok', 'KOSONG') as $order)
-                    <a href="/order/{{ $order->inv }}" class="list-group-item list-group-item-action">
+                    <div class="list-group-item list-group-item-action">
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{ $order->klien->nama }} {{ $order->qty }} pcs</h5>
                             <div>
@@ -35,6 +35,7 @@
                                         <button class="btn btn-outline-secondary" type="submit" id=""><i
                                                 class="bi bi-check-all"></i></button>
 
+
                                     </div>
 
                                 </form>
@@ -42,7 +43,7 @@
                         </div>
                         <p class="mb-1">{{ $order->detail }}</p>
 
-                    </a>
+                    </div>
 
                 @empty
                     <h3>Data Kosong</h3>

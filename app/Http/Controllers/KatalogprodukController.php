@@ -98,6 +98,7 @@ class KatalogprodukController extends Controller
      */
     public function destroy(Katalogproduk $katalogproduk)
     {
-        //
+        $katalogproduk->delete();
+        return redirect()->back()->with('flash_message', 'Produk telah dihapus!');
     }
 }

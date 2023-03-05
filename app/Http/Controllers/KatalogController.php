@@ -91,6 +91,10 @@ class KatalogController extends Controller
      */
     public function destroy(Katalog $katalog)
     {
-        //
+        Katalogproduk::where('katalog_id', $katalog->id)->delete();
+        $katalog->delete();
+
+
+        return redirect()->back()->with('flash_message', 'Produk telah dihapus!');
     }
 }
