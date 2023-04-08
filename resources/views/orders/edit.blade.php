@@ -195,8 +195,22 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <a href="/tambah/{{ $order->inv }}" class="btn btn-primary"><i class="fas fa-tshirt"></i>
-                            Tambah produk</a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                <i class="bi bi-ui-checks-grid"></i> Paket
+                            </button>
+
+
+                            <a href="/tambah/{{ $order->inv }}" class="btn btn-primary"><i class="fas fa-tshirt"></i>
+                                Produk</a>
+
+                            {{-- <button type="button" class="btn btn-primary">Right</button> --}}
+                        </div>
+
+                        <!-- Button trigger modal -->
+
+
                         <form action="{{ route('hapus.semuaproduk', $order->id) }}">
                             @csrf
                             @method('DELETE')
@@ -206,49 +220,72 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive text-nowrap">
-                        <table class="table table-bordered table-hover nowrap align-middle">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Item</th>
-                                    <th>Harga</th>
-                                    <th>QTY</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($orderan as $orderannya)
+                        <form>
+
+
+                            <table class="table table-bordered table-hover nowrap align-middle">
+                                <thead>
                                     <tr>
-                                        <th scope="row">
-                                            <form action="{{ route('orderan.destroy', $orderannya->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">X</button>
-                                            </form>
-                                        </th>
-                                        <td><small>{{ $orderannya->produk->kategori }}</small>
-                                            <p>{{ $orderannya->produk->nama }}</p>
-                                        </td>
-                                        <td>{{ $orderannya->produk->harga }}</td>
-                                        <td>{{ $orderannya->qty }}</td>
-                                        <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
+                                        <th>ID</th>
+                                        <th>Item</th>
+                                        <th>Harga</th>
+                                        <th>QTY</th>
+                                        <th>Total</th>
                                     </tr>
-                                @endforeach
-                                <tr>
-                                    <td colspan="4" class="text-end">Total Rp</td>
-                                    <td class="text-end font-weight-bold">{{ $total }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-end">Ongkir Rp</td>
-                                    <td class="text-end font-weight-bold">{{ $order->ongkir }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="text-end">Grand Total</td>
-                                    <td class="text-end font-weight-bold">{{ $grandtotal }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orderan as $orderannya)
+                                        <tr>
+                                            <th scope="row">
+                                                <form action="{{ route('orderan.destroy', $orderannya->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="bi bi-trash3-fill"></i></button>
+                                                </form>
+                                            </th>
+                                            <td>
+                                                <small>{{ $orderannya->produk->kategori }}</small>
+                                                <p>{{ $orderannya->produk->nama }}</p>
+                                            </td>
+                                            <td>{{ $orderannya->produk->harga }}</td>
+                                            <td>
+                                                <form action="{{ route('orderan.update', $orderannya->id) }}"
+                                                    method="Post">
+                                                    <input type="hidden" name="_method" value="PUT">
+                                                    @csrf
+
+
+
+                                                    <input name="qty" type="number" value="{{ $orderannya->qty }}"
+                                                        style="width: 40px;">
+
+                                                    <input name="harga" value="{{ $orderannya->produk->harga }}"
+                                                        style="width: 40px;" hidden>
+                                                    <button type="submit" class="btn btn-primary btn-sm"><i
+                                                            class="bi bi-check-all"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="4" class="text-end">Total Rp</td>
+                                        <td class="text-end font-weight-bold">{{ $total }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Ongkir Rp</td>
+                                        <td class="text-end font-weight-bold">{{ $order->ongkir }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Grand Total</td>
+                                        <td class="text-end font-weight-bold">{{ $grandtotal }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 </div>
 
@@ -288,7 +325,8 @@
                                             <form action="{{ route('keuangan.destroy', $bayar->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">X</button>
+                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                        class="bi bi-trash3-fill"></i></button>
                                             </form>
                                         </td>
                                         <td><small>{{ $bayar->metode }}</small>
@@ -629,6 +667,37 @@ Instagram store : kaoskerenid
     </div>
 
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog        ">
+            <form action="{{ route('tambahpaket') }}" method="post">
+                @csrf
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input value="{{ $order->id }}" name="order_id" hidden>
+                        <select class="form-select select2-multiple" aria-label="Default select example" name="paket_id">
+                            <option selected>Pilih Paket</option>
+                            @foreach ($paket as $katalog)
+                                <option value="{{ $katalog->id }}">{{ $katalog->nama }}</option>
+                            @endforeach
+
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div>
 
 
 

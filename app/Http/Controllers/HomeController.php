@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Keuangan;
 use App\Models\Klien;
 use App\Models\Design;
+use App\Models\Katalog;
+use App\Models\Katalogproduk;
 use App\Models\Order;
 use App\Models\Orderan;
 use App\Models\Produk;
@@ -160,6 +162,29 @@ class HomeController extends Controller
         $produk = Produk::where('status', 'Aktif')->OrderBy('kategori', 'desc')->OrderBy('nama', 'asc')->get();
         return json_encode($produk);
     }
+
+    public function tambahpaket(Request $request)
+    {
+
+        $paket = Katalogproduk::with('produk')->where('katalog_id', $request->paket_id)->get();
+
+
+
+        $order_id = $request->order_id;
+
+        foreach ($paket as $key => $n) {
+
+            $orderan = new Orderan;
+            $orderan->order_id = $order_id;
+            $orderan->produk_id = $n->produk->id;
+            $orderan->qty = 1;
+            $orderan->harga = $n->produk->harga * 1;
+            $orderan->save();
+        }
+
+        return redirect()->back();
+    }
+
     public function tambahproduk(Request $request)
     {
         $produk = array_filter($request->produk);
@@ -183,6 +208,8 @@ class HomeController extends Controller
         Session::flash('flash_message', 'Orderan berhasil di tambahkan');
         return redirect()->route('order.show', $idorder->inv);
     }
+
+
 
     public function belanja()
     {

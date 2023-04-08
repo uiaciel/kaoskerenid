@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
+use App\Models\Katalog;
 use App\Models\Keuangan;
 use App\Models\Order;
 use App\Models\Orderan;
@@ -100,6 +101,7 @@ class OrderController extends Controller
         $alldesign->values()->all();
         $grandtotal = $total + $order->ongkir;
         $sisa = $grandtotal - $jumlah;
+        $paket = Katalog::all();
 
         return view('orders.edit', [
             'order' => $order,
@@ -111,7 +113,8 @@ class OrderController extends Controller
             'sisa' => $sisa,
             'designs' => $designs,
             'files' => $files,
-            'alldesign' => $alldesign
+            'alldesign' => $alldesign,
+            'paket' => $paket
         ]);
     }
 
@@ -151,6 +154,7 @@ class OrderController extends Controller
         return redirect()->back()
             ->with('success', 'Order update successfully.');
     }
+
     /**
      * Remove the specified resource from storage.
      *

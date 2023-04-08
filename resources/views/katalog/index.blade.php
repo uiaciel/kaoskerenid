@@ -38,11 +38,11 @@
                                         <form action="{{ route('katalogproduk.store') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
-
+                                            <input name="katalog_id" value="{{ $katalog->id }}" hidden>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Produk</label>
-                                                <select multiple class="form-select form-select-lg" name="produk_id[]"
-                                                    id="">
+                                                <select multiple class="form-select form-select-lg select2-multiple"
+                                                    name="produk_id[]" id="">
 
                                                     @foreach ($produks as $produk)
                                                         <option value="{{ $produk->id }}">{{ $produk->kategori }} -
