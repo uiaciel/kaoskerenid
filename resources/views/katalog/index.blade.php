@@ -66,6 +66,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Kategori</th>
                                     <th scope="col">Produk</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Action</th>
@@ -75,6 +76,7 @@
                                 @foreach ($katalog->katalogproduk->where('katalog_id', $katalog->id) as $pro)
                                     <tr class="">
                                         <td scope="row">Item</td>
+                                        <td>{{ $pro->produk->kategori }}</td>
                                         <td>{{ $pro->produk->nama }}</td>
                                         <td class="fs-4 text-end">{{ $pro->produk->harga }}</td>
                                         <td>

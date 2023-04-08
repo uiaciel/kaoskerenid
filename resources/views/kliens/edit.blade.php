@@ -70,7 +70,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                     <h2 class="fs-5 fw-bold mb-0">History Order</h2>
                     <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
@@ -112,6 +112,67 @@
                     </table>
                 </div>
 
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gallery</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    @foreach ($designs->where('kategori', 'MOCKUP') as $image)
+                        <a href="" data-bs-toggle="modal" data-bs-target="#mockup-{{ $image->id }}">
+                            <img src="{{ $image->path }}" width="100px;" loading="lazy" />
+                        </a>
+
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="mockup-{{ $image->id }}" tabindex="-1"
+                            data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                            aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">MOCKUP</h5>
+
+
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ $image->path }}" class="img-fluid" loading="lazy" />
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="{{ route('design.destroy', $image->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">File EPS</h5>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                            The current link item
+                        </a>
+                        @foreach ($designs->where('kategori', 'EPS') as $paths)
+                            <a href="#"
+                                class="list-group-item list-group-item-action">{{ Str::remove('storage/' . $klien->hp . '/', $paths->path) }}</a>
+                        @endforeach
+
+                    </div>
+
+                </div>
             </div>
         </div>
         <div class="col-md-4">

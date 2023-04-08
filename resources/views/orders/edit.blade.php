@@ -203,7 +203,7 @@
 
 
                             <a href="/tambah/{{ $order->inv }}" class="btn btn-primary"><i class="fas fa-tshirt"></i>
-                                Produk</a>
+                                <i class="bi bi-ui-checks"></i> Produk</a>
 
                             {{-- <button type="button" class="btn btn-primary">Right</button> --}}
                         </div>
@@ -676,10 +676,11 @@ Instagram store : kaoskerenid
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <label>Pilih Katalog</label>
                         <input value="{{ $order->id }}" name="order_id" hidden>
                         <select class="form-select select2-multiple" aria-label="Default select example" name="paket_id">
                             <option selected>Pilih Paket</option>
@@ -687,8 +688,6 @@ Instagram store : kaoskerenid
                                 <option value="{{ $katalog->id }}">{{ $katalog->nama }}</option>
                             @endforeach
 
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
                         </select>
                     </div>
                     <div class="modal-footer">
