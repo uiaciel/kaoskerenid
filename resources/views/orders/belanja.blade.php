@@ -25,6 +25,9 @@
                                     <input name="status" value="{{ $order->status }}" hidden>
 
                                     <div class="input-group">
+                                        <a href="/order/{{ $order->inv }}" class="btn btn-primary"
+                                            target="_blank">View</a>
+
                                         <select class="form-select form-select-sm" name="stok">
                                             <option value="{{ $order->stok }}">{{ $order->stok }}</option>
                                             <option value="KOSONG">KOSONG</option>

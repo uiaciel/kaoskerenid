@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="row">
         <div class="col-md-3">
@@ -297,10 +298,16 @@
         </div>
         <div class="col-lg-3 col-md-6">
 
-
+            <div class="card mb-3 bg-dark">
+                <script src="https://cdn.logwork.com/widget/text.js"></script>
+                <a href="https://logwork.com/current-time-in-bogor-indonesia-jawa-tengah" class="clock-widget-text"
+                    data-timezone="Asia/Jakarta" data-language="en" data-textcolor="#ffffff"
+                    data-digitscolor="#ffffff">Bogor, Indonesia</a>
+            </div>
             <div class="card mb-3">
                 @include('kliens.create')
             </div>
+
             <div class="card mb-3">
                 <div class="card-body">
                     <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">

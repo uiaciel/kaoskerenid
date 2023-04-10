@@ -33,10 +33,11 @@
                                         <option value="{{ $order->stok }}">
                                             {{ $order->stok }}
                                         </option>
+                                        <option value="READY">READY</option>
                                         <option value="KOSONG">Kosong</option>
                                         <option value="KURANG">Kurang</option>
-                                        <option value="READY">Ready</option>
-                                        <option value="ORDER">Order</option>
+
+                                        <option value="ORDER">ORDER</option>
                                     </select>
                                     <select name="status" class="form-select">
                                         <option value="{{ $order->status }}">
