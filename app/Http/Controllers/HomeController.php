@@ -37,7 +37,7 @@ class HomeController extends Controller
         // $pemasukan = Keuangan::where('jenis', 'Pemasukan')->orderBy('created_at', 'desc')->get();
         // $pengeluaran = Keuangan::where('jenis', 'Pengeluaran')->orderBy('created_at', 'desc')->get();
 
-        $aktiforder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan')
+        $aktiforder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan', 'tanggalambil')
             ->where('pembayaran', 'MASUK DP')
             ->where(function ($query) {
                 $query->where('status', 'KONFRIM')
@@ -48,7 +48,7 @@ class HomeController extends Controller
             ->OrderBy('updated_at', 'desc')
             ->get();
 
-        $lunas = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan')
+        $lunas = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan', 'tanggalambil')
             ->where('pembayaran', 'LUNAS')
             ->where(function ($query) {
                 $query->where('status', 'KONFRIM')
@@ -76,7 +76,7 @@ class HomeController extends Controller
                 $query->select('id', 'nama');
             }])
             ->get();
-        $beresorder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran')
+        $beresorder = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'tanggalambil')
             ->OrderBy('created_at', 'desc')
             ->where('status', 'BERES')->get();
         $selesaiorder = Order::select('klien_id', 'inv')

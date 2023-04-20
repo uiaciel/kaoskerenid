@@ -74,7 +74,8 @@ class OrderController extends Controller
         $order->user_id = Auth::id();
         $order->klien_id = $request->klien_id;
         $order->qty = 0;
-        $order->pengambilan = Carbon::now();
+        // $order->pengambilan = Carbon::now();
+        $order->tanggalambil = Carbon::now()->toDateTimeString();
         $order->save();
         // return redirect()->route('orderan', $order->inv);
         return redirect('/tambah/' . $order->inv)
@@ -141,7 +142,8 @@ class OrderController extends Controller
         $order->total = $request->total;
         $order->detail = $request->detail;
         $order->judul = $request->judul;
-        $order->pengambilan = $request->pengambilan;
+        // $order->pengambilan = $request->pengambilan;
+        $order->tanggalambil = $request->tanggalambil;
         $order->stok = $request->stok;
         $order->status = $request->status;
         $order->ongkir = $request->ongkir;

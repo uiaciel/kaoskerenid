@@ -168,7 +168,7 @@
 
                             <div class="fw-bold">
                                 <i class="bi bi-alarm"></i>
-                                {{ \Carbon\Carbon::parse($orderx->pengambilan)->diffForHumans() }}
+                                {{ Carbon::parse($orderx->tanggalambil)->format('D, d M \'y, H:i') }}
                             </div>
 
 
@@ -277,7 +277,7 @@
 
                             <div class="fw-bold">
                                 <i class="bi bi-alarm"></i>
-                                {{ \Carbon\Carbon::parse($order->pengambilan)->diffForHumans() }}
+                                {{ Carbon::parse($orderx->tanggalambil)->format('D, d M \'y, H:i') }}
                             </div>
 
 

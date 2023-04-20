@@ -118,9 +118,8 @@
                                     <label>Pengambilan</label>
                                     <div class="input-group mb-3">
                                         {{-- <div id="foo" data-date="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"></div> --}}
-                                        <input class="form-control" id="foo"
-                                            value="{{ \Carbon\Carbon::parse($order->pengambilan)->format('Y-m-d') }}"
-                                            name="pengambilan">
+                                        <input class="form-control" type="datetime-local"
+                                            value="{{ $order->tanggalambil }}" name="tanggalambil">
 
 
                                         {{-- <span class="input-group-text"><svg
