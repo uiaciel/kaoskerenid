@@ -123,7 +123,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 col-12">
-                        <h2 class="text-white mb-lg-0">KAOSKEREN.ID</h2>
+                        <h2 class="text-white mb-lg-0">SABLON SATUAN</h2>
                     </div>
 
                     <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
