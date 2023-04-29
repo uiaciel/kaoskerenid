@@ -35,7 +35,7 @@ class KlienExport implements FromCollection, WithMapping, WithHeadings
     public function map($kliens): array
     {
         return [
-            $kliens->nama . ' SABLON',
+            Str::upper($kliens->nama) . ' SABLON',
             $kliens->nama,
             'SABLON',
             'Mobile',
