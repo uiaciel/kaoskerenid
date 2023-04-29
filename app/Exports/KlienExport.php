@@ -39,7 +39,7 @@ class KlienExport implements FromQuery, WithMapping, WithHeadings
     {
         return [
             Str::upper($kliens->nama) . ' SABLON',
-            $kliens->nama,
+            Str::upper($kliens->nama),
             'SABLON',
             'Mobile',
             $kliens->hp,
