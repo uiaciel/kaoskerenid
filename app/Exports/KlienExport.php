@@ -8,16 +8,19 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
-class KlienExport implements FromCollection, WithMapping, WithHeadings
+class KlienExport implements FromQuery, WithMapping, WithHeadings
 {
 
     use Exportable;
 
-    public function collection()
+    public function query()
     {
         // return Klien::orderBy('created_at', 'desc')->take(5)->get();
-        return Klien::all();
+        return Klien::query();
+        // return Klien::query()->whereMonth('created_at', Carbon::now()->month)->whereMonth('created_at', Carbon::now()->year);
     }
 
     public function headings(): array
