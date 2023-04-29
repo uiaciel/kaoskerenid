@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KlienExport;
 use App\Models\Klien;
 use App\Models\Order;
 use App\Models\Design;
@@ -10,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KlienController extends Controller
 {
@@ -136,5 +138,15 @@ class KlienController extends Controller
         return view('kliens.data', [
             'datas' => $data
         ]);
+    }
+
+    public function exportklien()
+    {
+        $carbon = Carbon::now()->format('F');
+        return Excel::download(new KlienExport, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+        ]);
+
+        // return Excel::download(new KlienExport, 'users.xlsx');
     }
 }

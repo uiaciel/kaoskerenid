@@ -8,13 +8,13 @@
                         <div class="col">
                             <h2 class="fs-5 fw-bold mb-0">List Klien</h2>
                         </div>
-                        <div class="col text-end"><a href="#" class="btn btn-sm btn-primary">See all</a></div>
+                        <div class="col text-end"><a href="/klien/exports" class="btn btn-sm btn-primary">EXPORT CSV</a></div>
                     </div>
                 </div>
 
                 <div class="table-responsive">
                     <table class="table table-flush" id="users-table">
-                         <thead class="thead-light">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>

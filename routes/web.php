@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\KlienExport;
 use App\Http\Controllers\DatastokController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\HomeController;
@@ -30,6 +31,8 @@ Auth::routes([
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::get('/klien/exports', [KlienController::class, 'exportklien']);
+
     Route::get('/produk/list', [ProdukController::class, 'list']);
     Route::get('/klien/export', [KlienController::class, 'export'])->name('klien.export');
 
