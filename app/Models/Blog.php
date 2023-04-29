@@ -5,14 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Klien extends Model
+class Blog extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nama',
-        'hp',
-        'alamat',
-        'status',
-        'user_id',
-    ];
 }

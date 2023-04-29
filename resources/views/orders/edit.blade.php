@@ -444,7 +444,7 @@
                                         aria-expanded="false" aria-controls="contentId">
                                         <i class="bi bi-vector-pen"></i>
                                     </a>
-                                    <input type="file" class="form-control" name="mockup" multiple="">
+                                    <input type="file" class="form-control" name="mockup">
                                     <input type="text" name="kategori" value="EPS" hidden>
                                     <input type="text" name="order_id" value="{{ $order->id }}" hidden>
                                     <input type="text" name="klien_id" value="{{ $order->klien->id }}" hidden>
@@ -582,6 +582,12 @@
     </div>
     <div class="col-md-12 mt-3">
         <div class="card mb-3">
+            <div class="card-header">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" onclick="myFunction()" type="button">Copy Invoice</button>
+
+                </div>
+            </div>
             <div class="card-body">
 
                 <textarea class="form-control" id="myCopy" rows="2">

@@ -26,19 +26,21 @@
                                 <select class="form-select" name="filter_periode" id="filter_periode">
                                     <option value="">Pilih</option>
                                     <option value="1">Kemarin</option>
-                                    <option value="7">Minggu Lalu</option>
-                                    <option value="30">Bulan Lalu</option>
+                                    <option value="7">Seminggu lalu</option>
+                                    <option value="30">Sebulan Lalu</option>
+                                    <option value="60">2 bulan Lalu</option>
+                                    <option value="90">3 bulan Lalu</option>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="filter-search" class="form-label">Cari disini</label>
                                 <input type="text" class="form-control" name="filter-search" id="filter-search"
                                     aria-describedby="filter-search" placeholder="Ketik disini">
 
                             </div>
-                        </div>
+                        </div> --}}
 
 
 

@@ -31,7 +31,7 @@
 
     <!-- Notyf -->
     {{-- <link type="text/css" href="../../vendor/notyf/notyf.min.css" rel="stylesheet"> --}}
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -95,6 +95,8 @@
                             <li><a class="dropdown-item" href="{{ route('keuangan.index') }}">KEUANGAN</a></li>
                             <li><a class="dropdown-item" href="{{ route('stok.index') }}">STOK</a></li>
                             <li><a class="dropdown-item" href="/produk/list">PRODUK</a></li>
+                            <li><a class="dropdown-item" href="{{ route('design.eps') }}">DESIGN</a></li>
+                            <li><a class="dropdown-item" href="{{ route('design.index') }}">MOCKUP</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -499,6 +501,7 @@
                                 </a>
                             </li>
 
+
                         </ul>
                     </div>
                 </li>
@@ -682,7 +685,20 @@
                                                 clip-rule="evenodd"></path>
                                         </svg>
                                     </span>
-                                    <span class="sidebar-text">Design</span>
+                                    <span class="sidebar-text">MOCKUP</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{ route('design.eps') }}" class="nav-link">
+                                    <span class="sidebar-icon">
+                                        <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="sidebar-text">DESIGN</span>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -988,16 +1004,50 @@
                 ]
             });
         });
+
+        $(function() {
+            $('#eps-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{!! route('design.eps') !!}', // memanggil route yang menampilkan data json
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'klien.nama',
+                        name: 'klien.nama',
+
+                    },
+                    {
+                        data: 'path',
+                        name: 'path'
+                    },
+                    {
+                        data: 'kategori',
+                        name: 'kategori'
+                    },
+
+                    // {
+                    //     data: 'action',
+                    //     name: 'Action',
+                    //     orderable: false,
+                    //     searchable: false
+                    // },
+
+                ]
+            });
+        });
     </script>
 
     <script>
         $(document).ready(function() {
             var table = $('#orders-table').DataTable({
-                pageLength: 10,
+                // pageLength: 10,
                 processing: true,
                 serverSide: true,
                 searching: true,
-                dom: 'lrt',
+                // dom: 'lrt',
                 ajax: {
                     "url": "{{ route('order.index') }}",
                     "data": function(d) {
@@ -1371,6 +1421,8 @@
             todayHighlight: 1,
         });
     </script>
+
+
 
 
 </body>

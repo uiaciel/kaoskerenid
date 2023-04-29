@@ -54,4 +54,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/klien/export/bulanini', [KlienController::class, 'bulanini']);
     Route::get('/d/produk/id/{orderanid}', [OrderanController::class, 'destroyall'])->name('hapus.semuaproduk');
     Route::post('/update/produk', [ProdukController::class, 'listupdate'])->name('updateproduk');
+    Route::get('/d/design', [DesignController::class, 'destroyall'])->name('design.destroyall');
+    Route::get('/eps', [DesignController::class, 'listeps'])->name('design.eps');
 });
