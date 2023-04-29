@@ -143,7 +143,7 @@ class KlienController extends Controller
     public function exportklien()
     {
         $carbon = Carbon::now()->format('F');
-        return Excel::download(new KlienExport, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
+        return Excel::bulanini(2018)->download(new KlienExport, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
             'Content-Type' => 'text/csv',
         ]);
 
