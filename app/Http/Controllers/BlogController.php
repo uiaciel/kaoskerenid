@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -28,7 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -39,7 +41,17 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $blog = new Blog;
+        $blog->user_id = Auth::id();
+        $blog->judul = $request->judul;
+        $blog->slug = Str::slug($request->judul);
+        $blog->kategori = $request->kategori;
+        $blog->konten = $request->konten;
+        $blog->ringkasan = Str::excerpt($request->konten, 100);
+
+        $blog->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -48,9 +60,16 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show($slug)
     {
-        //
+        $blog = BLog::where('slug', $slug)->first();
+
+        return view(
+            'frontend.blog',
+            [
+                'blog' => $blog
+            ]
+        );
     }
 
     /**

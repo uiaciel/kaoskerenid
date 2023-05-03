@@ -11,10 +11,11 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nama</th>
+                                    <th>Date</th>
                                     <th>Path</th>
 
                                     <th>Kategori</th>
+                                    <th>action</th>
 
                                 </tr>
                             </thead>

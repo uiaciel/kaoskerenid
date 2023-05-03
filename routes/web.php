@@ -1,6 +1,7 @@
 <?php
 
 use App\Exports\KlienExport;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DatastokController;
 use App\Http\Controllers\DesignController;
 use App\Http\Controllers\HomeController;
@@ -21,12 +22,14 @@ Route::get('/', function () {
 });
 
 Route::get('/status/{id}', [ReportController::class, 'status'])->name('statusinv');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...
     'verify' => false, // Email Verification Routes...
 ]);
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -47,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/report', ReportController::class);
     Route::resource('/katalog', KatalogController::class);
     Route::resource('/katalogproduk', KatalogprodukController::class);
+    Route::resource('/blog', BlogController::class);
+
     Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');

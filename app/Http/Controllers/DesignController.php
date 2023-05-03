@@ -30,10 +30,10 @@ class DesignController extends Controller
 
         if ($request->ajax()) {
             return DataTables::of(Design::query()->with(['klien' => function ($query) {
-                $query->select('id', 'nama');
+                $query->select('id', 'nama', 'created_at');
             }])->orderBy('updated_at', 'desc'))
 
-                // ->addColumn('action', 'designs.action')
+                ->addColumn('action', 'designs.action')
                 ->toJson();
         }
 

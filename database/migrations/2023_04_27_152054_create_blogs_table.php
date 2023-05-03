@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('slug');
             $table->string('kategori')->default('blog');
             $table->text('konten');
+            $table->text('ringkasan')->nullable();
+            $table->string('status')->default('publish');
             $table->timestamps();
         });
     }

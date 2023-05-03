@@ -1011,8 +1011,10 @@
                 serverSide: true,
                 ajax: '{!! route('design.eps') !!}', // memanggil route yang menampilkan data json
                 columns: [{
-                        data: 'id',
-                        name: 'id'
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'klien.nama',
@@ -1028,12 +1030,11 @@
                         name: 'kategori'
                     },
 
-                    // {
-                    //     data: 'action',
-                    //     name: 'Action',
-                    //     orderable: false,
-                    //     searchable: false
-                    // },
+
+                    {
+                        data: 'created_at',
+                        name: 'created_at'
+                    },
 
                 ]
             });

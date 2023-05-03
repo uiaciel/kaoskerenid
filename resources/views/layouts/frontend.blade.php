@@ -75,7 +75,7 @@
                 </a>
 
                 <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
-                    class="btn custom-btn d-lg-none ms-auto me-4"> CHAT WHATSAPP</a>
+                    class="btn custom-btn chat d-lg-none ms-auto me-4"> CHAT WHATSAPP</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,13 +107,15 @@
 
 
                         <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
-                            class="btn custom-btn d-lg-block d-none"><i class="bi bi-whatsapp"></i>
+                            class="btn custom-btn d-lg-block"><i class="bi bi-whatsapp"></i>
                             CHAT</a>
                 </div>
             </div>
         </nav>
+        <div class="mt-5">
+            @yield('content')
 
-        @yield('content')
+        </div>
     </main>
 
 
@@ -264,11 +266,11 @@ T e m p l a t e M o
 -->
 
     <!-- JAVASCRIPT FILES -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.sticky.js"></script>
-    <script src="assets/js/click-scroll.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.sticky.js"></script>
+    <script src="/assets/js/click-scroll.js"></script>
+    <script src="/assets/js/custom.js"></script>
 
 </body>
 
