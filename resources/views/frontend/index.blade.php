@@ -224,7 +224,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h2 class="text-white mb-4">Pelanggan Terbaik</h1>
+                    <h2 class="text-white mb-4">Pelanggan Kami</h1>
 
                 </div>
             </div>
@@ -448,7 +448,7 @@
             <div class="row">
 
                 <div class="col-lg-8 col-12 mx-auto">
-                    <h2 class="text-center mb-4">Tanya lebih banyak? Chat Kami!</h2>
+                    <h2 class="text-center mb-4">Tanya-tanya dulu? Boleh!</h2>
 
                     <nav class="d-flex justify-content-center">
                         <div class="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
@@ -456,13 +456,13 @@
                             <button class="nav-link active" id="nav-ContactForm-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-ContactForm" type="button" role="tab"
                                 aria-controls="nav-ContactForm" aria-selected="false">
-                                <h5>Contact Form</h5>
+                                <h5>Chat Sekarang</h5>
                             </button>
 
                             <button class="nav-link" id="nav-ContactMap-tab" data-bs-toggle="tab"
                                 data-bs-target="#nav-ContactMap" type="button" role="tab"
                                 aria-controls="nav-ContactMap" aria-selected="false">
-                                <h5>Google Maps</h5>
+                                <h5>Datang Langsung</h5>
                             </button>
                         </div>
                     </nav>
@@ -470,7 +470,9 @@
                     <div class="tab-content shadow-lg mt-5" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-ContactForm" role="tabpanel"
                             aria-labelledby="nav-ContactForm-tab">
-                            <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post"
+                            <img src="https://halalmui.org/wp-content/uploads/2023/01/2022-01-05-Maintenance-WA-dAN-CEROL-LIVE-CHAT-04-1024x637.png"
+                                class="img-fluid">
+                            {{-- <form class="custom-form contact-form mb-5 mb-lg-0" action="#" method="post"
                                 role="form">
                                 <div class="contact-form-body">
                                     <div class="row">
@@ -493,11 +495,12 @@
 
                                     <div class="col-lg-4 col-md-10 col-8 mx-auto">
                                         {{-- <button type="submit" class="form-control">Send message</button> --}}
-                                        <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
-                                            class="form-control btn btn-warning ">Send Message</a>
-                                    </div>
-                                </div>
-                            </form>
+
+                            {{-- </div> --}}
+                            {{-- </div> --}}
+                            {{-- </form> --}}
+                            <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
+                                class="form-control btn btn-warning btn-custom">Kirim Chat</a>
                         </div>
 
                         <div class="tab-pane fade" id="nav-ContactMap" role="tabpanel"

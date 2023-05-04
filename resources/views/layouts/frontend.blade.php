@@ -12,14 +12,14 @@
 
     <title>KAOSKERENID - @yield('title', 'Sablon Satuan Kota Bogor')</title>
     <meta name="keywords" content="@yield('meta_keys', 'Sablon Satuan, Sablon Bogor, Sablon Kota Bogor, Kaos kota bogor, kaos polos, bikin kaos satuan, kaos custom bogor, kaos terbaik bogor')">
-    <meta name="description" content="@yield('meta_desc', 'Toko Sablon Satuan beralamat di Jalan Sancang No 22, Bogor Tengah, Kota Bogor melayani Sablon Satuan untuk Kaos, Hoodie, Topi, Sweater dan kebutuhan Cetak Digital.')">
+    <meta name="description" content="@yield('meta_desc')">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="url" content="{{ url()->current() }}">
 
     <meta name='og:title' content="@yield('title', 'Sablon Satuan Kota Bogor')">
     <meta name='og:type' content='website'>
     <meta name='og:url' content="{{ url()->current() }}">
-    <meta name='og:image' content='https://kaoskeren.id/images/toko-sablon-satuan.png'>
+    <meta name='og:image' content="@yield('meta_image', 'https://kaoskeren.id/images/toko-sablon-satuan.png')">
     <meta name='og:site_name' content="KAOSKERENID - @yield('title', 'Sablon Satuan Kota Bogor')">
     <meta name='og:description' content="@yield('meta_desc', 'Toko Sablon Satuan beralamat di Jalan Sancang No 22, Bogor Tengah, Kota Bogor melayani Sablon Satuan untuk Kaos, Hoodie, Topi, Sweater dan kebutuhan Cetak Digital.')">
 
@@ -95,23 +95,23 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#beranda">Beranda</a>
+                            <a class="nav-link click-scroll" href="/#beranda">Beranda</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#profile">Tentang</a>
+                            <a class="nav-link click-scroll" href="/#profile">Tentang</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#layanan">Jasa Sablon</a>
+                            <a class="nav-link click-scroll" href="/#layanan">Jasa Sablon</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#pelanggan">Pelanggan</a>
+                            <a class="nav-link click-scroll" href="/#pelanggan">Pelanggan</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#lokasi">Lokasi Toko</a>
+                            <a class="nav-link click-scroll" href="/#lokasi">Lokasi Toko</a>
                         </li>
 
 
@@ -141,19 +141,19 @@
                     <div class="col-lg-6 col-12 d-flex justify-content-lg-end align-items-center">
                         <ul class="social-icon d-flex justify-content-lg-end">
                             <li class="social-icon-item">
-                                <a href="#" class="social-icon-link">
+                                <a href="https://twitter.com/BgrSablon" class="social-icon-link">
                                     <span class="bi-twitter"></span>
                                 </a>
                             </li>
 
                             <li class="social-icon-item">
-                                <a href="#" class="social-icon-link">
+                                <a href="https://instagram.com/kaoskerenid" class="social-icon-link">
                                     <span class="bi-apple"></span>
                                 </a>
                             </li>
 
                             <li class="social-icon-item">
-                                <a href="#" class="social-icon-link">
+                                <a href="https://instagram.com/kaoskerenid" class="social-icon-link">
                                     <span class="bi-instagram"></span>
                                 </a>
                             </li>
@@ -183,11 +183,11 @@
 
                     <ul class="site-footer-links">
                         <li class="site-footer-link-item">
-                            <a href="#beranda" class="site-footer-link">Beranda</a>
+                            <a href="/#beranda" class="site-footer-link">Beranda</a>
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="#profile" class="site-footer-link">Tentang Kami</a>
+                            <a href="/#profile" class="site-footer-link">Tentang Kami</a>
                         </li>
 
                         <li class="site-footer-link-item">
@@ -196,7 +196,7 @@
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="#" class="site-footer-link">Cara Pesan</a>
+                            <a href="/#" class="site-footer-link">Cara Pesan</a>
                         </li>
 
 

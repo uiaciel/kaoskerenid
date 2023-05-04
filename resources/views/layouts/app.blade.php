@@ -103,6 +103,9 @@
                             <li><a class="dropdown-item" href="{{ route('report.index') }}">REPORT</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('blog.index') }}">BLOG</a>
+                    </li>
 
                 </ul>
 
@@ -935,6 +938,7 @@
             menubar: false,
             image_title: true,
             automatic_uploads: true,
+            forced_root_block: 'div',
 
 
             images_upload_handler: function(blobInfo, success, failure) {
