@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/status/{id}', [ReportController::class, 'status'])->name('statusinv');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
 
 Auth::routes([
     'register' => false, // Registration Routes...
@@ -64,4 +64,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/update/produk', [ProdukController::class, 'listupdate'])->name('updateproduk');
     Route::get('/d/design', [DesignController::class, 'destroyall'])->name('design.destroyall');
     Route::get('/eps', [DesignController::class, 'listeps'])->name('design.eps');
+
+    Route::post('/upload/data', [BlogController::class, 'tinimyce'])->name('upload');
 });
+
+Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');

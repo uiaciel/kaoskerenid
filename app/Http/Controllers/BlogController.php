@@ -51,7 +51,11 @@ class BlogController extends Controller
 
         $blog->save();
 
-        return redirect()->back();
+        $alertnya = $request->judul . " Berhasil di update";
+
+        toast($alertnya, 'success');
+        return redirect()->back()
+            ->with('success', 'Order update successfully.');
     }
 
     /**
@@ -80,7 +84,11 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        $blog = Blog::where('id', $blog->id)->first();
+
+        return view('blog.edit', [
+            'blog' => $blog
+        ]);
     }
 
     /**
@@ -92,7 +100,19 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog->user_id = Auth::id();
+        $blog->judul = $request->judul;
+        $blog->slug = Str::slug($request->judul);
+        $blog->kategori = $request->kategori;
+        $blog->konten = $request->konten;
+        $blog->ringkasan = Str::excerpt($request->konten, 100);
+        $blog->save();
+
+        $alertnya = $blog->judul . " Berhasil di update";
+
+        toast($alertnya, 'success');
+        return redirect()->back()
+            ->with('success', 'Order update successfully.');
     }
 
     /**
@@ -103,6 +123,20 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+
+        toast('Berhasil di hapus', 'success');
+
+        return redirect()->back()
+            ->with('success', 'Order update successfully.');
+    }
+
+    public function tinimyce(Request $request)
+    {
+        $originName = $request->file('file')->getClientOriginalName();
+        $slugName = str_replace(' ', '_', $originName);
+        $fileName = time() . '_' . $slugName;
+        $request->file('file')->move(public_path() . '/storage/uploads/', $fileName);
+        return response()->json(['location' => "/storage/uploads/$fileName"]);
     }
 }

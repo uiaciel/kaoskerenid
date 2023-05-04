@@ -13,7 +13,35 @@
 
                     </div>
 
+                    <div class="social-share">
+                        <ul class="social-icon d-flex align-items-center justify-content-center">
+                            <span class="text-dark me-3">Share:</span>
+
+                            <li class="social-icon-item">
+                                <a href="http://www.facebook.com/sharer.php?u={{ url()->current() }}"
+                                    class="social-icon-link">
+                                    <span class="bi-facebook"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="https://twitter.com/share?url={{ url()->current() }}&amp;text={{ urlencode($blog->judul) }}"
+                                    class="social-icon-link">
+                                    <span class="bi-twitter"></span>
+                                </a>
+                            </li>
+
+                            <li class="social-icon-item">
+                                <a href="https://instagram.com/kaoskerenid" class="social-icon-link">
+                                    <span class="bi-instagram"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
+
+
 
                 <div class="col-12 mt-3 text-center">
                     <h2 class="mb-4">Layanan & Produk</h1>

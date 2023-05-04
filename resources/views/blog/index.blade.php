@@ -1,6 +1,6 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('content')
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
             <form action="{{ route('blog.store') }}" method="post">
                 @csrf
@@ -20,9 +20,10 @@
                             </select>
                             <label for="Kategori">Pilih Kategori</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <textarea class="form-control" name="konten" style="height: 400px;" placeholder="Tulis disini ..." id="kontent"></textarea>
+                        <div class="mb-3">
                             <label for="konten">Konten</label>
+                            <textarea id="tinymce" class="form-control" name="konten" placeholder="Tulis disini ..."></textarea>
+
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary" type="submit">Posting</button>
@@ -57,13 +58,23 @@
                                     <td class="text-capitalize">{{ $blog->status }}</td>
 
                                     <td class="text-center">
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-success">Edit</button>
 
-                                            <a href="/blog/{{ $blog->slug }}" type="button"
-                                                class="btn btn-primary">View</a>
-                                            <button type="button" class="btn btn-danger">Delete</button>
-                                        </div>
+                                        <form action="{{ route('blog.destroy', $blog->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <div class="btn-group" role="group" aria-label="Button Group">
+                                                <a href="{{ route('blog.edit', $blog->id) }}" type="button"
+                                                    class="btn btn-success">Edit</a>
+
+                                                <a href="{{ $blog->slug }}" type="button"
+                                                    class="btn btn-primary">View</a>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+
+
+                                        </form>
+
+
                                     </td>
                                 </tr>
                             @empty

@@ -7,11 +7,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>KAOSKERENID - SABLON SATUAN KOTA BOGOR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="title" content="Toko Sablon Satuan - Kaoskerenid">
-    <meta name="author" content="Uiaciel">
-    <meta name="description" content="Sablon Satuan bisa request design, Sablon Kaos Hoodie Sweater Kota Bogor.">
+    <meta name="author" content="KaoskerenID">
+
+    <title>KAOSKERENID - @yield('title', 'Sablon Satuan Kota Bogor')</title>
+    <meta name="keywords" content="@yield('meta_keys', 'Sablon Satuan, Sablon Bogor, Sablon Kota Bogor, Kaos kota bogor, kaos polos, bikin kaos satuan, kaos custom bogor, kaos terbaik bogor')">
+    <meta name="description" content="@yield('meta_desc', 'Toko Sablon Satuan beralamat di Jalan Sancang No 22, Bogor Tengah, Kota Bogor melayani Sablon Satuan untuk Kaos, Hoodie, Topi, Sweater dan kebutuhan Cetak Digital.')">
+    <link rel="canonical" href="{{ url()->current() }}" />
+    <meta name="url" content="{{ url()->current() }}">
+
+    <meta name='og:title' content="@yield('title', 'Sablon Satuan Kota Bogor')">
+    <meta name='og:type' content='website'>
+    <meta name='og:url' content="{{ url()->current() }}">
+    <meta name='og:image' content='https://kaoskeren.id/images/toko-sablon-satuan.png'>
+    <meta name='og:site_name' content="KAOSKERENID - @yield('title', 'Sablon Satuan Kota Bogor')">
+    <meta name='og:description' content="@yield('meta_desc', 'Toko Sablon Satuan beralamat di Jalan Sancang No 22, Bogor Tengah, Kota Bogor melayani Sablon Satuan untuk Kaos, Hoodie, Topi, Sweater dan kebutuhan Cetak Digital.')">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="120x120" href="../../assets/icons/ios/120.png">
