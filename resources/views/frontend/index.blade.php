@@ -217,6 +217,33 @@
                 </div>
 
             </div>
+            <div class="row mt-5 justify-content-center">
+                <div class="col-12 text-center">
+                    <h2 class="mb-4">Artikel & Informasi Sablon</h1>
+                </div>
+
+                <div class="col-12">
+                    <div class="list-group">
+                        @foreach ($blogs as $blog)
+                            <a href="{{ $blog->slug }}" class="list-group-item list-group-item-action"
+                                aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+
+                                    <h5 class="mb-1"><span
+                                            class="badge bg-warning">{{ Str::upper($blog->kategori) }}</span>
+                                        {{ $blog->judul }}</h5>
+                                    <small>{{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
+                                </div>
+                                {{-- <p class="mb-1">Some placeholder content in a paragraph.</p> --}}
+                                {{-- <small>{{ $blog->kategori }}</small> --}}
+                            </a>
+                        @endforeach
+
+                    </div>
+
+
+                </div>
+            </div>
         </div>
     </section>
 

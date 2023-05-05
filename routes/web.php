@@ -14,12 +14,11 @@ use App\Http\Controllers\OrderanController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
 Route::get('/status/{id}', [ReportController::class, 'status'])->name('statusinv');
 

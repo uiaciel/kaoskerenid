@@ -938,8 +938,6 @@
             menubar: false,
             image_title: true,
             automatic_uploads: true,
-            forced_root_block: 'div',
-
 
             images_upload_handler: function(blobInfo, success, failure) {
                 var xhr, formData;

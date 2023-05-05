@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="list-group">
+            <div class="list-group mb-3">
                 <a href="#" class="list-group-item list-group-item-action active text-white" aria-current="true">
                     <h5>List Stok Ready</h5>
                 </a>
@@ -101,6 +101,16 @@
                     <h3>Data Kosong</h3>
                 @endforelse
 
+            </div>
+
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">List Orderan</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -67,11 +67,13 @@ class BlogController extends Controller
     public function show($slug)
     {
         $blog = BLog::where('slug', $slug)->first();
+        $blogs = Blog::where('id', '!=', $blog->id)->limit(6)->get();
 
         return view(
             'frontend.blog',
             [
-                'blog' => $blog
+                'blog' => $blog,
+                'blogs' => $blogs,
             ]
         );
     }

@@ -66,12 +66,18 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-12 col-12 d-flex flex-wrap">
+                    <div class="col-lg-4 col-12 d-flex flex-wrap">
                         <p class="d-flex me-4 mb-0">
                             <i class="bi bi-geo-alt-fill me-2 text-danger"></i>
                             <strong class="text-dark">SABLON SATUAN KAOSKEREN.ID</strong>
                         </p>
                     </div>
+                    <div class="col-lg-8 col-12">
+                        <marquee attribute_name="attribute_value">
+                            One or more lines or text message or image
+                        </marquee>
+                    </div>
+
 
                 </div>
             </div>

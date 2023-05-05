@@ -167,4 +167,12 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function databelanja(Request $request)
+    {
+        $request->session()->put($request->sessionkey, $request->sessionvalue);
+
+        return redirect()->back()
+            ->with('success', 'Data tersimpan pada Cache.');
+    }
 }
