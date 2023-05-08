@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Produk;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -30,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('id');
         date_default_timezone_set('Asia/Jakarta');
         Schema::defaultStringLength(191);
+
+        Paginator::useBootstrapFive();
 
         view()->composer('*', function ($view) {
             $view->with([

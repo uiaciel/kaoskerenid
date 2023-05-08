@@ -19,9 +19,12 @@ class KlienExport implements FromQuery, WithMapping, WithHeadings
     public function query()
     {
         // return Klien::orderBy('created_at', 'desc')->take(5)->get();
-        return Klien::query();
+        return Klien::query()->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'));
         // return Klien::query()->whereMonth('created_at', Carbon::now()->month)->whereMonth('created_at', Carbon::now()->year);
     }
+
+
+
 
     public function headings(): array
     {

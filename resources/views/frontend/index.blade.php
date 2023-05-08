@@ -218,11 +218,11 @@
 
             </div>
             <div class="row mt-5 justify-content-center">
-                <div class="col-12 text-center">
+                <div class="col-12 col-md-12 col-sm-12 text-center">
                     <h2 class="mb-4">Artikel & Informasi Sablon</h1>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12 col-md-12 col-sm-12">
                     <div class="list-group">
                         @foreach ($blogs as $blog)
                             <a href="{{ $blog->slug }}" class="list-group-item list-group-item-action"

@@ -19,4 +19,10 @@ class Blog extends Model
 
         return $src;
     }
+
+    public function dibaca()
+    {
+        $this->dibaca++;
+        return $this->save();
+    }
 }

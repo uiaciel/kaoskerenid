@@ -69,6 +69,8 @@ class BlogController extends Controller
         $blog = BLog::where('slug', $slug)->first();
         $blogs = Blog::where('id', '!=', $blog->id)->limit(6)->get();
 
+        $blog->dibaca();
+
         return view(
             'frontend.blog',
             [

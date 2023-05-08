@@ -12,7 +12,9 @@
 
                     <div class="col-12 mb-5">
                         <h2 class="mb-3">{{ $blog->judul }} <br><small class="fs-5">Oleh : Admin |
-                                {{ \Carbon\Carbon::parse($blog->created_at)->format('D, d M Y') }}</small></h2>
+                                {{ \Carbon\Carbon::parse($blog->created_at)->isoFormat('dddd, D MMMM Y') }} -
+                                {{ Carbon::parse($blog->created_at)->diffForHumans() }} - dibaca:
+                                {{ $blog->dibaca }}x</small></h2>
 
                         <article class="text-black p-2">
 
@@ -163,9 +165,11 @@
                         <div class="col-md-4 mb-3">
                             <div class="card">
                                 @foreach ($post->gambar() as $gam)
-                                    <a href="{{ $post->slug }}" target="_blank"><img src="{{ '/' . $gam }} "
-                                            class="card-img-top" alt="...">
-                                    </a>
+                                    @if ($loop->first)
+                                        <a href="{{ $post->slug }}" target="_blank"><img src="{{ '/' . $gam }} "
+                                                class="card-img-top" alt="...">
+                                        </a>
+                                    @endif
                                 @endforeach
 
                                 <div class="card-body">

@@ -50,5 +50,7 @@
             <h3>Data Kosong</h3>
         @endforelse
 
+
     </div>
+    {{ $designs->links() }}
 @endsection
