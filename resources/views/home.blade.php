@@ -168,7 +168,8 @@
 
                             <div class="fw-bold">
                                 <i class="bi bi-alarm"></i>
-                                {{ Carbon::parse($orderx->tanggalambil)->format('D, d M \'y, H:i') }}
+
+                                {{ Carbon::parse($orderx->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}
                             </div>
 
 

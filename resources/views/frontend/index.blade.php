@@ -232,7 +232,7 @@
                                     <h5 class="mb-1"><span
                                             class="badge bg-warning">{{ Str::upper($blog->kategori) }}</span>
                                         {{ $blog->judul }}</h5>
-                                    <small>{{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
+                                    <small>{{ $blog->dibaca }}x - {{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
                                 </div>
                                 {{-- <p class="mb-1">Some placeholder content in a paragraph.</p> --}}
                                 {{-- <small>{{ $blog->kategori }}</small> --}}

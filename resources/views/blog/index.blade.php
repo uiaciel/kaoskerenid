@@ -62,7 +62,7 @@
                             @forelse ($blogs as $blog)
                                 <tr>
                                     <th scope="row">#</th>
-                                    <td>{{ $blog->judul }}</td>
+                                    <td>{{ $blog->judul }} - {{ $blog->dibaca }}x</td>
                                     <td class="text-capitalize">{{ $blog->kategori }}</td>
                                     <td class="text-capitalize">{{ $blog->status }}</td>
 

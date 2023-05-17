@@ -118,7 +118,7 @@
                                     <label>Pengambilan</label>
                                     <div class="input-group mb-3">
                                         {{-- <div id="foo" data-date="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"></div> --}}
-                                        <input class="form-control" type="datetime-local"
+                                        <input class="form-control" type="datetime-local" id="tanggalpengambilan"
                                             value="{{ $order->tanggalambil }}" name="tanggalambil">
 
 
@@ -300,7 +300,7 @@
                             class="bi bi-wallet"></i></a>
                     <a href="/nota/{{ $order->inv }}" target="_blank" class="btn btn-info btn-round"><i
                             class="bi bi-printer"></i></a>
-                    <button onclick="myFunction()" id="bntcopy" class="btn btn-info btn-danger"><i
+                    <button onclick="myFunction()" id="bntcopy" class="btn btn-info btn-danger bntcopy"><i
                             class="bi bi-receipt"></i>
                     </button>
                 </div>
@@ -569,6 +569,7 @@
                             <small id="helpId" class="form-text text-muted">Ketik Angka
                                 Saja</small>
                         </div>
+                        <input type="text" name="status" value="MASUK DP" hidden>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" hidden>{{ $order->inv }}</textarea>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -584,7 +585,8 @@
         <div class="card mb-3">
             <div class="card-header">
                 <div class="d-grid gap-2">
-                    <button class="btn btn-primary" onclick="myFunction()" type="button">Copy Invoice</button>
+                    <button class="btn btn-primary bntcopy" onclick="myFunction()" id="bntcopy" type="button">Copy
+                        Invoice</button>
 
                 </div>
             </div>

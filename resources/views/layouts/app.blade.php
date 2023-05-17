@@ -1461,7 +1461,7 @@
     </script>
 
     <script>
-        $("#bntcopy").click(function() {
+        $(".bntcopy").click(function() {
             $("#myCopy").select();
             document.execCommand('copy');
             // alert('Berhasil di copy');
