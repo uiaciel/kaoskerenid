@@ -30,7 +30,7 @@
                             <input name="judul" value="{{ $beresorder->judul }}" hidden>
                             <input name="detail" value="{{ $beresorder->detail }}" hidden>
                             <input name="pembayaran" value="{{ $beresorder->pembayaran }}" hidden>
-                            <input name="pengambilan" value="{{ $beresorder->pengambilan }}" hidden>
+                            <input name="pengambilan" value="{{ $beresorder->tanggalambil }}" hidden>
                             <input name="qty" value="{{ $beresorder->qty }}" hidden>
                             <input name="status" value="SELESAI" hidden>
                             <button class="btn btn-primary btn-sm"><i class="bi bi-check-all"></i></button>
@@ -96,7 +96,7 @@
                             <input name="judul" value="{{ $orderx->judul }}" hidden>
                             <input name="detail" value="{{ $orderx->detail }}" hidden>
                             <input name="pembayaran" value="{{ $orderx->pembayaran }}" hidden>
-                            <input name="pengambilan" value="{{ $orderx->pengambilan }}" hidden>
+                            <input name="pengambilan" value="{{ $orderx->tanggalambil }}" hidden>
                             <input name="qty" value="{{ $orderx->qty }}" hidden>
                             <div class="p-2 bd-highlight">
 
@@ -207,7 +207,7 @@
                             <input name="judul" value="{{ $order->judul }}" hidden>
                             <input name="detail" value="{{ $order->detail }}" hidden>
                             <input name="pembayaran" value="{{ $order->pembayaran }}" hidden>
-                            <input name="pengambilan" value="{{ $order->pengambilan }}" hidden>
+                            <input name="pengambilan" value="{{ $order->tanggalambil }}" hidden>
                             <input name="qty" value="{{ $order->qty }}" hidden>
                             <div class="p-2 bd-highlight">
 

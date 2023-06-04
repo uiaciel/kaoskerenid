@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Design;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class DesignController extends Controller
 {
@@ -134,6 +136,7 @@ class DesignController extends Controller
      */
     public function destroy(Design $design)
     {
+
         Storage::delete($design->path);
         $design->delete();
         // return response()->json([
@@ -152,6 +155,27 @@ class DesignController extends Controller
             Design::where('id', $value)
                 ->delete();
         }
+        return redirect()->back();
+    }
+
+    public function deleteimages(Request $request)
+    {
+
+        $data = Design::where('order_id', $request->orderid)->get();
+
+        $file = Str::replace('storage', 'public', $data->pluck('path'));
+
+        foreach ($file as $files) {
+
+            Storage::delete($files);
+        }
+
+        foreach ($data as $datas) {
+            $datas->delete();
+        }
+
+
+
         return redirect()->back();
     }
 }

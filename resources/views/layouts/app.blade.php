@@ -34,6 +34,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Volt CSS -->
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
+    <link type="text/css" href="/css/dt.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
     <style>
@@ -902,6 +904,7 @@
 
     <!-- Volt JS -->
     <script src="../../assets/js/volt.js"></script>
+    <script src="../../assets/js/dt.min.js"></script>
 
     <script>
         tinymce.init({
@@ -1475,6 +1478,10 @@
 
     <script>
         document.getElementById('date').valueAsDate = new Date();
+    </script>
+
+    <script>
+        jQuery('#datetimepicker').datetimepicker();
     </script>
 
     <script type="text/javascript">

@@ -108,7 +108,16 @@
                                     <td>{{ $order->status }}</td>
                                     <td>{{ $order->pembayaran }}</td>
                                     <td>Rp.{{ $order->total }}</td>
-                                    <td><button type="button" class="btn btn-danger">Delete Image</button></td>
+                                    <td>
+                                        <form action="{{ route('deleteimages') }}">
+                                            @csrf
+                                            @method('POST')
+                                            <input value="{{ $order->id }}" name="orderid" hidden>
+                                            <button type="submit" class="btn btn-danger">Delete Image</button>
+                                    </td>
+                                    </form>
+
+
                                 </tr>
                                 <tr>
                                     <td colspan="8">
