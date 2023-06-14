@@ -1212,25 +1212,7 @@
             $('.datatable').DataTable();
         });
     </script>
-    {{-- <script>
-        $('#datepicker').datepicker();
-        $('#datepicker').on('changeDate', function() {
-            $('#my_hidden_input').val(
-                $('#datepicker').datepicker('getFormattedDate')
-            );
-        });
-    </script>
-    <script>
-        $('#dateorder').datepicker({
-            format: 'yyyy-mm-dd',
-        });
 
-        $('#dateorder').on('changeDate', function() {
-            $('#my_hidden_order').val(
-                $('#dateorder').datepicker('getFormattedDate')
-            );
-        });
-    </script> --}}
     <script>
         $(document).ready(function() {
             $('.select2-multiple').select2({
@@ -1513,15 +1495,6 @@
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
     </script>
-    <script>
-        const elem = document.getElementById('foo');
-        const datepicker = new Datepicker(elem, {
-            format: 'yyyy-mm-dd',
-            todayHighlight: 1,
-        });
-    </script>
-
-
 
 
 </body>

@@ -4,6 +4,12 @@
     <div class="row">
         <h2 class="text-white">Random Mockup</h2>
 
+        @foreach ($kliens as $klien)
+            <ul>
+                <li>{{ $klien->nama }} = {{ $klien->design->count() }}</li>
+
+            </ul>
+        @endforeach
 
         @forelse ($designs as $image)
             <div class="col-md-3">

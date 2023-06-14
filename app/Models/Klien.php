@@ -15,4 +15,9 @@ class Klien extends Model
         'status',
         'user_id',
     ];
+
+    public function design()
+    {
+        return $this->hasMany('App\Models\Design', 'klien_id')->count();
+    }
 }

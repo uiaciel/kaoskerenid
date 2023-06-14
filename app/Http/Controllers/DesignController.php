@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Design;
+use App\Models\Klien;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Redirect;
+
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -23,7 +23,9 @@ class DesignController extends Controller
         $designs = Design::where('kategori', 'mockup')
             ->paginate(24);
 
-        return view('designs.index', compact('designs'));
+        $kliens = Klien::orderby('created_at', 'desc')->get();
+
+        return view('designs.index', compact('designs', 'kliens'));
     }
 
 
@@ -137,13 +139,8 @@ class DesignController extends Controller
     public function destroy(Design $design)
     {
 
-        Storage::delete($design->path);
+        Storage::delete(Str::replace('storage', 'public', $design->path));
         $design->delete();
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'Data Post Berhasil Dihapus!.',
-        // ]);
-
 
         return redirect()->back()->with('flash_message', 'Design telah dihapus!');
     }
@@ -161,21 +158,15 @@ class DesignController extends Controller
     public function deleteimages(Request $request)
     {
 
-        $data = Design::where('order_id', $request->orderid)->get();
+        $data = Design::where('order_id', $request->orderid)->where('kategori', 'Mockup')->get();
 
-        $file = Str::replace('storage', 'public', $data->pluck('path'));
+        $path = Str::replace('storage', 'public', $data->pluck('path'));
 
-        foreach ($file as $files) {
+        foreach ($path as $files) {
 
             Storage::delete($files);
         }
 
-        foreach ($data as $datas) {
-            $datas->delete();
-        }
-
-
-
-        return redirect()->back();
+        return redirect()->back()->with('flash_message', 'Mockup Berhasil dihapus');
     }
 }

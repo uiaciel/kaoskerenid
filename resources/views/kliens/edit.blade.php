@@ -69,10 +69,7 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-md-8">
-
-
-
+        <div class="col-md-9">
             <div class="card mb-3">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                     <h2 class="fs-5 fw-bold mb-0">History Order</h2>
@@ -124,7 +121,11 @@
                                         <div class="row">
                                             @foreach ($designs->where('order_id', $order->id) as $slider)
                                                 <div class="col-md-2">
-                                                    <img src="{{ $slider->path }}" class="img-fluid" loading="lazy">
+                                                    @if ($slider->kategori == 'MOCKUP')
+                                                        <img src="{{ $slider->path }}" class="img-fluid" loading="lazy">
+                                                    @else
+                                                        <img src="/images/eps-logo.png" class="img-fluid" loading="lazy">
+                                                    @endif
                                                 </div>
                                             @endforeach
                                         </div>
@@ -213,7 +214,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <h2 class="fs-5 fw-bold mb-1">Data</h2>

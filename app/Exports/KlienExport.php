@@ -18,13 +18,10 @@ class KlienExport implements FromQuery, WithMapping, WithHeadings
 
     public function query()
     {
-        // return Klien::orderBy('created_at', 'desc')->take(5)->get();
-        return Klien::query()->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'));
-        // return Klien::query()->whereMonth('created_at', Carbon::now()->month)->whereMonth('created_at', Carbon::now()->year);
+        return Klien::query()->orderBy('created_at', 'desc');
+        // return Klien::query()->whereMonth('created_at', date('m'))->whereYear('created_at', date('Y'));
+        // return Klien::query()->whereMonth('created_at', Carbon::now()->subMonth(1))->whereYear('created_at', date('Y'));
     }
-
-
-
 
     public function headings(): array
     {
@@ -40,12 +37,15 @@ class KlienExport implements FromQuery, WithMapping, WithHeadings
 
     public function map($kliens): array
     {
+
+        $nomorhp = '+62' . substr($kliens->hp, 1);
+
         return [
             Str::upper($kliens->nama) . ' SABLON',
             Str::upper($kliens->nama),
             'SABLON',
             'Mobile',
-            $kliens->hp,
+            $nomorhp,
         ];
     }
 }
