@@ -57,7 +57,7 @@
         <div class="container-fluid">
             <a class="navbar-brand me-lg-5" href="{{ url('/home') }}">
                 <img class="navbar-brand-dark" src="../../assets/icons/ios/72.png" alt="Volt logo" /> <img
-                    class="navbar-brand-light" src="assets/icons/ios/72.png" alt="Volt logo" />
+                    class="navbar-brand-light" src="../../assets/icons/ios/72.png" alt="Volt logo" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
                 aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -406,8 +406,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('klien.index') }}" target="_blank"
-                        class="nav-link d-flex justify-content-between">
+                    <a href="{{ route('klien.index') }}" class="nav-link d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">
                                 <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -450,8 +449,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('report.index') }}" target="_blank"
-                        class="nav-link d-flex justify-content-between">
+                    <a href="{{ route('report.index') }}" class="nav-link d-flex justify-content-between">
                         <span>
                             <span class="sidebar-icon">
                                 <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -496,7 +494,7 @@
                     <div class="multi-level collapse " role="list" id="submenu-components" aria-expanded="false">
                         <ul class="flex-column nav">
                             <li class="nav-item">
-                                <a class="nav-link" target="_blank" href="{{ route('keuangan.index') }}">
+                                <a class="nav-link" href="{{ route('keuangan.index') }}">
                                     <span class="sidebar-text">Keuangan</span>
                                 </a>
                             </li>
@@ -512,7 +510,7 @@
                 </li>
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
                 <li class="nav-item">
-                    <a href="/home" target="_blank" class="nav-link d-flex align-items-center">
+                    <a href="/home" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -637,8 +635,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('klien.index') }}" target="_blank"
-                                    class="nav-link d-flex justify-content-between">
+                                <a href="{{ route('klien.index') }}" class="nav-link d-flex justify-content-between">
                                     <span>
                                         <span class="sidebar-icon">
                                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
@@ -707,7 +704,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('report.index') }}" target="_blank"
+                                <a href="{{ route('report.index') }}"
                                     class="nav-link d-flex justify-content-between">
                                     <span>
                                         <span class="sidebar-icon">
@@ -754,24 +751,22 @@
                                     aria-expanded="false">
                                     <ul class="flex-column nav">
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank" href="/belanja">
+                                            <a class="nav-link" href="/belanja">
                                                 <span class="sidebar-text">BELANJA</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank" href="/katalog">
+                                            <a class="nav-link" href="/katalog">
                                                 <span class="sidebar-text">KATALOG</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank"
-                                                href="{{ route('keuangan.index') }}">
+                                            <a class="nav-link" href="{{ route('keuangan.index') }}">
                                                 <span class="sidebar-text">PRODUK LIST</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" target="_blank"
-                                                href="{{ route('keuangan.index') }}">
+                                            <a class="nav-link" href="{{ route('keuangan.index') }}">
                                                 <span class="sidebar-text">KEUANGAN</span>
                                             </a>
                                         </li>
@@ -786,7 +781,7 @@
                             </li>
                             <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
                             <li class="nav-item">
-                                <a href="/home" target="_blank" class="nav-link d-flex align-items-center">
+                                <a href="/home" class="nav-link d-flex align-items-center">
                                     <span class="sidebar-icon">
                                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
