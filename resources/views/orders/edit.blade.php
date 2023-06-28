@@ -118,9 +118,15 @@
                                     <label>Pengambilan</label>
                                     <div class="input-group mb-3">
                                         {{-- <div id="foo" data-date="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"></div> --}}
-                                        <input class="form-control" id="datetimepicker" value="{{ $order->tanggalambil }}"
-                                            name="tanggalambil">
+                                        <input class="form-control @if ($order->tanggalambil == null) is-invalid @endif"
+                                            id="datetimepicker" value="{{ $order->tanggalambil }}" name="tanggalambil"
+                                            autocomplete="off">
 
+                                        @if (!$order->tanggalambil)
+                                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                                Isi Tanggal Pengambilan
+                                            </div>
+                                        @endif
 
                                         {{-- <span class="input-group-text"><svg
                                                 class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20"

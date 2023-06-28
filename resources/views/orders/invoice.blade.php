@@ -61,7 +61,7 @@
                         <div class="info-invoice">
                             <h5 class="sub">{{ $order->klien->nama }}</h5>
                             <p>
-                                {{ $order->klien->hp }}
+                                {{ Str::substr($order->klien->hp, 0, 4) . '****' . Str::substr($order->klien->hp, 7, 5) }}
                             </p>
                         </div>
                     </div>
@@ -87,7 +87,8 @@
                                                 @foreach ($orderan as $index => $ord)
                                                     <tr>
                                                         <td>{{ $index + 1 }}</td>
-                                                        <td>{{ $ord->produk->kategori }} - {{ $ord->produk->nama }}</td>
+                                                        <td>{{ $ord->produk->kategori }} - {{ $ord->produk->nama }}
+                                                        </td>
                                                         <td>{{ $ord->qty }}</td>
                                                         <td class="text-right">Rp
                                                             {{ number_format($ord->produk->harga, 0, ',', '.') }}</td>

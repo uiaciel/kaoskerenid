@@ -10,6 +10,7 @@ use App\Models\Katalogproduk;
 use App\Models\Order;
 use App\Models\Orderan;
 use App\Models\Produk;
+use Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -45,19 +46,22 @@ class HomeController extends Controller
                     ->orWhere('status', 'REQUEST DESIGN')
                     ->orWhere('status', 'PRODUKSI');
             })
-            ->OrderBy('updated_at', 'desc')
+            ->OrderBy('tanggalambil', 'desc')
             ->get();
 
         $lunas = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan', 'tanggalambil')
-            ->where('pembayaran', 'LUNAS')
+            ->whereNot('pembayaran', 'BELUM BAYAR')
             ->where(function ($query) {
                 $query->where('status', 'KONFRIM')
                     ->orWhere('status', 'DESIGN OK')
                     ->orWhere('status', 'REQUEST DESIGN')
                     ->orWhere('status', 'PRODUKSI');
             })
-            ->OrderBy('updated_at', 'desc')
-            ->get();
+            ->OrderBy('tanggalambil', 'desc')
+            ->get()
+            ->groupBy(function ($data) {
+                return Carbon::parse($data->tanggalambil)->isoFormat('dddd, D MMM Y');
+            });
 
         $orders = Order::select('klien_id', 'inv')
             ->where('status', 'KONFRIM')
