@@ -57,7 +57,7 @@ class HomeController extends Controller
                     ->orWhere('status', 'REQUEST DESIGN')
                     ->orWhere('status', 'PRODUKSI');
             })
-            ->OrderBy('tanggalambil', 'desc')
+            ->OrderBy('tanggalambil', 'asc')
             ->get()
             ->groupBy(function ($data) {
                 return Carbon::parse($data->tanggalambil)->isoFormat('dddd, D MMM Y');

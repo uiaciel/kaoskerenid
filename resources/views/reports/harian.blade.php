@@ -1,6 +1,4 @@
 @extends('layouts.app')
-@section('title', 'REPORT HARIAN')
-
 @section('content')
     <div class="row">
         <div class="col-md-6">
@@ -18,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-3">
 
                 <div class="col-sm-12 col-lg-6">
                     <div class="card p-3 mb-3 mb-3">
@@ -52,7 +50,7 @@
 
             </div>
 
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
                     <h4>Catatan Pemasukan</h4>
                 </div>
@@ -249,7 +247,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header bg-primary text-white">New Order {{ $bt }}</div>
