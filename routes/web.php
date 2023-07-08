@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/katalogproduk', KatalogprodukController::class);
     Route::resource('/blog', BlogController::class);
 
-    Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
     Route::get('/list/produk/{id}', [HomeController::class, 'listproduk'])->name('listproduk');
@@ -69,3 +68,5 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
+
+Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
