@@ -31,47 +31,23 @@
                         </thead>
                         <tbody>
                             @foreach ($produks as $index => $produk)
-                                <tr class="">
+                                <tr class="@if ($produk->status == 'Non Aktif') bg-dark text-white @endif">
                                     <td scope="row">{{ $index + 1 }}</td>
                                     <td>{{ $produk->nama }}</td>
                                     <td>{{ $produk->kategori }}</td>
                                     <td>{{ $produk->harga }}</td>
-                                    <td>
-
-                                        <form action="{{ route('produk.update', $produk->id) }}" method="POST"
-                                            enctype="multipart/form-data">
-                                            <input type="hidden" name="_method" value="PUT">
-                                            @csrf
-                                            <input type="text" class="form-control" name="kategori"
-                                                value="{{ $produk->kategori }}" hidden>
-                                            <input type="text" class="form-control" name="nama"
-                                                value="{{ $produk->nama }}" hidden>
-
-                                            <input type="number" class="form-control" name="harga"
-                                                value="{{ $produk->harga }}" hidden>
-
-
-                                            @if ($produk->status == 'Aktif')
-                                                <input type="text" class="form-control" name="status" value="Non Aktif"
-                                                    hidden>
-                                                <button type="submit" class="btn btn-sm btn-primary"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="Klik! Non Aktifkan"><i class="bi bi-toggle-on"></i></button>
-                                            @else
-                                                <input type="text" class="form-control" name="status" value="Aktif"
-                                                    hidden>
-                                                <button type="submit" class="btn btn-sm btn-white"><i
-                                                        class="bi bi-toggle-off"></i></button>
-                                            @endif
 
 
 
-
-                                        </form>
-
-
-
+                                    <td class="fw-bold">
+                                        {{ $produk->status }}
                                     </td>
+
+
+
+
+
+
                                     <td>
                                         {{-- <a href="{{ route('produk.edit', $produk->id) }}"
                                             class="btn btn-sm btn-round btn-primary">Edit</a> --}}
@@ -82,9 +58,9 @@
                                     </td>
 
                                 </tr>
-                                <div class="modal fade" id="pro{{ $produk->id }}" tabindex="-1"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalTitleId" aria-hidden="true">
+                                <div class="modal fade" id="pro{{ $produk->id }}" tabindex="-1" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId"
+                                    aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
                                         role="document">
                                         <div class="modal-content">

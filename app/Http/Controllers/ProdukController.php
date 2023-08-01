@@ -16,7 +16,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $produk = Produk::orderBy('status', 'DESC')->get();
+        $produk = Produk::orderBy('status', 'desc')->get();
 
         return view('produks.index', [
             'produks' => $produk
@@ -98,7 +98,7 @@ class ProdukController extends Controller
      */
     public function list()
     {
-        $data = Produk::orderBy('kategori', 'ASC')->get();
+        $data = Produk::orderBy('status', 'desc')->get();
 
         return view('produks.list', [
             'datas' => $data

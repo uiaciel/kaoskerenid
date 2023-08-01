@@ -74,7 +74,7 @@
                     </div>
                     <div class="col-lg-8 col-12">
                         <marquee attribute_name="attribute_value">
-                            One or more lines or text message or image
+                            Sablon Satuan, Bisa request Design! Order Sekarang juga dan dapatkan Gratis Bantuan Design.
                         </marquee>
                     </div>
 

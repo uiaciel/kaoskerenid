@@ -67,7 +67,7 @@ class BlogController extends Controller
     public function show($slug)
     {
         $blog = BLog::where('slug', $slug)->first();
-        $blogs = Blog::where('id', '!=', $blog->id)->limit(6)->get();
+        $blogs = Blog::where('id', '!=', $blog->id)->inRandomOrder()->limit(6)->get();
 
         $blog->dibaca();
 

@@ -1022,7 +1022,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#data').DataTable();
+            $('#data').DataTable({
+                paging: false
+            });
         });
     </script>
 

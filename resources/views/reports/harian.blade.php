@@ -1,153 +1,322 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <div class="col-md-6">
-            <h3 class="text-white">Pemasukan Hari ini</h3>
-            <div class="card p-3 mb-3 mb-3">
-                <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-success mr-3">
-                        <i class="fa fa-dollar-sign"></i>
-                    </span>
-                    <div>
-                        <h3 class="mb-1"><b>Rp.
-                                {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum() -$pengeluaranharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}</b>
-                        </h3>
-                        <small class="text-muted">CASH DI TOKO</small>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-3">
-
-                <div class="col-sm-12 col-lg-6">
-                    <div class="card p-3 mb-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <span class="stamp stamp-md bg-secondary mr-3">
-                                <i class="fa fa-dollar-sign"></i>
-                            </span>
-                            <div>
-                                <h5 class="mb-1"><b><a href="#">TUNAI</a></b></h5>
-                                <small class="text-muted">Rp.
-                                    {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}</small>
-
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <div class="icon-shape icon-shape-primary rounded me-3 me-sm-0"><svg class="icon icon-sm"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    </path>
+                                </svg></div>
+                            <div class="d-sm-none">
+                                <h2 class="h5">Uang Tunai</h2>
+                                <h3 class="fw-extrabold mb-1">Rp.
+                                    {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}</b>
+                                </h3>
                             </div>
+                        </div>
+                        <div class="col-12 col-xl-8 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h5">Uang Tunai</h2>
+                                <h3 class="fw-extrabold mb-1">
+                                    Rp.{{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum() -$pengeluaranharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}</b></b>
+                                </h3>
+                            </div><small class="d-flex align-items-center">
+
+                                <span class="text-success me-2">Tunai :</span>
+
+
+                                Rp
+                                {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}
+                            </small>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="card p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <span class="stamp stamp-md bg-success mr-3">
-                                <i class="far fa-credit-card"></i>
-                            </span>
-                            <div>
-                                <h5 class="mb-1"><b><a href="#">TRANSFER</a></b></h5>
-                                <small class="text-muted">Rp.
-                                    {{ number_format($pemasukanharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card mb-3">
-                <div class="card-header bg-primary text-white">
-                    <h4>Catatan Pemasukan</h4>
-                </div>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Total Rp. {{ number_format($pemasukanharian->pluck('nominal')->sum(), 0, ',', '.') }}
-                    </li>
-
-                    @forelse ($pemasukanharian as $harian)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="/order/{{ $harian->order->inv }}">{{ $harian->metode }}</a>
-                            <span class="badge bg-primary bg-pill">Rp
-                                {{ number_format($harian->nominal, 0, ',', '.') }}</span>
-                        </li>
-                    @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Data Tidak Ada
-                        </li>
-                    @endforelse
-
-
-                </ul>
             </div>
         </div>
-        <div class="col-md-6">
-            <h3 class="text-white">Pengeluaran Hari ini</h3>
-            <div class="card p-3 mb-3">
-                <div class="d-flex align-items-center">
-                    <span class="stamp stamp-md bg-danger mr-3">
-                        <i class="fa fa-dollar-sign"></i>
-                    </span>
-                    <div>
-                        <h3 class="mb-1"><b>Rp.
-                                {{ number_format($pengeluaranharian->pluck('nominal')->sum(), 0, ',', '.') }}</b></h3>
-                        <small class="text-muted">Total Pengeluaran</small>
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <div class="icon-shape icon-shape-primary rounded me-3 me-sm-0"><svg class="icon icon-sm"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    </path>
+                                </svg></div>
+                            <div class="d-sm-none">
+                                <h2 class="h5">Pemasukan</h2>
+                                <h3 class="fw-extrabold mb-1">Rp.
+                                    {{ number_format($pemasukanharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-8 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h5">Pemasukan</h2>
+                                <h3 class="fw-extrabold mb-1">Rp.
+                                    {{ number_format($pemasukanharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
+                                </h3>
+                            </div><small class="d-flex align-items-center">
+
+                                <span class="text-success me-2">Transfer :</span>
+
+
+                                Rp
+                                {{ number_format($pemasukanharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
+                            </small>
+
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+        </div>
+        <div class="col-12 col-sm-6 col-xl-4 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="row d-block d-xl-flex align-items-center">
+                        <div
+                            class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                            <div class="icon-shape icon-shape-primary rounded me-3 me-sm-0"><svg class="icon icon-sm"
+                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
+                                    </path>
+                                </svg></div>
+                            <div class="d-sm-none">
+                                <h2 class="h5">Pengeluaran</h2>
+                                <h3 class="fw-extrabold mb-1">Rp.
+                                    {{ number_format($pengeluaranharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-8 px-xl-0">
+                            <div class="d-none d-sm-block">
+                                <h2 class="h5">Pengeluaran</h2>
+                                <h3 class="fw-extrabold mb-1">Rp.
+                                    {{ number_format($pengeluaranharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
+                                </h3>
+                            </div><small class="d-flex align-items-center">
 
-                <div class="col-sm-12 col-lg-6">
-                    <div class="card p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <span class="stamp stamp-md bg-danger mr-3">
-                                <i class="fa fa-dollar-sign"></i>
-                            </span>
+                                <span class="text-danger me-2">Transfer :</span>
+
+
+                                Rp
+                                {{ number_format($pengeluaranharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="text-white">Transaksi</h3>
+
+            <div class="card mb-3 border-0 shadow">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="fs-5 fw-bold mb-0">Bulan Ini</h2>
+                        </div>
+                        <div class="col text-end"><a href="#" class="btn btn-sm btn-primary">See all</a></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="border-bottom" scope="col">Tanggal</th>
+                                <th class="border-bottom" scope="col">Transaksi</th>
+                                <th class="border-bottom" scope="col">Pemasukan</th>
+                                <th class="border-bottom" scope="col">Pengeluaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($keuanganbulanan as $keuanganbulanan)
+                                <tr>
+                                    <th class="text-gray-900" scope="row">{{ $keuanganbulanan->metode }} -
+                                        {{ $keuanganbulanan->tanggal }}
+                                        </a>
+                                    </th>
+                                    <td class="fw-bolder text-gray-500">
+                                        {{ $keuanganbulanan->detail }}
+                                    </td>
+                                    <td class="fw-bolder text-gray-500">
+                                        @if ($keuanganbulanan->jenis == 'Pemasukan')
+                                            Rp.
+                                            {{ number_format($keuanganbulanan->nominal, 0, ',', '.') }}
+                                        @else
+                                            -
+                                        @endif
+
+                                    </td>
+                                    <td class="fw-bolder text-gray-500">
+
+                                        @if ($keuanganbulanan->jenis == 'Pengeluaran')
+                                            Rp.
+                                            {{ number_format($keuanganbulanan->nominal, 0, ',', '.') }}
+                                        @else
+                                            -
+                                        @endif
+
+                                    </td>
+
+                                </tr>
+                            @empty
+                                Kosong
+                            @endforelse
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card full-height">
+                <div class="card-body">
+
+                    {!! $chart->container() !!}
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="col-md-4">
+            <h3 class="text-white">Bulan ini</h3>
+            <div class="card mb-3 full-height">
+                <div class="card-body">
+
+                    <div class="row py-3">
+                        <div class="col-md-12 d-flex flex-column text-end  justify-content-around">
                             <div>
-                                <h5 class="mb-1"><b><a href="#">TUNAI</a></b></h5>
-                                <small class="text-muted">Rp.
-                                    {{ number_format($pengeluaranharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}</small>
+                                <h6 class="fw-bold text-uppercase text-success op-8">Pendapatan</h6>
+                                <h3 class="fw-bold">Rp
+                                    {{ number_format($pemasukans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="fw-bold text-uppercase text-danger op-8">Pengeluaran</h6>
+                                <h3 class="fw-bold">Rp
+                                    {{ number_format($pengeluarans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold text-uppercase op-8">Total</h6>
+                                <h3 class="fw-bold">Rp
+                                    {{ number_format($pemasukans->pluck('nominal')->sum() - $pengeluarans->pluck('nominal')->sum(), 0, ',', '.') }}
+                                </h3>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-bold mb-1">Data Bulan ini</h2>
+                    <p>Jumlah yang masuk di bulan ini.</p>
+                    <div class="d-block">
+                        <div class="d-flex align-items-center me-5">
+                            <div class="icon-shape icon-sm icon-shape-danger rounded me-3"><svg fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
+                                        clip-rule="evenodd"></path>
+                                </svg></div>
+                            <div class="d-block"><label class="mb-0">Orderan</label>
+                                <h4 class="mb-0">{{ $orders->count() }}</h4>
+                                @if ($orders->count() > $orderbulanlalu->count())
+                                    <div class="small d-flex mt-1"><svg class="icon icon-xs text-success"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div><span
+                                                class="text-danger fw-bolder me-1">{{ $orderbulanlalu->count() }}</span>
+                                            dari bulan lalu</div>
+                                    </div>
+                                @elseif ($orders->count() < $orderbulanlalu->count())
+                                    <div class="small d-flex mt-1"><svg class="icon icon-xs text-danger"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div><span
+                                                class="text-danger fw-bolder me-1">{{ $orderbulanlalu->count() }}</span>
+                                            dari bulan lalu</div>
+                                    </div>
+                                @else
+                                @endif
+
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center pt-3">
+                            <div class="icon-shape icon-sm icon-shape-purple rounded me-3"><svg fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
+                                    </path>
+                                </svg></div>
+                            <div class="d-block"><label class="mb-0">Klien baru</label>
+                                <h4 class="mb-0">{{ $kliens->count() }}
+
+
+                                </h4>
+
+                                @if ($kliens->count() > $klienbulanlalu->count())
+                                    <div class="small d-flex mt-1"><svg class="icon icon-xs text-success"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div><span
+                                                class="text-danger fw-bolder me-1">{{ $klienbulanlalu->count() }}</span>
+                                            dari bulan lalu</div>
+                                    </div>
+                                @elseif ($kliens->count() < $klienbulanlalu->count())
+                                    <div class="small d-flex mt-1"><svg class="icon icon-xs text-danger"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                        <div><span
+                                                class="text-danger fw-bolder me-1">{{ $klienbulanlalu->count() }}</span>
+                                            dari bulan lalu</div>
+                                    </div>
+                                @else
+                                @endif
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center pt-3">
+                            <div class="icon-shape icon-sm icon-shape-purple rounded me-3"><svg fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z">
+                                    </path>
+                                </svg></div>
+                            <div class="d-block"><label class="mb-0">Quantity</label>
+                                <h4 class="mb-0">{{ $orders->pluck('qty')->sum() }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-6">
-                    <div class="card p-3 mb-3">
-                        <div class="d-flex align-items-center">
-                            <span class="stamp stamp-md bg-success mr-3">
-                                <i class="fa fa-dollar-sign"></i>
-                            </span>
-                            <div>
-                                <h5 class="mb-1"><b><a href="#">TRANSFER</a></b></h5>
-                                <small class="text-muted">Rp.
-                                    {{ number_format($pengeluaranharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4>Catatan Pengluaran</h4>
-                </div>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Total Pengeluaran Harian
-                    </li>
-
-                    @forelse ($pengeluaranharian as $hari)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="">Rp {{ number_format($hari->nominal, 0, ',', '.') }}</a>
-                            <span class="badge bg-primary bg-pill">{{ $hari->metode }}</span>
-                        </li>
-                    @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Data Tidak Ada
-                        </li>
-                    @endforelse
-
-
-                </ul>
             </div>
         </div>
 
@@ -160,91 +329,10 @@
 
     <div class="row mb-3">
         <div class="col-md-6">
-            <div class="card full-height">
-                <div class="card-body">
-                    {!! $chart->container() !!}
-                    <div class="card-title">Overall statistics</div>
-                    <div class="card-category">Daily information about statistics in system</div>
-                    <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                        <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="circles-1">
-                                <div class="circles-wrp" style="position: relative; display: inline-block;"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="90" height="90">
-                                        <path fill="transparent" stroke="#f1f1f1" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 1 1 44.942357332570026 3.500040032273624 Z"
-                                            class="circles-maxValueStroke"></path>
-                                        <path fill="transparent" stroke="#FF9E27" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 1 1 20.644357636259837 78.60137921350231 "
-                                            class="circles-valueStroke"></path>
-                                    </svg>
-                                    <div class="circles-text"
-                                        style="position: absolute; top: 0px; left: 0px; text-align: center; width: 100%; font-size: 31.5px; height: 90px; line-height: 90px;">
-                                        {{ $kliens->count() }}</div>
-                                </div>
-                            </div>
-                            <h6 class="fw-bold mt-3 mb-0">New Klien</h6>
-                        </div>
-                        <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="circles-2">
-                                <div class="circles-wrp" style="position: relative; display: inline-block;"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="90" height="90">
-                                        <path fill="transparent" stroke="#f1f1f1" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 1 1 44.942357332570026 3.500040032273624 Z"
-                                            class="circles-maxValueStroke"></path>
-                                        <path fill="transparent" stroke="#2BB930" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 1 1 5.5495771787290025 57.88076625138973 "
-                                            class="circles-valueStroke"></path>
-                                    </svg>
-                                    <div class="circles-text"
-                                        style="position: absolute; top: 0px; left: 0px; text-align: center; width: 100%; font-size: 31.5px; height: 90px; line-height: 90px;">
-                                        {{ $orders->count() }}</div>
-                                </div>
-                            </div>
-                            <h6 class="fw-bold mt-3 mb-0">Orders</h6>
-                        </div>
-                        <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="circles-3">
-                                <div class="circles-wrp" style="position: relative; display: inline-block;"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="90" height="90">
-                                        <path fill="transparent" stroke="#f1f1f1" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 1 1 44.942357332570026 3.500040032273624 Z"
-                                            class="circles-maxValueStroke"></path>
-                                        <path fill="transparent" stroke="#F25961" stroke-width="7"
-                                            d="M 44.99154756204665 3.500000860767564 A 41.5 41.5 0 0 1 69.44267714510887 78.53812060894248 "
-                                            class="circles-valueStroke"></path>
-                                    </svg>
-                                    <div class="circles-text"
-                                        style="position: absolute; top: 0px; left: 0px; text-align: center; width: 100%; font-size: 31.5px; height: 90px; line-height: 90px;">
-                                        {{ $orders->pluck('qty')->sum() }}</div>
-                                </div>
-                            </div>
-                            <h6 class="fw-bold mt-3 mb-0">Qty</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <div class="col-md-6">
-            <div class="card full-height">
-                <div class="card-body">
-                    <div class="card-title">Total Pendapatan</div>
-                    <div class="row py-3">
-                        <div class="col-md-12 d-flex flex-column justify-content-around">
-                            <div>
-                                <h6 class="fw-bold text-uppercase text-success op-8">Pendapatan</h6>
-                                <h3 class="fw-bold">Rp
-                                    {{ number_format($pemasukans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold text-uppercase text-danger op-8">Pengeluaran</h6>
-                                <h3 class="fw-bold">Rp
-                                    {{ number_format($pengeluarans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="row mb-3">

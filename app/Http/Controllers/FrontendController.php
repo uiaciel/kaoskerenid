@@ -15,7 +15,7 @@ class FrontendController extends Controller
     public function index()
     {
 
-        $blogs = Blog::latest()->limit(6)->get();
+        $blogs = Blog::latest()->limit(12)->get();
 
         return view('frontend.index', [
             'blogs' => $blogs
