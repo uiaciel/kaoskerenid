@@ -182,13 +182,46 @@
                     </table>
                 </div>
             </div>
-            <div class="card full-height">
+            <div class="card mb-3 full-height">
                 <div class="card-body">
 
                     {!! $chart->container() !!}
                 </div>
             </div>
 
+            <div class="card">
+                <div class="card-body">
+                    <h3>Data Orderan Periode {{ $bt }}</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Status</th>
+                                    <th>Order</th>
+                                    <th>Klien</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($periode as $index => $periode)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $periode->status }}</td>
+                                        <td><a href="/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
+                                        <td>{{ $periode->klien->nama }}</td>
+                                        <td>{{ $periode->qty }}</td>
+                                        <td>{{ $periode->total }}</td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
 
 
 
@@ -221,6 +254,58 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label">Tanggal</label>
+                            <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nominal</label>
+                            <input type="text" name="nominal" id="" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                            <small id="helpId" class="text-muted">Ketik Angka saja</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Jenis</label>
+                            <select class="form-control" name="jenis" id="">
+
+                                <option>Pengeluaran</option>
+                                <option>Pemasukan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Kategori</label>
+                            <select class="form-control" name="kategori">
+                                <option value="orderan">Orderan</option>
+                                <option value="ongkos cetak">Ongkos Cetak</option>
+                                <option value="Makan Cemilan">Makan</option>
+                                <option value="Listrik">Listrik</option>
+                                <option value="Internet">Internet</option>
+                                <option value="Belanja Bahan">Belanja Bahan</option>
+                                <option value="Belanja Sablon">Belanja Sablon</option>
+                                <option value="Perlengkapan">Perlengkapan</option>
+                            </select>
+                        </div>
+                        <input type="text" name="order_id" id="" class="form-control" placeholder=""
+                            aria-describedby="helpId" hidden>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Metode</label>
+                            <select class="form-control" name="metode" id="">
+                                <option>Transfer</option>
+                                <option>Tunai</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
 
@@ -419,43 +504,6 @@
             </div>
         </div>
 
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Data Orderan Periode {{ $bt }}</h3>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Status</th>
-                                    <th>Order</th>
-                                    <th>Klien</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($periode as $index => $periode)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $periode->status }}</td>
-                                        <td><a href="/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
-                                        <td>{{ $periode->klien->nama }}</td>
-                                        <td>{{ $periode->qty }}</td>
-                                        <td>{{ $periode->total }}</td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </div>
     <script src="{{ $chart->cdn() }}"></script>
 

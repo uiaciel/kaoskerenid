@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Keuangan;
+use App\Models\Order;
+use App\Models\Orderan;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -86,5 +89,29 @@ class FrontendController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function invoice($id)
+    {
+
+        $order = Order::where('inv', $id)->first();
+        $orderan = Orderan::where('order_id', $order->id)->get();
+        $keuangan = Keuangan::where('order_id', $order->id)->get();
+        $jumlah = Keuangan::where('order_id', $order->id)->pluck('nominal')->sum();
+        $total = $orderan->pluck('harga')->sum();
+
+        $grandtotal = $total + $order->ongkir;
+        $sisa = $grandtotal - $jumlah;
+
+        return view('orders.invoice', [
+            'order' => $order,
+            'orderan' => $orderan,
+            'keuangan' => $keuangan,
+            'total' => $total,
+            'grandtotal' => $grandtotal,
+            'jumlah' => $jumlah,
+            'sisa' => $sisa,
+
+        ]);
     }
 }

@@ -622,15 +622,16 @@ _Pembayaran Via Transfer :_
 - BNI 0749326737 an Suria,
 - MANDIRI 1200007377893 an Suria,
 - BRI 118001014130509 an Suria,
-- JENIUS 90011534446 $kaoskerenid
-atau bisa juga
 _Bayar pakai Gopay, Dana, Ovo, QRIS_ ke nomor *08811722125*
 
 Harap mengirimkan foto bukti transfer/pembayaran kepada kami. _Pesanan akan Kami proses setelah melakukan pembayaran_
 *Estimasi Pengerjaan 2-3 hari kerja setelah pembayaran sesuai antrian order.*
 
+Status orderan bisa dicek dilink :
+https://web.kaoskeren.id/s/{{ $order->inv }}
+
 =============================
-Instagram store : kaoskerenid
+Follow : kaoskerenid
                                             </textarea>
             </div>
         </div>

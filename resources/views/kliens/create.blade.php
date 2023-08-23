@@ -30,7 +30,7 @@
                 <textarea class="form-control" name="alamat" id="comment" style="height: 100px"></textarea>
                 <label for="comment">Alamat</label>
             </div>
-            <div class="form-check">
+            <div class="form-check" hidden>
                 <label class="form-check-label">
                     <input class="form-check-input" type="checkbox" name="order" value="1">
                     <span class="form-check-sign">Langsung buat Orderan</span>

@@ -69,4 +69,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
-Route::get('/invoice/{id}', [HomeController::class, 'invoice']);
+Route::get('/invoice/{id}', [FrontendController::class, 'invoice']);

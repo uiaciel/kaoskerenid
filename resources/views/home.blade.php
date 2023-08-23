@@ -88,7 +88,8 @@
                             <div class="p-2 flex-xl-grow-1 bd-highlight text-weight">
                                 <a href="/order/{{ $orderx->inv }}">
                                     <h5 class="mb-0">{{ $orderx->klien->nama }}</h5>
-                                </a> <small>#{{ $orderx->inv }}</small>
+                                </a> <small class="">#{{ $orderx->inv }} -
+                                    {{ Str::replaceFirst('0', '62', $orderx->klien->hp) }}</small>
 
                             </div>
                             <form method="POST" enctype="multipart/form-data"
@@ -115,14 +116,14 @@
                                                     </path>
                                                 </svg></span></a>
                                         <select class="form-select w-70" name="status">
-                                            <option value="{{ $orderx->status }}">{{ $orderx->status }}</option>
-                                            <option value="CANCEL">CANCEL</option>
-                                            <option value="REQUEST DESIGN">REQUEST DESIGN</option>
-                                            <option value="KONFRIM">KONFRIM</option>
-                                            <option value="DESIGN OK">DESIGN OK</option>
-                                            <option value="PRODUKSI">PRODUKSI</option>
-                                            <option value="BERES">BERES</option>
-                                            <option value="SELESAI">SELESAI</option>
+                                            <option value="{{ $orderx->status }}">{{ $orderx->pembayaran }}</option>
+                                            <option value="CANCEL">❌</option>
+                                            <option value="REQUEST DESIGN">📌</option>
+                                            <option value="KONFRIM">☎️</option>
+                                            <option value="DESIGN OK">🔄</option>
+                                            <option value="PRODUKSI">⌛</option>
+                                            <option value="BERES">🤝🏻</option>
+                                            <option value="SELESAI">✅</option>
                                         </select>
                                         <button class="btn btn-outline-info" type="submit"><span>
                                                 <svg class="icon icon-xs" fill="none" stroke="currentColor"
@@ -214,6 +215,18 @@
                 @include('kliens.create')
             </div>
 
+            <div class="list-group mb-3">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    KLIEN BARU
+                </a>
+                @foreach ($kliens as $klien)
+                    <a href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=KaosKerenID"
+                        class="list-group-item list-group-item-action"><i class="fa-brands fa-whatsapp"></i>
+                        {{ $klien->nama }}</a>
+                @endforeach
+
+            </div>
+
             <div class="card mb-3">
                 <div class="card-body">
                     <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
@@ -239,7 +252,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Kategori</label>
-                            <select class="form-control" name="kategori" id="">
+                            <select class="form-control" name="kategori">
                                 <option value="orderan">Orderan</option>
                                 <option value="ongkos cetak">Ongkos Cetak</option>
                                 <option value="Makan Cemilan">Makan</option>
@@ -247,6 +260,10 @@
                                 <option value="Internet">Internet</option>
                                 <option value="Belanja Bahan">Belanja Bahan</option>
                                 <option value="Belanja Sablon">Belanja Sablon</option>
+                                <option value="Perlengkapan">Perlengkapan</option>
+                                <option value="Tagihan">Tagihan</option>
+                                <option value="Lainnya">Lainnya</option>
+
                             </select>
                         </div>
                         <input type="text" name="order_id" id="" class="form-control" placeholder=""
@@ -262,17 +279,6 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
-            </div>
-            <div class="list-group mb-3">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    KLIEN BARU
-                </a>
-                @foreach ($kliens as $klien)
-                    <a href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=KaosKerenID"
-                        class="list-group-item list-group-item-action"><i class="fa-brands fa-whatsapp"></i>
-                        {{ $klien->nama }}</a>
-                @endforeach
-
             </div>
         </div>
     </div>

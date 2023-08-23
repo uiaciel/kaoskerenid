@@ -133,17 +133,25 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-between">
                         <div class="mb-md-0 transfer-to">
-                            <h5 class="sub">Bank Transfer</h5>
-                            <div class="account-transfer">
-                                <div><span>Atas nama:</span><span>Suria</span></div>
-                                <div><span>No Rekening:</span><span>5035139653 </span></div>
-                                <div><span>Bank </span><span>BCA</span></div>
-                            </div>
+                            @if ($order->pembayaran == 'LUNAS')
+                            @else
+                                <h5 class="sub">Silahkan melakukan pembayaran melalui Bank Transfer</h5>
+                                <div class="account-transfer">
+                                    <div><span>Atas nama:</span><span> Suria</span></div>
+                                    <div><span>No Rekening:</span><span> 5035139653 </span></div>
+                                    <div><span>Bank </span><span> BCA</span></div>
+                                </div>
+                            @endif
+
                         </div>
                         <div class="transfer-total">
                             <h5 class="sub">Total Keseluruhan</h5>
-                            <div class="price">Rp. {{ number_format($order->total + $order->ongkir, 0, ',', '.') }}
+                            <div class="price mb-5">Rp.
+                                {{ number_format($order->total + $order->ongkir, 0, ',', '.') }}
                             </div>
+                            @if ($order->pembayaran == 'LUNAS')
+                                <h3 class="text-primary fw-bold">LUNAS</h3>
+                            @endif
                             <!--<span>Taxes Included</span>-->
                         </div>
                     </div>
@@ -152,10 +160,18 @@
                     <h6 class="text-uppercase mt-4 mb-3 fw-bold">
                         Notes
                     </h6>
-                    <p class="text-muted mb-0">
-                        Harap mengirimkan foto bukti transfer/pembayaran kepada kami. Pesanan akan Kami proses setelah
-                        melakukan pembayaran
-                    </p>
+                    @if ($order->pembayaran == 'LUNAS')
+                        <p class="text-muted mb-0">
+                            Terima Kasih, ditunggu orderan selanjutnya. Cetak Banner/Spanduk/Sticker juga Bisa!
+                        </p>
+                    @else
+                        <p class="text-muted mb-0">
+                            Harap mengirimkan foto bukti transfer/pembayaran kepada kami. Pesanan akan Kami proses
+                            setelah
+                            melakukan pembayaran
+                        </p>
+                    @endif
+
                 </div>
             </div>
         </div>

@@ -179,16 +179,16 @@
                 {{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
         </p>
         <p class="centered">Terima kasih sudah Order
-            <br>Kirim Paket JNE, SICEPAT, JNT, NINJA, LionParcel Bisa!
+            <br>Cetak Banner/Sticker/Spanduk Juga Bisa!
         </p>
     </div>
     <div class="ticket">
         <p class="centered"><img
-                src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fweb.kaoskeren.id%2Fstatus%2F{{ $order->inv }}&chs=100x100&choe=UTF-8&chld=L|2'
+                src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fweb.kaoskeren.id%2Fs%2F{{ $order->inv }}&chs=100x100&choe=UTF-8&chld=L|2'
                 rel='nofollow' alt='qr code' style="
     width: 100px;
 "><a
-                href='http://web.kaoskeren.id/status/{{ $order->inv }}' border='0' style='cursor:default'
+                href='http://web.kaoskeren.id/s/{{ $order->inv }}' border='0' style='cursor:default'
                 rel='nofollow'></a></p>
         <p class="centered">SABLON SATUAN - KAOSKERENID
             <br>Jalan Sancang 22, Bogor
@@ -287,7 +287,7 @@
                 {{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
         </p>
         <p class="centered">Terima kasih sudah Order
-            <br>Kirim Paket JNE, SICEPAT, JNT, NINJA, LionParcel Bisa!
+            <br>Cetak Banner/Sticker/Spanduk Juga Bisa!
         </p>
     </div>
 </body>
