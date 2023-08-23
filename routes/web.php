@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 
-Route::get('/status/{id}', [ReportController::class, 'status'])->name('statusinv');
+Route::get('/s/{id}', [ReportController::class, 'status'])->name('statusinv');
 
 
 Auth::routes([
