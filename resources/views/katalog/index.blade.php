@@ -14,16 +14,53 @@
                         </form>
                         <h4>{{ $katalog->nama }}</h4>
 
+
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                             data-bs-target="#modalId{{ $katalog->id }}">
                             Add
                         </button>
 
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modalEdit{{ $katalog->id }}">
+                            Edit
+                        </button>
+
+                        <div class="modal fade" id="modalEdit{{ $katalog->id }}" tabindex="-1" data-bs-backdrop="static"
+                            data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
+                                role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitleId">{{ $katalog->nama }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('katalog.update', $katalog->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            <input type="hidden" name="_method" value="PUT">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="nama" class="form-label">Nama</label>
+                                                <input type="text" class="form-control" value="{{ $katalog->nama }}"
+                                                    id="nama" name="nama" aria-describedby="namaHelp">
+                                                <div id="namaHelp" class="form-text">Ketik Nama Kalalog</div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="formFile" class="form-label">Upload Foto</label>
+                                                <input class="form-control" type="file" name="mockup" id="formFile">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
 
 
-                        <!-- Modal Body -->
-                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+
                         <div class="modal fade" id="modalId{{ $katalog->id }}" tabindex="-1" data-bs-backdrop="static"
                             data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg"
@@ -61,6 +98,9 @@
                         </div>
 
                     </div>
+                    <div class="card-body bg-dark">
+                        <img src="{{ $katalog->image }}">
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -73,6 +113,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @foreach ($katalog->katalogproduk->where('katalog_id', $katalog->id) as $pro)
                                     <tr class="">
                                         <td scope="row">Item</td>
@@ -88,8 +129,10 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {{ $katalog->katalogproduk->where('katalog_id', $katalog->id)->sum('produk.harga') }}
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             @endforeach

@@ -55,7 +55,7 @@
 
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark navbar-theme-primary p-3">
         <div class="container-fluid">
-            <a class="navbar-brand me-lg-5" href="{{ url('/home') }}">
+            <a class="navbar-brand me-lg-5" href="{{ route('home') }}">
                 <img class="navbar-brand-dark" src="../../assets/icons/ios/72.png" alt="Volt logo" /> <img
                     class="navbar-brand-light" src="../../assets/icons/ios/72.png" alt="Volt logo" />
             </a>
@@ -67,7 +67,7 @@
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/home') }}">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('klien.index') }}">Klien</a>
@@ -79,7 +79,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('order.index') }}">Semua Order</a></li>
-                            <li><a class="dropdown-item" href="{{ url('/home') }}">Orderan Akif</a></li>
+                            <li><a class="dropdown-item" href="{{ route('home') }}">Orderan Akif</a></li>
 
                         </ul>
                     </li>
@@ -92,11 +92,11 @@
                             Admin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/belanja">BELANJA</a></li>
-                            <li><a class="dropdown-item" href="/katalog">KATALOG</a></li>
+                            <li><a class="dropdown-item" href="{{ route('belanja') }}">BELANJA</a></li>
+                            <li><a class="dropdown-item" href="{{ route('katalog.index') }}">KATALOG</a></li>
                             <li><a class="dropdown-item" href="{{ route('keuangan.index') }}">KEUANGAN</a></li>
                             <li><a class="dropdown-item" href="{{ route('stok.index') }}">STOK</a></li>
-                            <li><a class="dropdown-item" href="/produk/list">PRODUK</a></li>
+                            <li><a class="dropdown-item" href="/admin/produk/list">PRODUK</a></li>
                             <li><a class="dropdown-item" href="{{ route('design.eps') }}">DESIGN</a></li>
                             <li><a class="dropdown-item" href="{{ route('design.index') }}">MOCKUP</a></li>
                             <li>
@@ -394,7 +394,7 @@
             <ul class="nav flex-column pt-3 pt-md-0">
 
                 <li class="nav-item  active ">
-                    <a href="/home" class="nav-link">
+                    <a href="{{ route('home') }}" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -525,7 +525,7 @@
                 </li>
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
                 <li class="nav-item">
-                    <a href="/home" class="nav-link d-flex align-items-center">
+                    <a href="{{ route('home') }}" class="nav-link d-flex align-items-center">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -638,7 +638,7 @@
                         <ul class="nav flex-column pt-3 pt-md-0">
 
                             <li class="nav-item  active ">
-                                <a href="/home" class="nav-link">
+                                <a href="{{ route('home') }}" class="nav-link">
                                     <span class="sidebar-icon">
                                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -781,17 +781,17 @@
                                     aria-expanded="false">
                                     <ul class="flex-column nav">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/belanja">
+                                            <a class="nav-link" href="{{ route('belanja') }}">
                                                 <span class="sidebar-text">BELANJA</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/katalog">
+                                            <a class="nav-link" href="{{ route('katalog.index') }}">
                                                 <span class="sidebar-text">KATALOG</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('keuangan.index') }}">
+                                            <a class="nav-link" href="/admin/produk/list">
                                                 <span class="sidebar-text">PRODUK LIST</span>
                                             </a>
                                         </li>
@@ -811,7 +811,7 @@
                             </li>
                             <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
                             <li class="nav-item">
-                                <a href="/home" class="nav-link d-flex align-items-center">
+                                <a href="{{ route('home') }}" class="nav-link d-flex align-items-center">
                                     <span class="sidebar-icon">
                                         <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
                                             xmlns="http://www.w3.org/2000/svg">

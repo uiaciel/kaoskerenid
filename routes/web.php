@@ -15,10 +15,13 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\TokoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+
+Route::get('/katalog', [FrontendController::class, 'katalog'])->name('frontend.katalog');
 
 Route::get('/s/{id}', [ReportController::class, 'status'])->name('statusinv');
 
@@ -30,15 +33,20 @@ Auth::routes([
 ]);
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::group([
+    'middleware' => ['auth'],
+    'prefix' => 'admin'
+], function () {
 
-Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
     Route::get('/klien/exports', [KlienController::class, 'exportklien']);
 
     Route::get('/produk/list', [ProdukController::class, 'list']);
     Route::get('/klien/export', [KlienController::class, 'export'])->name('klien.export');
 
     Route::resource('/order', OrderController::class);
+    Route::resource('/katalog', KatalogController::class);
     Route::resource('/klien', KlienController::class);
     Route::resource('/produk', ProdukController::class);
     Route::resource('/orderan', OrderanController::class);
@@ -47,12 +55,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/stok', StokController::class);
     Route::resource('/datastok', DatastokController::class);
     Route::resource('/report', ReportController::class);
-    Route::resource('/katalog', KatalogController::class);
+
     Route::resource('/katalogproduk', KatalogprodukController::class);
     Route::resource('/blog', BlogController::class);
 
+    Route::resource('/toko', TokoController::class);
+
+    // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
+    Route::get('/transaksi/{id}', [TokoController::class, 'transaksi'])->name('transaksi');
     Route::get('/list/produk/{id}', [HomeController::class, 'listproduk'])->name('listproduk');
     Route::post('/tambahproduk', [HomeController::class, 'tambahproduk'])->name('tambahproduk');
     Route::post('/tambahpaket', [HomeController::class, 'tambahpaket'])->name('tambahpaket');

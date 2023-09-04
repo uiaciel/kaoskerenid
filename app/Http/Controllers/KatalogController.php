@@ -49,38 +49,21 @@ class KatalogController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Katalog  $katalog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Katalog $katalog)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Katalog  $katalog
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Katalog $katalog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Katalog  $katalog
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Katalog $katalog)
     {
-        //
+        $katalog->nama = $request->nama;
+        $katalog->status = $request->status;
+
+        if ($request->file('mockup')) {
+            $fileName = str_replace(' ', '_', $request->file('mockup')->getClientOriginalName());
+            $folder = 'katalog';
+            $request->file('mockup')->move(public_path() . '/storage/' . $folder . '/', $fileName);
+
+            $katalog->image = '/storage/' . $folder . '/' . $fileName;
+        }
+
+        $katalog->save();
+        return redirect()->back();
     }
 
     /**

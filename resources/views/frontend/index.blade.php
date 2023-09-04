@@ -7,11 +7,15 @@
             <div class="row">
 
                 <div class="col-12 mt-auto mb-5 text-center">
-                    <small>KOTA BOGOR</small>
+                    <small>I Love KOTA BOGOR</small>
 
-                    <h1 class="text-white mb-5">SABLON SATUAN</h1>
+                    <h1 class="text-white mb-2">SABLON SATUAN</h1>
+                    <h5 class="text-white mb-4">Jasa Sablon Satuan dan Pembuatan Kaos Custom dengan design bebas! Tersedia
+                        banyak warna dan pilihan
+                        model
+                        kaos dan bahan. Pengerjaan Cepat dan Gratis bantuan design.</h5>
 
-                    <a class="btn custom-btn smoothscroll" href="#section_2">Let's begin</a>
+                    <a class="btn custom-btn smoothscroll" href="#section_2">Chat Kami Sekarang!</a>
                 </div>
 
                 <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
@@ -72,7 +76,8 @@
 
                 <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
                     <div class="services-info">
-                        <h2 class="text-white mb-4">Tentang KAOSKERENID</h2>
+                        <h5 class="text-white mb-1">Memperkenalkan</h5>
+                        <h2 class="text-white mb-4">Sablon Satuan Kaoskeren.ID</h2>
 
                         <p class="text-white">Kami menawarkan layanan cetak sablon satuan pada berbagai jenis
                             pakaian dan aksesoris, mulai dari kaos, polo shirt, jaket, sweater, seragam, topi, tas,
@@ -232,7 +237,8 @@
                                     <h5 class="mb-1"><span
                                             class="badge bg-warning">{{ Str::upper($blog->kategori) }}</span>
                                         {{ $blog->judul }}</h5>
-                                    <small>{{ $blog->dibaca }}x - {{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
+                                    <small>{{ $blog->dibaca }}x -
+                                        {{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
                                 </div>
                                 {{-- <p class="mb-1">Some placeholder content in a paragraph.</p> --}}
                                 {{-- <small>{{ $blog->kategori }}</small> --}}

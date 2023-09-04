@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Katalog;
 use App\Models\Keuangan;
 use App\Models\Order;
 use App\Models\Orderan;
@@ -25,11 +26,15 @@ class FrontendController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function katalog()
+    {
+
+        $katalogs = Katalog::all();
+        return view('frontend.katalog', [
+            'katalogs' => $katalogs
+        ]);
+    }
+
     public function create()
     {
         //

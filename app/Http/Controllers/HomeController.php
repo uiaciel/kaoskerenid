@@ -10,7 +10,7 @@ use App\Models\Katalogproduk;
 use App\Models\Order;
 use App\Models\Orderan;
 use App\Models\Produk;
-use Carbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
