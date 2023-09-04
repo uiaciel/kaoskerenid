@@ -28,11 +28,8 @@
                                 </h3>
                             </div><small class="d-flex align-items-center">
 
-                                <span class="text-success me-2">Tunai :</span>
+                                <span class="text-success me-2">Uang cash di kotak</span>
 
-
-                                Rp
-                                {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}
                             </small>
 
                         </div>
@@ -44,34 +41,22 @@
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
-                        <div
-                            class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-primary rounded me-3 me-sm-0"><svg class="icon icon-sm"
-                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
-                                    </path>
-                                </svg></div>
-                            <div class="d-sm-none">
+
+                        <div class="col-12 col-xl-12 px-xl-0">
+                            <div class="d-none d-sm-block ms-3">
                                 <h2 class="h5">Pemasukan</h2>
                                 <h3 class="fw-extrabold mb-1">Rp.
                                     {{ number_format($pemasukanharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
                                 </h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-8 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h5">Pemasukan</h2>
-                                <h3 class="fw-extrabold mb-1">Rp.
-                                    {{ number_format($pemasukanharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
-                                </h3>
-                            </div><small class="d-flex align-items-center">
+                            </div><small class="d-flex justify-content-between align-items-center ms-3">
 
-                                <span class="text-success me-2">Transfer :</span>
+                                <span class="text-success me-2">TF : Rp
+                                    {{ number_format($pemasukanharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
+                                </span>
+                                <span class="text-success me-2">Cash : Rp
+                                    {{ number_format($pemasukanharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}
+                                </span>
 
-
-                                Rp
-                                {{ number_format($pemasukanharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
                             </small>
 
                         </div>
@@ -83,34 +68,23 @@
             <div class="card border-0 shadow">
                 <div class="card-body">
                     <div class="row d-block d-xl-flex align-items-center">
-                        <div
-                            class="col-12 col-xl-4 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-primary rounded me-3 me-sm-0"><svg class="icon icon-sm"
-                                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
-                                    </path>
-                                </svg></div>
-                            <div class="d-sm-none">
-                                <h2 class="h5">Pengeluaran</h2>
-                                <h3 class="fw-extrabold mb-1">Rp.
-                                    {{ number_format($pengeluaranharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-8 px-xl-0">
+
+                        <div class="col-12 col-xl-12 px-xl-0 ms-3">
                             <div class="d-none d-sm-block">
                                 <h2 class="h5">Pengeluaran</h2>
                                 <h3 class="fw-extrabold mb-1">Rp.
                                     {{ number_format($pengeluaranharian->pluck('nominal')->sum(), 0, ',', '.') }}</b>
                                 </h3>
-                            </div><small class="d-flex align-items-center">
+                            </div><small class="d-flex justify-content-between align-items-center">
 
-                                <span class="text-danger me-2">Transfer :</span>
-
-
-                                Rp
-                                {{ number_format($pengeluaranharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
+                                <span class="text-danger me-2">TF :
+                                    Rp
+                                    {{ number_format($pengeluaranharian->where('metode', 'Transfer')->pluck('nominal')->sum(),0,',','.') }}
+                                </span>
+                                <span class="text-danger me-4">CASH :
+                                    Rp
+                                    {{ number_format($pengeluaranharian->where('metode', 'Tunai')->pluck('nominal')->sum(),0,',','.') }}
+                                </span>
                             </small>
 
                         </div>
@@ -277,21 +251,24 @@
                             <label for="" class="form-label">Jenis</label>
                             <select class="form-control" name="jenis" id="">
 
-                                <option>Pengeluaran</option>
-                                <option>Pemasukan</option>
+                                <option value="Pengeluaran">Pengeluaran</option>
+                                <option value="Pemasukan">Pemasukan</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Kategori</label>
                             <select class="form-control" name="kategori">
+                                <option value="Makan Cemilan">Makan</option>
+                                <option value="Cash">Cash</option>
                                 <option value="orderan">Orderan</option>
                                 <option value="ongkos cetak">Ongkos Cetak</option>
-                                <option value="Makan Cemilan">Makan</option>
                                 <option value="Listrik">Listrik</option>
                                 <option value="Internet">Internet</option>
-                                <option value="Belanja Bahan">Belanja Bahan</option>
+                                <option value="Belanja Bahan">Belanja Kaos/Hoodie/Bahan</option>
                                 <option value="Belanja Sablon">Belanja Sablon</option>
-                                <option value="Perlengkapan">Perlengkapan</option>
+                                <option value="Perlengkapan">Perlengkapan Toko</option>
+                                <option value="Ongkir">Ongkos Kirim</option>
+
                             </select>
                         </div>
                         <input type="text" name="order_id" id="" class="form-control" placeholder=""
@@ -300,9 +277,17 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Metode</label>
                             <select class="form-control" name="metode" id="">
-                                <option>Transfer</option>
-                                <option>Tunai</option>
+                                <option value="Transfer">Transfer</option>
+                                <option value="Tunai">Tunai</option>
                             </select>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Detail</label>
+                                <textarea class="form-control" name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -489,7 +474,8 @@
 
                     @forelse ($pemasukans as $pemasukan)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="/order/{{ $pemasukan->order->inv }}">{{ $pemasukan->metode }}</a>
+                            <a
+                                href="/order/{{ $pemasukan->order->inv ?? $pemasukan->detail }}">{{ $pemasukan->metode }}</a>
                             <span class="badge bg-primary bg-pill text-white">Rp
                                 {{ number_format($pemasukan->nominal, 0, ',', '.') }}</span>
                         </li>
