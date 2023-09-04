@@ -80,5 +80,5 @@ Route::group([
 });
 
 Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
-
+Route::get('/n/{id}', [HomeController::class, 'nota']);
 Route::get('/invoice/{id}', [FrontendController::class, 'invoice']);

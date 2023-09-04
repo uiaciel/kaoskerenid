@@ -97,7 +97,7 @@
                             @foreach ($orders as $index => $order)
                                 <tr class="">
                                     <td scope="row">{{ $loop->iteration }}</td>
-                                    <td><a href="/order/{{ $order->inv }}" data-bs-toggle="tooltip"
+                                    <td><a href="/admin/order/{{ $order->inv }}" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom"
                                             title="{{ $order->detail }}">{{ $order->inv }}</a></td>
                                     <td>{{ $order->created_at }}</td>

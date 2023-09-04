@@ -125,7 +125,7 @@
                                         </a>
                                     </th>
                                     <td class="fw-bolder text-gray-500">
-                                        {{ $keuanganbulanan->detail }}
+                                        {{ $keuanganbulanan->detail }} - {{ $keuanganbulanan->kategori }}
                                     </td>
                                     <td class="fw-bolder text-gray-500">
                                         @if ($keuanganbulanan->jenis == 'Pemasukan')
@@ -183,7 +183,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $periode->status }}</td>
-                                        <td><a href="/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
+                                        <td><a href="/admin/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
                                         <td>{{ $periode->klien->nama }}</td>
                                         <td>{{ $periode->qty }}</td>
                                         <td>{{ $periode->total }}</td>
@@ -418,7 +418,8 @@
 
                     @forelse  ($orders as $order)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="/order/{{ $order->inv }}">#{{ $order->inv }} - {{ $order->klien->nama }}</a>
+                            <a href="/admin/order/{{ $order->inv }}">#{{ $order->inv }} -
+                                {{ $order->klien->nama }}</a>
                             <span class="badge bg-primary bg-pill text-white">{{ $order->qty }} pcs</span>
                         </li>
                     @empty
@@ -475,7 +476,7 @@
                     @forelse ($pemasukans as $pemasukan)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             <a
-                                href="/order/{{ $pemasukan->order->inv ?? $pemasukan->detail }}">{{ $pemasukan->metode }}</a>
+                                href="/admin/order/{{ $pemasukan->order->inv ?? $pemasukan->detail }}">{{ $pemasukan->metode }}</a>
                             <span class="badge bg-primary bg-pill text-white">Rp
                                 {{ number_format($pemasukan->nominal, 0, ',', '.') }}</span>
                         </li>

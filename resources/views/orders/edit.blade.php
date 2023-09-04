@@ -3,7 +3,8 @@
     <div class="container text-white py-2">
         <div class="d-flex">
             <div class="mr-3 flex-grow-1">
-                <h2 class="mb-3"><a href="/klien/{{ $order->klien->id }}">{{ $order->klien->nama }}</a> #{{ $order->inv }}
+                <h2 class="mb-3"><a href="/admin/klien/{{ $order->klien->id }}">{{ $order->klien->nama }}</a>
+                    #{{ $order->inv }}
                 </h2>
                 <h5 class="op-7 mb-3">{{ Str::replaceFirst('0', '+62', $order->klien->hp) }} - {{ $order->qty }}pcs</h5>
             </div>
@@ -208,7 +209,8 @@
                             </button>
 
 
-                            <a href="/tambah/{{ $order->inv }}" class="btn btn-primary"><i class="fas fa-tshirt"></i>
+                            <a href="/admin/tambah/{{ $order->inv }}" class="btn btn-primary"><i
+                                    class="fas fa-tshirt"></i>
                                 <i class="bi bi-ui-checks"></i> Produk</a>
 
                             {{-- <button type="button" class="btn btn-primary">Right</button> --}}
@@ -304,7 +306,7 @@
                     <a href="#" class="btn btn-primary btn-round" style="align-items: center"
                         data-bs-toggle="modal" data-bs-target="#PembayaranModal" role="button"><i
                             class="bi bi-wallet"></i></a>
-                    <a href="/nota/{{ $order->inv }}" target="_blank" class="btn btn-info btn-round"><i
+                    <a href="/admin/nota/{{ $order->inv }}" target="_blank" class="btn btn-info btn-round"><i
                             class="bi bi-printer"></i></a>
                     <button onclick="myFunction()" id="bntcopy" class="btn btn-info btn-danger bntcopy"><i
                             class="bi bi-receipt"></i>

@@ -25,27 +25,34 @@
 
         <div class="text-center">
 
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-
-                @if ($order->status == 'KONFRIM')
-                    <strong>PRODUKSI</strong> - Orderan kamu sedang dalam proses pengerjaan. <br> Estimasi beres nya
-                    Hari
-                    <strong>{{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                @elseif ($order->status == 'BERES')
-                    <strong>SUDAH BERES</strong> - Orderan kamu sudah bisa beres, siap diambil. <br> Untuk pengambilan
-                    bisa langsung ke toko di
-                    <strong>Hari Senin-Sabtu Jam 10 sampai jam 9 malam ya!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                @elseif ($order->status == 'SELESAI')
-                    <strong>Terima Kasih</strong> - Orderan kamu sudah bisa Selesai. <br>
-                    <strong>Ditunggu orderan selanjutnya ya!</strong>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @if ($order->pembayaran == 'BELUM BAYAR')
+                    <strong>Belum Bayar</strong> - Pesanan Akan diproses setelah
+                    pembayaran masuk.</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 @else
-                    <strong>CANCEL</strong> - Orderan kamu dibatalkan. <br>
-                    <strong>Jika ingin order kembali, silahkan hubungi admin via Whatsapp</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @if ($order->status == 'KONFRIM')
+                        <strong>PRODUKSI</strong> - Orderan kamu sedang dalam proses pengerjaan. <br> Estimasi beres nya
+                        Hari
+                        <strong>{{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @elseif ($order->status == 'BERES')
+                        <strong>SUDAH BERES</strong> - Orderan kamu sudah bisa beres, siap diambil. <br> Untuk
+                        pengambilan
+                        bisa langsung ke toko di
+                        <strong>Hari Senin-Sabtu Jam 10 sampai jam 9 malam ya!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @elseif ($order->status == 'SELESAI')
+                        <strong>Terima Kasih</strong> - Orderan kamu sudah bisa Selesai. <br>
+                        <strong>Ditunggu orderan selanjutnya ya!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @else
+                        <strong>CANCEL</strong> - Orderan kamu dibatalkan. <br>
+                        <strong>Jika ingin order kembali, silahkan hubungi admin via Whatsapp</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @endif
                 @endif
+
             </div>
 
             <h5>Invoice : #{{ $order->inv }}</h5>
@@ -104,40 +111,38 @@
             </div>
 
             <div class="mt-3 d-flex justify-content-center">
-                <div class="col-3">
+                <div class="col-12">
 
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered ">
-                            <thead>
+                    <table class="table table-striped table-bordered ">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Metode</th>
+                                <th class="text-center">Jumlah</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($keuangan as $bayar)
                                 <tr>
-                                    <th class="text-center">Metode</th>
-                                    <th class="text-center">Jumlah</th>
+                                    <td class="text-start"><small>{{ $bayar->metode }}</small>
+                                        <p>{{ $bayar->tanggal }}</p>
+                                    </td>
+                                    <td class="text-end">Rp. {{ $bayar->nominal }}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($keuangan as $bayar)
-                                    <tr>
-                                        <td class="text-start"><small>{{ $bayar->metode }}</small>
-                                            <p>{{ $bayar->tanggal }}</p>
-                                        </td>
-                                        <td class="text-end">Rp. {{ $bayar->nominal }}</td>
-                                    </tr>
-                                @endforeach
-                                <tr class="text-end">
-                                    <td><strong>Jumlah</strong></td>
-                                    <td><strong>Rp {{ $jumlah }}</strong></td>
-                                </tr>
-                                <tr class="text-end">
-                                    <td><strong>Tagihan</strong></td>
-                                    <td><strong>Rp {{ $grandtotal }}</strong></td>
-                                </tr>
-                                <tr class="text-end">
-                                    <td><strong>Kurang Bayar</strong></td>
-                                    <td><strong>Rp {{ $sisa }}</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                            <tr class="text-end">
+                                <td><strong>Jumlah</strong></td>
+                                <td><strong>Rp {{ $jumlah }}</strong></td>
+                            </tr>
+                            <tr class="text-end">
+                                <td><strong>Tagihan</strong></td>
+                                <td><strong>Rp {{ $grandtotal }}</strong></td>
+                            </tr>
+                            <tr class="text-end">
+                                <td><strong>Kurang Bayar</strong></td>
+                                <td><strong>Rp {{ $sisa }}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -167,7 +172,7 @@
 
                     <li class="nav-item">
 
-                        <a class="nav-link active" aria-current="page" href="/nota/{{ $order->inv }}">Cetak Nota</a>
+                        <a class="nav-link active" aria-current="page" href="/n/{{ $order->inv }}">Cetak Nota</a>
 
                     </li>
 

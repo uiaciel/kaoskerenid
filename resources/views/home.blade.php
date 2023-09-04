@@ -8,7 +8,7 @@
                     BELUM BAYAR
                 </a>
                 @foreach ($belumbayar as $belumbayar)
-                    <a href="/order/{{ $belumbayar->inv }}"
+                    <a href="/admin/order/{{ $belumbayar->inv }}"
                         class="list-group-item list-group-item-action">{{ $belumbayar->klien->nama }} -
                         #{{ $belumbayar->inv }}</a>
                 @endforeach
@@ -20,7 +20,7 @@
                 </li>
                 @foreach ($beresorder as $beresorder)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="/order/{{ $beresorder->inv }}" class="text-dark">{{ $beresorder->klien->nama }} -
+                        <a href="/admin/order/{{ $beresorder->inv }}" class="text-dark">{{ $beresorder->klien->nama }} -
                             #{{ $beresorder->inv }}</a>
                         <form method="POST" enctype="multipart/form-data"
                             action="{{ route('order.update', $beresorder->id) }}">
@@ -44,7 +44,7 @@
                 <a href="#" class="list-group-item list-group-item-action active">SELESAI TERBARU
                 </a>
                 @foreach ($selesaiorder as $selesaiorder)
-                    <a href="/order/{{ $selesaiorder->inv }}"
+                    <a href="/admin/order/{{ $selesaiorder->inv }}"
                         class="list-group-item list-group-item-action">{{ $selesaiorder->klien->nama }} -
                         {{ $selesaiorder->inv }}</a>
                 @endforeach
@@ -86,7 +86,7 @@
                     <div class="card mb-3">
                         <div class="card-header border-bottom p-2 align-items-center d-flex justify-content-xl-between">
                             <div class="p-2 flex-xl-grow-1 bd-highlight text-weight">
-                                <a href="/order/{{ $orderx->inv }}">
+                                <a href="/admin/order/{{ $orderx->inv }}">
                                     <h5 class="mb-0">{{ $orderx->klien->nama }}</h5>
                                 </a> <small class="">#{{ $orderx->inv }} -
                                     {{ Str::replaceFirst('0', '62', $orderx->klien->hp) }}</small>
