@@ -109,6 +109,8 @@
                         <a class="nav-link" href="{{ route('blog.index') }}">BLOG</a>
                     </li>
 
+
+
                 </ul>
 
                 <ul class="navbar-nav">
@@ -122,6 +124,9 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" target="_blank">Beranda</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark notification-bell unread dropdown-toggle"
                                 data-unread-notifications="true" href="#" role="button" data-bs-toggle="dropdown"
@@ -463,6 +468,7 @@
                         </span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('report.index') }}" class="nav-link d-flex justify-content-between">
                         <span>

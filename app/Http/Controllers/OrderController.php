@@ -78,7 +78,7 @@ class OrderController extends Controller
         $order->tanggalambil = Carbon::now()->toDateTimeString();
         $order->save();
         // return redirect()->route('orderan', $order->inv);
-        return redirect('/tambah/' . $order->inv)
+        return redirect('/admin/tambah/' . $order->inv)
             ->with('success', 'Order berhasil dibuat.');
     }
     /**

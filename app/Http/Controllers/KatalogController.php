@@ -53,7 +53,8 @@ class KatalogController extends Controller
     {
         $katalog->nama = $request->nama;
         $katalog->status = $request->status;
-
+        $katalog->detail = $request->detail;
+        $katalog->kategori = $request->kategori;
         if ($request->file('mockup')) {
             $fileName = str_replace(' ', '_', $request->file('mockup')->getClientOriginalName());
             $folder = 'katalog';

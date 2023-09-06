@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->bigInteger('dibaca')->default(0);
+        Schema::table('katalogs', function (Blueprint $table) {
+            $table->text('kategori')->after('nama')->nullable();
+            $table->text('detail')->after('nama')->nullable();
         });
     }
 
@@ -25,8 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->dropColumn('dibaca');
+        Schema::table('katalogs', function (Blueprint $table) {
+            $table->dropColumn('detail');
+            $table->dropColumn('kategori');
         });
     }
 };

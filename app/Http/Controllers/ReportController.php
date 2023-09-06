@@ -38,7 +38,7 @@ class ReportController extends Controller
             ->whereMonth('created_at', date('m', strtotime("-1 months")))
             ->whereYear('created_at', date('Y'))->get();
 
-        $keuanganbulanan = Keuangan::orderBy('tanggal', 'desc')
+        $keuanganbulanan = Keuangan::orderBy('tanggal', 'asc')
             ->whereMonth('tanggal', date('m'))
             ->whereYear('tanggal', date('Y'))
             ->get();
