@@ -109,7 +109,7 @@
 
                                                 @foreach ($produks as $produk)
                                                     <option value="{{ $produk->id }}">{{ $produk->kategori }} -
-                                                        {{ $produk->nama }}
+                                                        {{ $produk->nama }} - {{ $produk->harga}}
                                                     </option>
                                                 @endforeach
 

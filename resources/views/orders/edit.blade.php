@@ -9,6 +9,62 @@
                 <h5 class="op-7 mb-3">{{ Str::replaceFirst('0', '+62', $order->klien->hp) }} - {{ $order->qty }}pcs</h5>
             </div>
             <div>
+                <h4 class="text-end me-3">Data Orderan</h4>
+                <ul class="nav justify-content-center  ">
+                    {{-- <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('klien.index') }}">Klien</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Order
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ route('order.index') }}">Semua Order</a></li>
+                            <li><a class="dropdown-item" href="{{ route('home') }}">Orderan Akif</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('produk.index') }}">Produk</a>
+                    </li> --}}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            BELUM BAYAR
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($databelumbayar as $databelumbayar)
+                                <li><a class="dropdown-item text-dark"
+                                        href="/admin/order/{{ $databelumbayar->inv }}">{{ $databelumbayar->klien->nama }} -
+                                        #{{ $databelumbayar->inv }}</a></li>
+                            @endforeach
+
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            ORDER AKTIF
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach ($datalunas as $datalu)
+                                @foreach ($datalu as $lunasss)
+                                    <li><a class="dropdown-item text-dark"
+                                            href="/admin/order/{{ $lunasss->inv }}">{{ $lunasss->klien->nama }} -
+                                            #{{ $lunasss->inv }}</a></li>
+                                @endforeach
+                            @endforeach
+
+                        </ul>
+                    </li>
+                </ul>
 
             </div>
         </div>
@@ -147,13 +203,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <legend class="h6">Pengiriman</legend>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="pengiriman"
-                                            id="exampleRadios1" value="Diambil" checked="checked">
+                                    <div class="form-check"><input class="form-check-input" type="radio"
+                                            name="pengiriman" id="exampleRadios1" value="Diambil" checked="checked">
                                         <label class="form-check-label" for="exampleRadios1">AMBIL KE TOKO</label>
                                     </div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" name="pengiriman"
-                                            id="exampleRadios2" value="kirim"> <label class="form-check-label"
-                                            for="exampleRadios2">KIRIM KURIR</label>
+                                    <div class="form-check"><input class="form-check-input" type="radio"
+                                            name="pengiriman" id="exampleRadios2" value="kirim"> <label
+                                            class="form-check-label" for="exampleRadios2">KIRIM KURIR</label>
                                     </div>
                                     <div class="form-check"><input class="form-check-input" type="radio"
                                             name="pengiriman" id="exampleRadios3" value="cod" disabled="disabled">

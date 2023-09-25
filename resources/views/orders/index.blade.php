@@ -5,6 +5,14 @@
             <div class="mr-3">
                 <h2 class="mb-3">Daftar Orderan
                 </h2>
+                <select class="form-select" name="filter_periode" id="filter_periode">
+                    <option value="">Rentang Waktu</option>
+                    <option value="1">Kemarin</option>
+                    <option value="7">Seminggu lalu</option>
+                    <option value="30">Sebulan Lalu</option>
+                    <option value="60">2 bulan Lalu</option>
+                    <option value="90">3 bulan Lalu</option>
+                </select>
 
             </div>
             <div class="ml-auto">
@@ -15,46 +23,8 @@
 @endsection
 @section('content')
     <div class="row">
-        <div class="col-lg-12">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">Periode</label>
-                                <select class="form-select" name="filter_periode" id="filter_periode">
-                                    <option value="">Pilih</option>
-                                    <option value="1">Kemarin</option>
-                                    <option value="7">Seminggu lalu</option>
-                                    <option value="30">Sebulan Lalu</option>
-                                    <option value="60">2 bulan Lalu</option>
-                                    <option value="90">3 bulan Lalu</option>
-                                </select>
-                            </div>
-                        </div>
-                        {{-- <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="filter-search" class="form-label">Cari disini</label>
-                                <input type="text" class="form-control" name="filter-search" id="filter-search"
-                                    aria-describedby="filter-search" placeholder="Ketik disini">
-
-                            </div>
-                        </div> --}}
-
-
-
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-lg-12 col-md-12">
+        <div class="col-lg-12 col-md-12 mb-3">
             <div class="card">
                 <div class="table-responsive mt-4">
                     <table class="table" id="orders-table">

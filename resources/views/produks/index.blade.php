@@ -5,7 +5,6 @@
             <div class="mr-3">
                 <h2 class="mb-3">Daftar Produk
                 </h2>
-
             </div>
             <div class="ml-auto">
                 <a href="{{ route('produk.create') }}" class="btn btn-primary">Buat Baru</a>
@@ -36,27 +35,15 @@
                                     <td>{{ $produk->nama }}</td>
                                     <td>{{ $produk->kategori }}</td>
                                     <td>{{ $produk->harga }}</td>
-
-
-
                                     <td class="fw-bold">
                                         {{ $produk->status }}
                                     </td>
-
-
-
-
-
-
                                     <td>
-                                        {{-- <a href="{{ route('produk.edit', $produk->id) }}"
-                                            class="btn btn-sm btn-round btn-primary">Edit</a> --}}
                                         <button type="button" class="btn btn-sm btn-round btn-primary"
                                             data-bs-toggle="modal" data-bs-target="#pro{{ $produk->id }}">
                                             Edit
                                         </button>
                                     </td>
-
                                 </tr>
                                 <div class="modal fade" id="pro{{ $produk->id }}" tabindex="-1" data-bs-backdrop="static"
                                     data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId"
@@ -94,29 +81,22 @@
                                                         <input type="text" class="form-control" name="nama"
                                                             value="{{ $produk->nama }}">
                                                     </div>
-
                                                     <div class="form-group mb-3">
                                                         <label for="email2">Harga</label>
                                                         <input type="number" class="form-control" name="harga"
                                                             value="{{ $produk->harga }}">
                                                     </div>
-
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

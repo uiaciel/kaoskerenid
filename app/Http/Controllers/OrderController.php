@@ -104,6 +104,29 @@ class OrderController extends Controller
         $sisa = $grandtotal - $jumlah;
         $paket = Katalog::all();
 
+        $datalunas = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan', 'tanggalambil')
+            ->whereNot('pembayaran', 'BELUM BAYAR')
+            ->where(function ($query) {
+                $query->where('status', 'KONFRIM')
+                    ->orWhere('status', 'DESIGN OK')
+                    ->orWhere('status', 'REQUEST DESIGN')
+                    ->orWhere('status', 'PRODUKSI');
+            })
+            ->OrderBy('tanggalambil', 'asc')
+            ->get()
+            ->groupBy(function ($data) {
+                return Carbon::parse($data->tanggalambil)->isoFormat('dddd, D MMM Y');
+            });
+
+        $databelumbayar = Order::select('inv', 'klien_id')
+            ->where('pembayaran', 'BELUM BAYAR')
+            ->where('status', 'KONFRIM')
+            ->OrderBy('created_at', 'desc')
+            ->with(['klien' => function ($query) {
+                $query->select('id', 'nama');
+            }])
+            ->get();
+
         return view('orders.edit', [
             'order' => $order,
             'orderan' => $orderan,
@@ -115,7 +138,9 @@ class OrderController extends Controller
             'designs' => $designs,
             'files' => $files,
             'alldesign' => $alldesign,
-            'paket' => $paket
+            'paket' => $paket,
+            'datalunas' => $datalunas,
+            'databelumbayar' => $databelumbayar,
         ]);
     }
 

@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $klien = Klien::select('nama', 'hp')->orderBy('created_at', 'desc')->limit(5)->get();
+        $klien = Klien::select('nama', 'hp')->orderBy('created_at', 'desc')->limit(20)->get();
         $klienx = Klien::select('nama', 'hp')->orderBy('created_at', 'desc')->get();
         // $pemasukan = Keuangan::where('jenis', 'Pemasukan')->orderBy('created_at', 'desc')->get();
         // $pengeluaran = Keuangan::where('jenis', 'Pengeluaran')->orderBy('created_at', 'desc')->get();
