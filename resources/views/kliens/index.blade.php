@@ -9,6 +9,8 @@
                             <h2 class="fs-5 fw-bold mb-0">List Klien</h2>
                         </div>
                         <div class="col text-end"><a href="/klien/exports" class="btn btn-sm btn-primary">EXPORT CSV</a></div>
+                        <div class="col text-end"><a href="route('klien.exportlastmonth')"
+                                class="btn btn-sm btn-primary">Last Mont</a></div>
                     </div>
                 </div>
 

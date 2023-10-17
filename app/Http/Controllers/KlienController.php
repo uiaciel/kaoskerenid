@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\KlienExport;
+use App\Exports\KlienLastMonth;
 use App\Models\Klien;
 use App\Models\Order;
 use App\Models\Design;
@@ -144,6 +145,16 @@ class KlienController extends Controller
     {
         $carbon = Carbon::now()->format('F');
         return Excel::download(new KlienExport, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
+            'Content-Type' => 'text/csv',
+        ]);
+
+        // return Excel::download(new KlienExport, 'users.xlsx');
+    }
+
+    public function exportklienlastmonth()
+    {
+        $carbon = Carbon::now()->format('F');
+        return Excel::download(new KlienLastMonth, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
             'Content-Type' => 'text/csv',
         ]);
 
