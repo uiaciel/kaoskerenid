@@ -94,52 +94,125 @@
         </div>
 
     </div>
-    <div class="row">
+
+    <div class="row mb-3">
+        <h3 class="text-white">Hari ini</h3>
         <div class="col-md-8">
-            <h3 class="text-white">Transaksi</h3>
+
+            <div class="card border-0">
+                <div class="card-header">
+                    <h6>Orderan</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th>No</th>
+                                <th>Status</th>
+                                <th>Order</th>
+                                <th>Klien</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($orderhariini as $index => $orderhariinis)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $orderhariinis->status }}</td>
+                                    <td><a href="/admin/order/{{ $orderhariinis->inv }}">{{ $orderhariinis->inv }}</a>
+                                    </td>
+                                    <td>{{ $orderhariinis->klien->nama }}</td>
+                                    <td>{{ $orderhariinis->qty }}</td>
+                                    <td>{{ $orderhariinis->total }}</td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-body">
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Belanja Hari ini</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5">
+@foreach ($orderhariini->where('stok', 'KOSONG') as $belanjahariini)
+{{ $belanjahariini->klien->nama }}
+{{ $belanjahariini->detail }}
+--
+@endforeach
+                </textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <h3 class="text-white">Keuangan {{ $bt }}</h3>
+
+
+
+        <div class="col-md-8">
 
             <div class="card mb-3 border-0 shadow">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h2 class="fs-5 fw-bold mb-0">Bulan Ini</h2>
+                            <h2 class="fs-5 fw-bold mb-0">Transaksi</h2>
                         </div>
-                        <div class="col text-end"><a href="#" class="btn btn-sm btn-primary">See all</a></div>
+                        <div class="col text-end"> <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#catatPengeluaran">
+                                Catat Keuangan
+                            </button></div>
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
+                    <table class="table table-hover table-bordered">
+                        <thead class="bg-dark text-white">
                             <tr>
                                 <th class="border-bottom" scope="col">Tanggal</th>
                                 <th class="border-bottom" scope="col">Transaksi</th>
+
                                 <th class="border-bottom" scope="col">Pemasukan</th>
+
                                 <th class="border-bottom" scope="col">Pengeluaran</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($keuanganbulanan as $keuanganbulanan)
                                 <tr>
-                                    <th class="text-gray-900" scope="row">{{ $keuanganbulanan->metode }} -
+                                    <th class="text-gray-900" scope="row">
                                         {{ $keuanganbulanan->tanggal }}
                                         </a>
                                     </th>
                                     <td class="fw-bolder text-gray-500">
-                                        {{ $keuanganbulanan->detail }} - {{ $keuanganbulanan->kategori }}
+                                        <a
+                                            href="/admin/order/{{ $keuanganbulanan->detail }}">{{ $keuanganbulanan->detail }}</a>
+                                        - {{ $keuanganbulanan->kategori }} <span
+                                            class="badge bg-primary">{{ $keuanganbulanan->metode }} </span>
                                     </td>
-                                    <td class="fw-bolder text-gray-500">
+
+                                    <td class="fw-bolder text-gray-500 text-end">
                                         @if ($keuanganbulanan->jenis == 'Pemasukan')
-                                            Rp.
                                             {{ number_format($keuanganbulanan->nominal, 0, ',', '.') }}
                                         @else
                                             -
                                         @endif
 
                                     </td>
-                                    <td class="fw-bolder text-gray-500">
+
+                                    <td class="fw-bolder text-gray-500 text-end">
 
                                         @if ($keuanganbulanan->jenis == 'Pengeluaran')
-                                            Rp.
                                             {{ number_format($keuanganbulanan->nominal, 0, ',', '.') }}
                                         @else
                                             -
@@ -148,6 +221,7 @@
                                     </td>
 
                                 </tr>
+
                             @empty
                                 Kosong
                             @endforelse
@@ -156,54 +230,11 @@
                     </table>
                 </div>
             </div>
-            <div class="card mb-3 full-height">
-                <div class="card-body">
-
-                    {!! $chart->container() !!}
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h3>Data Orderan Periode {{ $bt }}</h3>
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Status</th>
-                                    <th>Order</th>
-                                    <th>Klien</th>
-                                    <th>Qty</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($periode as $index => $periode)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $periode->status }}</td>
-                                        <td><a href="/admin/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
-                                        <td>{{ $periode->klien->nama }}</td>
-                                        <td>{{ $periode->qty }}</td>
-                                        <td>{{ $periode->total }}</td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-
-
-
 
 
         </div>
         <div class="col-md-4">
-            <h3 class="text-white">Bulan ini</h3>
+
             <div class="card mb-3 full-height">
                 <div class="card-body">
 
@@ -232,69 +263,71 @@
             </div>
 
 
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="row">
+        <h3 class="text-white">Orderan {{ $bt }}</h3>
+        <div class="col-md-8">
+
             <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="fs-5 fw-bold mb-0">Qty <span
+                                    class="badge bg-primary bg-pill">{{ $orders->pluck('qty')->sum() }} pcs</span></h2>
+                        </div>
+                        <div class="col text-end"> <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#grafikOrderan">
+                                Grafik
+                            </button></div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th>No</th>
+                                <th>Status</th>
+                                <th>Order</th>
+                                <th>Klien</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($periode as $index => $periode)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $periode->status }}</td>
+                                    <td><a href="/admin/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
+                                    <td>{{ $periode->klien->nama }}</td>
+                                    <td>{{ $periode->qty }}</td>
+                                    <td>{{ $periode->total }}</td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
                 <div class="card-body">
-                    <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="" class="form-label">Tanggal</label>
-                            <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Nominal</label>
-                            <input type="text" name="nominal" id="" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                            <small id="helpId" class="text-muted">Ketik Angka saja</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Jenis</label>
-                            <select class="form-control" name="jenis" id="">
+                    <h3></h3>
 
-                                <option value="Pengeluaran">Pengeluaran</option>
-                                <option value="Pemasukan">Pemasukan</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Kategori</label>
-                            <select class="form-control" name="kategori">
-                                <option value="Makan Cemilan">Makan</option>
-                                <option value="Cash">Cash</option>
-                                <option value="orderan">Orderan</option>
-                                <option value="ongkos cetak">Ongkos Cetak</option>
-                                <option value="Listrik">Listrik</option>
-                                <option value="Internet">Internet</option>
-                                <option value="Belanja Bahan">Belanja Kaos/Hoodie/Bahan</option>
-                                <option value="Belanja Sablon">Belanja Sablon</option>
-                                <option value="Perlengkapan">Perlengkapan Toko</option>
-                                <option value="Ongkir">Ongkos Kirim</option>
 
-                            </select>
-                        </div>
-                        <input type="text" name="order_id" id="" class="form-control" placeholder=""
-                            aria-describedby="helpId" hidden>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label">Metode</label>
-                            <select class="form-control" name="metode" id="">
-                                <option value="Transfer">Transfer</option>
-                                <option value="Tunai">Tunai</option>
-                            </select>
-
-                        </div>
-
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Detail</label>
-                                <textarea class="form-control" name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
                 </div>
             </div>
-
-            <div class="card border-0 shadow">
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow mb-3">
                 <div class="card-body">
                     <h2 class="fs-5 fw-bold mb-1">Data Bulan ini</h2>
                     <p>Jumlah yang masuk di bulan ini.</p>
@@ -372,6 +405,8 @@
                                     </div>
                                 @else
                                 @endif
+
+
                             </div>
                         </div>
                         <div class="d-flex align-items-center pt-3">
@@ -388,110 +423,103 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
-
-
-
-    </div>
-
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-
-        </div>
-        <div class="col-md-6">
 
         </div>
     </div>
-    <div class="row mb-3">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">New Order {{ $bt }}</div>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Jumlah dari {{ $orders->count() }} order
-                        <span class="badge bg-primary bg-pill">{{ $orders->pluck('qty')->sum() }} pcs</span>
-                    </li>
-
-                    @forelse  ($orders as $order)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a href="/admin/order/{{ $order->inv }}">#{{ $order->inv }} -
-                                {{ $order->klien->nama }}</a>
-                            <span class="badge bg-primary bg-pill text-white">{{ $order->qty }} pcs</span>
-                        </li>
-                    @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Data Tidak Ada
-                        </li>
-                    @endforelse
 
 
 
-                </ul>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="grafikOrderan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {!! $chart->container() !!}
+                </div>
+
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">New Klien</div>
-
-                <ul class="list-group">
-
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Jumlah : {{ $kliens->count() }}
-
-                    </li>
-
-
-                    @forelse ($kliens as $klien)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {{ $klien->nama }}
-                            <span class="badge bg-primary"><i class="fab fa-whatsapp"></i> <a
-                                    href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=Hai+Sablon+Satuan"
-                                    class="text-white">CHAT</a></span>
-                        </li>
-                    @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Data Tidak Ada
-                        </li>
-                    @endforelse
-
-
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header bg-primary text-white">New Pembayaran</div>
-
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Total Pemasukan
-                        <span class="badge bg-primary bg-pill">Rp
-                            {{ number_format($pemasukans->pluck('nominal')->sum(), 0, ',', '.') }}</span>
-                    </li>
-
-                    @forelse ($pemasukans as $pemasukan)
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            <a
-                                href="/admin/order/{{ $pemasukan->order->inv ?? $pemasukan->detail }}">{{ $pemasukan->metode }}</a>
-                            <span class="badge bg-primary bg-pill text-white">Rp
-                                {{ number_format($pemasukan->nominal, 0, ',', '.') }}</span>
-                        </li>
-                    @empty
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Data Tidak Ada
-                        </li>
-                    @endforelse
-
-
-                </ul>
-            </div>
-        </div>
-
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="catatPengeluaran" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Keuangan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="" class="form-label">Tanggal</label>
+                            <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nominal</label>
+                            <input type="text" name="nominal" id="" class="form-control" placeholder=""
+                                aria-describedby="helpId">
+                            <small id="helpId" class="text-muted">Ketik Angka saja</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Jenis</label>
+                            <select class="form-control" name="jenis" id="">
+
+                                <option value="Pengeluaran">Pengeluaran</option>
+                                <option value="Pemasukan">Pemasukan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Kategori</label>
+                            <select class="form-control" name="kategori">
+                                <option value="Makan Cemilan">Makan</option>
+                                <option value="Cash">Cash</option>
+                                <option value="orderan">Orderan</option>
+                                <option value="ongkos cetak">Ongkos Cetak</option>
+                                <option value="Listrik">Listrik</option>
+                                <option value="Internet">Internet</option>
+                                <option value="Belanja Bahan">Belanja Kaos/Hoodie/Bahan</option>
+                                <option value="Belanja Sablon">Belanja Sablon</option>
+                                <option value="Perlengkapan">Perlengkapan Toko</option>
+                                <option value="Ongkir">Ongkos Kirim</option>
+
+                            </select>
+                        </div>
+                        <input type="text" name="order_id" id="" class="form-control" placeholder=""
+                            aria-describedby="helpId" hidden>
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Metode</label>
+                            <select class="form-control" name="metode" id="">
+                                <option value="Transfer">Transfer</option>
+                                <option value="Tunai">Tunai</option>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Detail</label>
+                                <textarea class="form-control" name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+
     <script src="{{ $chart->cdn() }}"></script>
 
     {{ $chart->script() }}

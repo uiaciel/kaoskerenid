@@ -15,6 +15,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TokoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,7 @@ Route::group([
     Route::resource('/blog', BlogController::class);
 
     Route::resource('/toko', TokoController::class);
+    Route::resource('/project', ProjectController::class);
 
     // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);

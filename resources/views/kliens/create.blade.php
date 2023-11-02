@@ -9,10 +9,8 @@
 @endif
 <form action="{{ route('klien.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="card">
-        <div class="card-header bg-primary text-white p-2">
-            KLIEN BARU
-        </div>
+    <div class="card border-0">
+        <div class="card-header bg-primary text-white">New Klien</div>
         <div class="card-body">
 
             <div class="form-floating mb-3">

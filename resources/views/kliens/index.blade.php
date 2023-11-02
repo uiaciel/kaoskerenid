@@ -8,26 +8,24 @@
                         <div class="col">
                             <h2 class="fs-5 fw-bold mb-0">List Klien</h2>
                         </div>
-                        <div class="col text-end"><a href="/klien/exports" class="btn btn-sm btn-primary">EXPORT CSV</a></div>
-                        <div class="col text-end"><a href="route('klien.exportlastmonth')"
-                                class="btn btn-sm btn-primary">Last Mont</a></div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="users-table">
+                            <thead class="thead-dark text-white">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Hp</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
 
-                <div class="table-responsive">
-                    <table class="table table-flush" id="users-table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Hp</th>
-
-                                <th>Action</th>
-
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
 
             </div>
         </div>

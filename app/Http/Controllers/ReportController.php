@@ -25,6 +25,11 @@ class ReportController extends Controller
             ->whereMonth('created_at', date('m'))
             ->whereYear('created_at', date('Y'))->get();
 
+        $orderhariini = Order::orderby('created_at', 'desc')
+            ->whereDay('created_at', date('d'))
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))->get();
+
         $orderbulanlalu =
             Order::orderby('created_at', 'desc')
             ->whereMonth('created_at', date('m', strtotime("-1 months")))
@@ -38,10 +43,17 @@ class ReportController extends Controller
             ->whereMonth('created_at', date('m', strtotime("-1 months")))
             ->whereYear('created_at', date('Y'))->get();
 
+        $keuanganhariini = Keuangan::orderBy('tanggal', 'asc')
+            ->whereDay('tanggal', date('d'))
+            ->whereMonth('tanggal', date('m'))
+            ->whereYear('tanggal', date('Y'))
+            ->get();
+
         $keuanganbulanan = Keuangan::orderBy('tanggal', 'asc')
             ->whereMonth('tanggal', date('m'))
             ->whereYear('tanggal', date('Y'))
             ->get();
+
         $pemasukan = Keuangan::orderBy('tanggal', 'desc')
             ->whereMonth('tanggal', date('m'))
             ->whereYear('tanggal', date('Y'))
@@ -71,6 +83,7 @@ class ReportController extends Controller
         $periode = Order::where('periode', $bt)->get();
         return view('reports.harian', [
             'orders' => $orders,
+            'orderhariini' => $orderhariini,
             'orderbulanlalu' => $orderbulanlalu,
             'kliens' => $kliens,
             'klienbulanlalu' => $klienbulanlalu,
@@ -81,7 +94,8 @@ class ReportController extends Controller
             'pengeluarans' => $pengeluaran,
             'bt' => $bt,
             'periode' => $periode,
-            'keuanganbulanan' => $keuanganbulanan
+            'keuanganbulanan' => $keuanganbulanan,
+            'keuanganhariini' => $keuanganhariini
         ]);
     }
     /**
