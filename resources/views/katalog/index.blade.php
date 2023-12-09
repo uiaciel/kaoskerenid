@@ -8,8 +8,11 @@
                 <div class="card-header d-flex justify-content-between">
 
                     <h4>{{ $katalog->nama }}
-                        <small class="fs-6"> Rp.
+                        {{-- <small class="fs-6"> Rp.
                             {{ number_format($katalog->katalogproduk->where('katalog_id', $katalog->id)->sum('produk.harga')) }}</small>
+
+                     --}}
+                        <small class="fs-6">{{ $katalog->harga }}</small>
                     </h4>
 
                     <div class="btn-group" role="group" aria-label="Basic example">
@@ -54,6 +57,14 @@
                                         </div>
 
                                         <div class="mb-3">
+                                            <label for="exampleInputText1" class="form-label">Harga</label>
+                                            <input type="text" name="harga"
+                                                value="{{ $katalog->katalogproduk->where('katalog_id', $katalog->id)->sum('produk.harga') }}"
+                                                class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+
+                                        </div>
+
+                                        <div class="mb-3">
                                             <label for="nama" class="form-label">Kategori</label>
                                             <select class="form-select" name="kategori" aria-label="Default select example">
                                                 <option value="JASA SABLON">JASA SABLON</option>
@@ -78,8 +89,31 @@
                                             <label for="formFile" class="form-label">Upload Foto</label>
                                             <input class="form-control" type="file" name="mockup" id="formFile">
                                         </div>
+
+
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
+                                    <table>
+                                        <tbody>
+                                            @foreach ($katalog->katalogproduk->where('katalog_id', $katalog->id) as $proe)
+                                                <tr class="">
+                                                    <td scope="row">Item</td>
+                                                    <td>{{ $proe->produk->kategori }}</td>
+                                                    <td>{{ $proe->produk->nama }}</td>
+                                                    <td class="fs-4 text-end">{{ $proe->produk->harga }}</td>
+                                                    <td>
+                                                        <form action="{{ route('katalogproduk.destroy', $proe->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-danger btn-sm">X</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
 
                             </div>
@@ -109,7 +143,7 @@
 
                                                 @foreach ($produks as $produk)
                                                     <option value="{{ $produk->id }}">{{ $produk->kategori }} -
-                                                        {{ $produk->nama }} - {{ $produk->harga}}
+                                                        {{ $produk->nama }} - {{ $produk->harga }}
                                                     </option>
                                                 @endforeach
 

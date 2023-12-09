@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orderan;
+use App\Models\OrderanKatalog;
 use Illuminate\Http\Request;
 
 
@@ -23,7 +24,9 @@ class OrderanController extends Controller
 
     public function destroyall($orderanid)
     {
+
         Orderan::where('order_id', '=', $orderanid)->delete();
+        OrderanKatalog::where('order_id', '=', $orderanid)->delete();
         return redirect()->back()->with('flash_message', 'Semua Produk telah dihapus !');
     }
 }

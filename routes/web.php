@@ -15,8 +15,10 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\OrderanKatalogController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TokoController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +59,7 @@ Route::group([
     Route::resource('/stok', StokController::class);
     Route::resource('/datastok', DatastokController::class);
     Route::resource('/report', ReportController::class);
+    Route::resource('/orderankatalog', OrderanKatalogController::class);
 
     Route::resource('/katalogproduk', KatalogprodukController::class);
     Route::resource('/blog', BlogController::class);
@@ -67,6 +70,7 @@ Route::group([
     // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
+    Route::get('/tambahkatalog/{id}', [HomeController::class, 'tambahkatalog'])->name('tambahkatalog');
     Route::get('/transaksi/{id}', [TokoController::class, 'transaksi'])->name('transaksi');
     Route::get('/list/produk/{id}', [HomeController::class, 'listproduk'])->name('listproduk');
     Route::post('/tambahproduk', [HomeController::class, 'tambahproduk'])->name('tambahproduk');

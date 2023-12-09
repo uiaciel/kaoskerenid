@@ -7,289 +7,104 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <title>NOTA</title>
-    <style>
-        * {
-            font-size: 9px;
-            font-family: 'Arial';
-        }
-
-        td,
-        th,
-        tr,
-        table {
-            border-top: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        td.description,
-        th.description {
-            width: 120px;
-            max-width: 120px;
-        }
-
-        td.quantity,
-        th.quantity {
-            width: 20px;
-            max-width: 20px;
-            word-break: break-all;
-        }
-
-        td.rp,
-        th.rp {
-            width: 20px;
-            max-width: 20px;
-            word-break: break-all;
-        }
-
-        td.price,
-        th.price {
-            width: 70px;
-            max-width: 70px;
-            word-break: break-all;
-            text-align: right;
-        }
-
-        .centered {
-            text-align: center;
-            align-content: center;
-        }
-
-        .ticket {
-            width: 160px;
-            max-width: 160px;
-        }
-
-        .preview {
-            width: 160px;
-            max-width: 160px;
-            zoom: 200%;
-        }
-
-        img {
-            max-width: inherit;
-            width: inherit;
-        }
-
-        @media print {
-
-            .hidden-print,
-            .hidden-print * {
-                display: none !important;
-            }
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div class="preview hidden-print">
-        <p class="centered">SABLON SATUAN - KAOSKERENID
-            <br>Jalan Sancang 22, Bogor
-            <br>08811722125
-        </p>
-        <p class="centered"><strong>Tanggal
-                Order</strong><br />{{ \Carbon\Carbon::parse($order->created_at)->isoFormat('dddd, D MMM Y, HH:mm') }}
-        </p>
-        <p>Inv : #{{ $order->inv }}
-            <br><strong>Klien : {{ $order->klien->nama }}</strong>
-        </p>
-        <p>Detail :</p>
-        <p>{{ $order->detail }}</p>
-        <table>
-            <thead>
+    <div class="container-fluid">
+        <div class="card" style="width:18rem;">
+            <p class="text-center">SABLON SATUAN - KAOSKERENID
+                <br>Jalan Sancang 22, Bogor
+                <br>08811722125
+            </p>
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 fw-bold text-center">{{ $order->klien->nama }}</h6>
+            <h5 class="card-title text-center">#{{ $order->inv }}</h5>
+            <h6 class="card-subtitle mb-4 text-center">{{ \Carbon\Carbon::parse($order->created_at)->isoFormat('dddd, D MMM Y, HH:mm') }}</h6>
+
+            <p class="card-text text-center fst-italic">"{{ $order->detail }}"</p>
+
+
+
+          </div>
+          <table
+                    class="table table-sm table-bordered table-striped"
+                >
+                    <thead>
+                        <tr class="">
+                            <th scope="col  fs-6">Produk</th>
+                            <th scope="col  fs-6">Harga</th>
+                            <th scope="col  fs-6">QTY</th>
+                            <th scope="col  fs-6">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($orderankatalog as $rinciankatalog )
                 <tr>
-                    <th class="quantity">Q</th>
-                    <th class="description">Produk</th>
-                    <th class="rp"></th>
-                    <th class="price">Harga</th>
+
+                    <td class="description">{{ $rinciankatalog->katalog->nama }}</td>
+                    <td>{{ number_format($rinciankatalog->katalog->harga, 0, ',', '.') }}</td>
+                    <td class="quantity">{{ $rinciankatalog->qty }}</td>
+
+                    <td class="text-end">{{ number_format($rinciankatalog->katalog->harga * $rinciankatalog->qty, 0, ',', '.') }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($orderan as $index => $ord)
-                    <tr>
-                        <td class="quantity">{{ $ord->qty }}</td>
-                        <td class="description">{{ $ord->produk->nama }}</td>
-                        <td class="rp">Rp</td>
-                        <td class="price">{{ number_format($ord->produk->harga, 0, ',', '.') }}</td>
-                    </tr>
+
                 @endforeach
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Jumlah</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->total, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Ongkir</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->ongkir, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Total</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->ongkir + $order->total, 0, ',', '.') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th class="description">Metode</th>
-                    <th class="rp"></th>
-                    <th class="price">Nominal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($keuangan as $pem)
-                    <tr>
-                        <td style="
-    width: 60px;
-">{{ $pem->tanggalbayar }}</td>
-                        <td style="
-    width: 10px;
-">{{ $pem->metode }}</td>
-                        <td class="rp">Rp</td>
-                        <td style="
-    width: 50px;text-align: right;
-">
-                            {{ number_format($pem->nominal, 0, ',', '.') }}</td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td style="
-    width: 60px;
-"></td>
-                    <td style="
-    width: 10px;
-">Kurang Bayar</td>
-                    <td>Rp</td>
-                    <td style="
-    width: 50px;text-align: right;
-">
-                        {{ number_format($sisa, 0, ',', '.') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="centered" style="font-size:12pt">
-            {{ $order->pembayaran }}
-            <br><strong>Estimasi :<br />
-                {{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
-        </p>
-        <p class="centered">Terima kasih sudah Order
-            <br>Cetak Banner/Sticker/Spanduk Juga Bisa!
-        </p>
+                   <tr>
+                    <td colspan="3" class="text-end me-2 fst-italic">Jumlah : </td>
+                    <td class="text-end">{{ number_format($order->total, 0, ',', '.') }}</td>
+                   </tr>
+                   <tr>
+                    <td colspan="3" class="text-end me-2 fst-italic">Ongkir : </td>
+                    <td class="text-end">{{ number_format($order->ongkir, 0, ',', '.') }}</td>
+                   </tr>
+                   <tr>
+                    <td colspan="3" class="text-end me-2 fst-italic fw-bold">Grand Total : </td>
+                    <td class="text-end">{{ number_format($order->ongkir + $order->total, 0, ',', '.') }}</td>
+                   </tr>
+                   <tr>
+                    <td colspan="4" class="fw-bold ms-4">Pembayaran</td>
+                   </tr>
+                   @foreach ($keuangan as $pem)
+                        <tr>
+
+                            <td colspan="3">{{ \Carbon\Carbon::parse($pem->tanggal)->isoFormat('D MMM Y') }} / {{ $pem->metode }}</td>
+                        <td>
+                            <span class="fw-bold">{{ number_format($pem->nominal, 0, ',', '.') }}</span></td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <td colspan="3" class="text-end me-2 fst-italic fw-bold">Kurang Bayar : </td>
+                            <td>{{ number_format($sisa, 0, ',', '.') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card-body">
+                    <h3 class="text-center">{{ $order->pembayaran }}</h3>
+            <p class="text-center">
+
+                <br><strong>Estimasi :<br />
+                    {{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
+            </p>
+            <p class="text-center">Terima kasih sudah Order
+                <br>Cetak Banner/Sticker/Spanduk Juga Bisa!
+            </p>
+
+
+
+
+
+
+
+
+
+
+                </div>
+        </div>
     </div>
-    <div class="ticket">
-        <p class="centered"><img
-                src='https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fweb.kaoskeren.id%2Fs%2F{{ $order->inv }}&chs=100x100&choe=UTF-8&chld=L|2'
-                rel='nofollow' alt='qr code' style="
-    width: 100px;
-"><a
-                href='http://web.kaoskeren.id/s/{{ $order->inv }}' border='0' style='cursor:default'
-                rel='nofollow'></a></p>
-        <p class="centered">SABLON SATUAN - KAOSKERENID
-            <br>Jalan Sancang 22, Bogor
-            <br>08811722125
-        </p>
-        <p class="centered"><strong>Tanggal
-                Order</strong><br />{{ \Carbon\Carbon::parse($order->created_at)->isoFormat('dddd, D MMM Y, HH:mm') }}
-        </p>
-        <p>Inv : #{{ $order->inv }}
-            <br><strong>Klien : {{ $order->klien->nama }}</strong>
-        </p>
-        <p>Detail :</p>
-        <p>{{ $order->detail }}</p>
-        <table>
-            <thead>
-                <tr>
-                    <th class="quantity">Q</th>
-                    <th class="description">Produk</th>
-                    <th class="rp"></th>
-                    <th class="price">Harga</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($orderan as $index => $ord)
-                    <tr>
-                        <td class="quantity">{{ $ord->qty }}</td>
-                        <td class="description">{{ $ord->produk->nama }}</td>
-                        <td class="rp">Rp</td>
-                        <td class="price">{{ number_format($ord->produk->harga, 0, ',', '.') }}</td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Jumlah</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->total, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Ongkir</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->ongkir, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td class="quantity"></td>
-                    <td class="description">Total</td>
-                    <td class="rp">Rp</td>
-                    <td class="price">{{ number_format($order->ongkir + $order->total, 0, ',', '.') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <br>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th class="description">Metode</th>
-                    <th class="rp"></th>
-                    <th class="price">Nominal</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($keuangan as $pem)
-                    <tr>
-                        <td style="
-    width: 60px;
-">{{ $pem->tanggalbayar }}</td>
-                        <td style="
-    width: 10px;
-">{{ $pem->metode }}</td>
-                        <td class="rp">Rp</td>
-                        <td style="
-    width: 50px;text-align: right;
-">
-                            {{ number_format($pem->nominal, 0, ',', '.') }}</td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td style="
-    width: 60px;
-"></td>
-                    <td style="
-    width: 10px;
-">Kurang Bayar</td>
-                    <td>Rp</td>
-                    <td style="
-    width: 50px;text-align: right;
-">
-                        {{ number_format($sisa, 0, ',', '.') }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <p class="centered" style="font-size:12pt">
-            {{ $order->pembayaran }}
-            <br><strong>Estimasi :<br />
-                {{ \Carbon\Carbon::parse($order->tanggalambil)->isoFormat('dddd, D MMM Y, HH:mm') }}</strong>
-        </p>
-        <p class="centered">Terima kasih sudah Order
-            <br>Cetak Banner/Sticker/Spanduk Juga Bisa!
-        </p>
-    </div>
+
 </body>
 
 </html>

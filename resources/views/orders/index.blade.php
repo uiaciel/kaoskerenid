@@ -33,7 +33,7 @@
                                 <th>No</th>
                                 <th>Tanggal</th>
                                 <th>Nama</th>
-                                <th>Judul</th>
+                                <th>Detail</th>
                                 <th>Inv</th>
                                 <th>Status</th>
                                 <th>QTY</th>

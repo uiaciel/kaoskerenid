@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Design;
 use App\Models\Katalog;
+use App\Models\Katalogproduk;
 use App\Models\Keuangan;
 use App\Models\Order;
 use App\Models\Orderan;
+use App\Models\OrderanKatalog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +27,7 @@ class OrderController extends Controller
 
 
 
-                $data = Order::select('id', 'judul', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
+                $data = Order::select('id', 'detail', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
                     ->with(['klien' => function ($query) {
                         $query->select('id', 'nama');
                     }])
@@ -44,7 +46,7 @@ class OrderController extends Controller
             } else {
 
                 return DataTables::of(Order::query()
-                    ->select('id', 'judul', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
+                    ->select('id', 'detail', 'klien_id', 'inv', 'qty', 'status', 'pembayaran', 'created_at')
                     ->OrderBy('created_at', 'desc')
                     ->with(['klien' => function ($query) {
                         $query->select('id', 'nama');
@@ -97,6 +99,9 @@ class OrderController extends Controller
         $designs = Design::where('order_id', $order->id)->where('kategori', 'Mockup')->get();
         $files = Design::where('order_id', $order->id)->where('kategori', 'EPS')->get();
         $list = Design::where('klien_id', $order->klien_id)->get();
+        $orderankatalog = OrderanKatalog::where('order_id', $order->id)->get();
+
+
         $collection = collect($list);
         $alldesign = $collection->unique('path');
         $alldesign->values()->all();
@@ -141,6 +146,10 @@ class OrderController extends Controller
             'paket' => $paket,
             'datalunas' => $datalunas,
             'databelumbayar' => $databelumbayar,
+            'orderankatalog' => $orderankatalog,
+
+
+
         ]);
     }
 

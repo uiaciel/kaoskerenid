@@ -1247,8 +1247,8 @@
                     },
 
                     {
-                        data: 'judul',
-                        name: 'judul'
+                        data: 'detail',
+                        name: 'detail'
                     },
 
                     {

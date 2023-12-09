@@ -9,6 +9,7 @@ use App\Models\Katalog;
 use App\Models\Katalogproduk;
 use App\Models\Order;
 use App\Models\Orderan;
+use App\Models\OrderanKatalog;
 use App\Models\Produk;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -114,9 +115,41 @@ class HomeController extends Controller
         $keuangan = Keuangan::where('order_id', $order->id)->get();
         $jumlah = Keuangan::where('order_id', $order->id)->pluck('nominal')->sum();
         $total = $orderan->pluck('harga')->sum();
+        $designs = Design::where('order_id', $order->id)->where('kategori', 'Mockup')->get();
+        $files = Design::where('order_id', $order->id)->where('kategori', 'EPS')->get();
+        $list = Design::where('klien_id', $order->klien_id)->get();
+        $orderankatalog = OrderanKatalog::where('order_id', $order->id)->get();
 
+
+        $collection = collect($list);
+        $alldesign = $collection->unique('path');
+        $alldesign->values()->all();
         $grandtotal = $total + $order->ongkir;
         $sisa = $grandtotal - $jumlah;
+        $paket = Katalog::all();
+
+        $datalunas = Order::select('id', 'klien_id', 'inv', 'qty', 'status', 'stok', 'judul', 'detail', 'pembayaran', 'pengambilan', 'tanggalambil')
+            ->whereNot('pembayaran', 'BELUM BAYAR')
+            ->where(function ($query) {
+                $query->where('status', 'KONFRIM')
+                    ->orWhere('status', 'DESIGN OK')
+                    ->orWhere('status', 'REQUEST DESIGN')
+                    ->orWhere('status', 'PRODUKSI');
+            })
+            ->OrderBy('tanggalambil', 'asc')
+            ->get()
+            ->groupBy(function ($data) {
+                return Carbon::parse($data->tanggalambil)->isoFormat('dddd, D MMM Y');
+            });
+
+        $databelumbayar = Order::select('inv', 'klien_id')
+            ->where('pembayaran', 'BELUM BAYAR')
+            ->where('status', 'KONFRIM')
+            ->OrderBy('created_at', 'desc')
+            ->with(['klien' => function ($query) {
+                $query->select('id', 'nama');
+            }])
+            ->get();
 
         return view('orders.nota', [
             'order' => $order,
@@ -126,6 +159,15 @@ class HomeController extends Controller
             'grandtotal' => $grandtotal,
             'jumlah' => $jumlah,
             'sisa' => $sisa,
+            'designs' => $designs,
+            'files' => $files,
+            'alldesign' => $alldesign,
+            'paket' => $paket,
+            'datalunas' => $datalunas,
+            'databelumbayar' => $databelumbayar,
+            'orderankatalog' => $orderankatalog,
+
+
 
         ]);
     }
@@ -152,6 +194,7 @@ class HomeController extends Controller
 
         ]);
     }
+
     public function tambah($id)
     {
         $produk = Produk::All();
@@ -161,6 +204,17 @@ class HomeController extends Controller
             'produk' => $produk,
         ]);
     }
+
+    public function tambahkatalog($id)
+    {
+        $produk = Produk::All();
+        $order = Order::where('inv', $id)->first();
+        return view('orders.katalog', [
+            'inv' => $order,
+            'produk' => $produk,
+        ]);
+    }
+
     public function listproduk()
     {
         $produk = Produk::where('status', 'Aktif')->OrderBy('kategori', 'desc')->OrderBy('nama', 'asc')->get();

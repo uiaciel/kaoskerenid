@@ -52,6 +52,7 @@ class KatalogController extends Controller
     public function update(Request $request, Katalog $katalog)
     {
         $katalog->nama = $request->nama;
+        $katalog->harga = $request->harga;
         $katalog->status = $request->status;
         $katalog->detail = $request->detail;
         $katalog->kategori = $request->kategori;

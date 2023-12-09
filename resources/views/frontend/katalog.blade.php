@@ -3,6 +3,7 @@
     <section class="artists-section section-padding">
         <div class="container">
             <h3 class="mb-3">Katalog Produk & Jasa</h3>
+
             <div class="row">
                 @foreach ($katalogs as $katalog)
                     <div class="col-md-4 mb-3">
@@ -17,7 +18,7 @@
                                         Rp.
                                         {{ number_format($katalog->katalogproduk->where('katalog_id', $katalog->id)->sum('produk.harga')) }}
                                     </button>
-                                    <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
+                                    <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Harga%20{{ $katalog->nama }}"
                                         class="btn btn-success" type="button">PESAN SEKARANG</a>
                                 </div>
                             </div>

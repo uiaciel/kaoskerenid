@@ -69,7 +69,7 @@
                     <div class="col-lg-4 col-12 d-flex flex-wrap">
                         <p class="d-flex me-4 mb-0">
                             <i class="bi bi-geo-alt-fill me-2 text-danger"></i>
-                            <strong class="text-dark">SABLON SATUAN KAOSKEREN.ID</strong>
+                            <a href="https://maps.app.goo.gl/7vta7AaNHXaYdkZJ8"><strong class="text-dark">SABLON SATUAN KAOSKEREN.ID</strong></a>
                         </p>
                     </div>
                     <div class="col-lg-8 col-12">
@@ -197,13 +197,14 @@
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Harga%20Sablon"
-                                class="site-footer-link">Harga</a>
+                            <a href="/katalog" class="site-footer-link">Katalog</a>
                         </li>
 
                         <li class="site-footer-link-item">
-                            <a href="/#" class="site-footer-link">Cara Pesan</a>
+                            <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Harga%20Sablon"
+                                class="site-footer-link">Cara Pesan</a>
                         </li>
+
 
 
                     </ul>
@@ -227,12 +228,12 @@
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-11 mb-4 mb-lg-0 mb-md-0">
-                    <h5 class="site-footer-title mb-3">Workshop</h5>
+                    <h5 class="site-footer-title mb-3">Datang Langsung!</h5>
 
                     <p class="text-white d-flex mt-3 mb-2">
-                        Jalan Sancang No 22, Bogor Tengah, Jawa Barat</p>
+                        Jalan Sancang No 22, Bogor Tengah, Kota Bogor - Jawa Barat</p>
 
-                    <a class="link-fx-1 color-contrast-higher mt-3" href="#">
+                    <a class="link-fx-1 color-contrast-higher mt-3" href="https://maps.app.goo.gl/7vta7AaNHXaYdkZJ8">
                         <span>Our Maps</span>
                         <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
                             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
@@ -251,7 +252,7 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-12 mt-5">
-                        <p class="copyright-text">Copyright © 2023 Kaoskerenid</p>
+                        <p class="copyright-text">Copyright © 2024 Kaoskerenid</p>
                         <p class="copyright-text">Distributed by: <a href="https://themewagon.com">ThemeWagon</a></p>
                     </div>
 

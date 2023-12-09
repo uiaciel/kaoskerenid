@@ -1,13 +1,13 @@
 @extends('layouts.frontend')
 @section('content')
-    <section class="hero-section" id="beranda">
+    <section class="hero-section" id="beranda" style="background: url('https://lh5.googleusercontent.com/p/AF1QipMV6gMaGSFvae931Jb-EPlh8CrvBrezekycyr3h') no-repeat center center fixed; background-size: cover;">
         <div class="section-overlay"></div>
 
         <div class="container d-flex justify-content-center align-items-center">
             <div class="row">
 
                 <div class="col-12 mt-auto mb-5 text-center">
-                    <small>I Love KOTA BOGOR</small>
+                    <small>I <i class="fa fa-heart" aria-hidden="true"></i>KEBANGGAAN KOTA BOGOR</small>
 
                     <h1 class="text-white mb-2">SABLON SATUAN</h1>
                     <h5 class="text-white mb-4">Jasa Sablon Satuan dan Pembuatan Kaos Custom dengan design bebas! Tersedia
@@ -15,14 +15,14 @@
                         model
                         kaos dan bahan. Pengerjaan Cepat dan Gratis bantuan design.</h5>
 
-                    <a class="btn custom-btn smoothscroll" href="#section_2">Chat Kami Sekarang!</a>
+                    {{-- <a class="btn custom-btn smoothscroll" href="#section_2">SABLON SEHARI LANGSUNG JADI!</a> --}}
                 </div>
 
                 <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
                     <div class="date-wrap">
                         <h5 class="text-white">
                             <i class="custom-icon bi-clock me-2"></i>
-                            Buka dari 10:00 s/d 21:00
+                            Buka dari 11:00 s/d 21:00
                         </h5>
                     </div>
 
@@ -72,10 +72,13 @@
 
     <section class="about-section section-padding" id="profile">
         <div class="container">
+
             <div class="row">
 
                 <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
+
                     <div class="services-info">
+
                         <h5 class="text-white mb-1">Memperkenalkan</h5>
                         <h2 class="text-white mb-4">Sablon Satuan Kaoskeren.ID</h2>
 
@@ -125,6 +128,9 @@
                         hari Senin sampai Sabtu dari jam 9 pagi hingga jam 10 malam. Anda juga dapat menghubungi
                         kami melalui nomor telepon 088-11-722-125 atau mengunjungi situs web kami di
                         www.kaoskeren.id untuk mengetahui lebih lanjut tentang layanan yang kami tawarkan.</p>
+
+
+
 
 
                 </div>
@@ -287,194 +293,6 @@
             </div>
         </div>
     </section>
-    {{-- <section class="schedule-section section-padding" id="section_4">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-12 text-center">
-                    <h2 class="text-white mb-4">Jenis Bahan Sablon</h1>
-
-                        <div class="table-responsive">
-                            <table class="schedule-table table table-dark">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-
-                                        <th scope="col">PILIHAN BAHAN</th>
-
-                                        <th scope="col">METODE SABLON</th>
-
-                                        <th scope="col">ESTIMASI WAKTU PENGERJAAN</th>
-
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <th scope="row" class="table-background-image-wrap pop-background-image">Day 1
-                                        </th>
-
-                                        <td>
-
-
-
-                                            <ul>
-                                                <li class="text-white">Cotton Combed 30s</li>
-                                                <li class="text-white">Cotton Combed 24s</li>
-                                                <li class="text-white">Cotton Combed 20s</li>
-                                                <li class="text-white">Premiun Cotton NSA</li>
-                                            </ul>
-
-
-                                            <div class="section-overlay"></div>
-                                        </td>
-
-                                        <td style="background-color: #F3DCD4">
-                                            <p>Cutting Sablon</p>
-                                            <p>Printing Sablon</p>
-                                        </td>
-
-                                        <td class="">
-                                            <h3>1-2 Hari</h3>
-
-                                            <p class="mb-2">Setelah pembayaran dan design diterima</p>
-
-                                            <p>By Rihana</p>
-
-                                            <div class="section-overlay"></div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">Day 2</th>
-
-                                        <td style="background-color: #ECC9C7"></td>
-
-                                        <td>
-                                            <h3>DJ Night</h3>
-
-                                            <p class="mb-2">6:30 - 9:30 PM</p>
-
-                                            <p>By Rihana</p>
-                                        </td>
-
-                                        <td style="background-color: #D9E3DA"></td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">Day 3</th>
-
-                                        <td class="table-background-image-wrap country-background-image">
-                                            <h3>Country Music</h3>
-
-                                            <p class="mb-2">4:30 - 7:30 PM</p>
-
-                                            <p>By Rihana</p>
-
-                                            <div class="section-overlay"></div>
-                                        </td>
-
-                                        <td style="background-color: #D1CFC0"></td>
-
-                                        <td>
-                                            <h3>Free Styles</h3>
-
-                                            <p class="mb-2">6:00 - 10:00 PM</p>
-
-                                            <p>By Members</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="pricing-section section-padding section-bg" id="section_5">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-8 col-12 mx-auto">
-                    <h2 class="text-center mb-4">Khusus Member</h2>
-                </div>
-
-                <div class="col-lg-6 col-12">
-                    <div class="pricing-thumb">
-                        <div class="d-flex">
-                            <div>
-                                <h3><small>Sablon 1 Sisi 1 Warna</small> 65k</h3>
-
-                                <p>Termasuk Kaos:</p>
-                            </div>
-
-                            <p class="pricing-tag ms-auto">Save up to <span>50%</span></h2>
-                        </div>
-
-                        <ul class="pricing-list mt-3">
-                            <li class="pricing-list-item">Cotton combed 30s</li>
-
-                            <li class="pricing-list-item">Sablon 1 Warna / Sisi</li>
-
-                            <li class="pricing-list-item">Jenis Cutting</li>
-
-                            <li class="pricing-list-item">Gratis Design</li>
-                        </ul>
-
-                        <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                            <span>Pesan Sekarang</span>
-                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="16" cy="16" r="15.5"></circle>
-                                    <line x1="10" y1="18" x2="16" y2="12"></line>
-                                    <line x1="16" y1="12" x2="22" y2="18"></line>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-12 mt-4 mt-lg-0">
-                    <div class="pricing-thumb">
-                        <div class="d-flex">
-                            <div>
-                                <h3><small>Standard</small> $240</h3>
-
-                                <p>What makes a premium festava?</p>
-                            </div>
-                        </div>
-
-                        <ul class="pricing-list mt-3">
-                            <li class="pricing-list-item">platform for potential customers</li>
-
-                            <li class="pricing-list-item">digital experience</li>
-
-                            <li class="pricing-list-item">high-quality sound</li>
-
-                            <li class="pricing-list-item">premium content</li>
-
-                            <li class="pricing-list-item">live chat support</li>
-                        </ul>
-
-                        <a class="link-fx-1 color-contrast-higher mt-4" href="ticket.html">
-                            <span>Buy Ticket</span>
-                            <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
-                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="16" cy="16" r="15.5"></circle>
-                                    <line x1="10" y1="18" x2="16" y2="12"></line>
-                                    <line x1="16" y1="12" x2="22" y2="18"></line>
-                                </g>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section> --}}
-
 
     <section class="contact-section section-padding" id="lokasi">
         <div class="container">

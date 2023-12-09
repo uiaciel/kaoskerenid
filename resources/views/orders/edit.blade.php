@@ -11,26 +11,7 @@
             <div>
                 <h4 class="text-end me-3">Data Orderan</h4>
                 <ul class="nav justify-content-center  ">
-                    {{-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('klien.index') }}">Klien</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Order
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('order.index') }}">Semua Order</a></li>
-                            <li><a class="dropdown-item" href="{{ route('home') }}">Orderan Akif</a></li>
 
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('produk.index') }}">Produk</a>
-                    </li> --}}
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -255,105 +236,7 @@
                 <!---->
                 <!--AKHIR ALERT-->
             </form>
-            <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                <i class="bi bi-ui-checks-grid"></i> Paket
-                            </button>
 
-
-                            <a href="/admin/tambah/{{ $order->inv }}" class="btn btn-primary"><i
-                                    class="fas fa-tshirt"></i>
-                                <i class="bi bi-ui-checks"></i> Produk</a>
-
-                            {{-- <button type="button" class="btn btn-primary">Right</button> --}}
-                        </div>
-
-                        <!-- Button trigger modal -->
-
-
-                        <form action="{{ route('hapus.semuaproduk', $order->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Hapus Semua</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive text-nowrap">
-                        <form>
-
-
-                            <table class="table table-bordered table-hover nowrap align-middle">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Item</th>
-                                        <th>Harga</th>
-                                        <th>QTY</th>
-                                        <th>Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($orderan as $orderannya)
-                                        <tr>
-                                            <th scope="row">
-                                                <form action="{{ route('orderan.destroy', $orderannya->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </th>
-                                            <td>
-                                                <small>{{ $orderannya->produk->kategori }}</small>
-                                                <p>{{ $orderannya->produk->nama }}</p>
-                                            </td>
-                                            <td>{{ $orderannya->produk->harga }}</td>
-                                            <td>
-                                                <form action="{{ route('orderan.update', $orderannya->id) }}"
-                                                    method="Post">
-                                                    <input type="hidden" name="_method" value="PUT">
-                                                    @csrf
-
-
-
-                                                    <input name="qty" type="number" value="{{ $orderannya->qty }}"
-                                                        style="width: 40px;">
-
-                                                    <input name="harga" value="{{ $orderannya->produk->harga }}"
-                                                        style="width: 40px;" hidden>
-                                                    <button type="submit" class="btn btn-primary btn-sm"><i
-                                                            class="bi bi-check-all"></i></button>
-                                                </form>
-                                            </td>
-                                            <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="4" class="text-end">Total Rp</td>
-                                        <td class="text-end font-weight-bold">{{ $total }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="text-end">Ongkir Rp</td>
-                                        <td class="text-end font-weight-bold">{{ $order->ongkir }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="4" class="text-end">Grand Total</td>
-                                        <td class="text-end font-weight-bold">{{ $grandtotal }}</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
         </div>
         <div class="col-md-5 col-sm-12">
             <div class="card mb-3">
@@ -552,6 +435,158 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                <i class="bi bi-ui-checks-grid"></i> Paket
+                            </button>
+
+
+                            <a href="/admin/tambah/{{ $order->inv }}" class="btn btn-primary"><i
+                                    class="fas fa-tshirt"></i>
+                                <i class="bi bi-ui-checks"></i> Produk</a>
+                        </div>
+                        <form action="{{ route('hapus.semuaproduk', $order->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus Semua</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+
+
+                        <table class="table table-bordered table-hover nowrap align-middle mb-3">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Katalog Produk</th>
+                                    <th>QTY</th>
+                                    <th>SATUAN</th>
+                                    <th>JUMLAH</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($orderankatalog)
+                                @foreach ($orderankatalog as $katalogini)
+
+                                <tr>
+                                    <td>{{ $loop->iteration }}
+
+                                        <form action="{{ route('orderankatalog.destroy', $katalogini->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>{{ $katalogini->katalog->nama }}<br />
+                                        @foreach ($katalogini->katalog->katalogproduk as $katalogprod)
+                                            <li>{{ $katalogprod->produk->nama }} - Rp.
+                                                {{ $katalogprod->produk->harga }}</li>
+                                        @endforeach
+
+                                    </td>
+                                    <td>{{ $katalogini->qty }} pcs</td>
+                                    <td>
+                                        {{ $katalogini->katalog->harga }}
+
+
+                                    </td>
+                                    <td class="text-end fw-bold">{{ $katalogini->katalog->harga * $katalogini->qty }}</td>
+
+
+                                </tr>
+
+                            @endforeach
+
+
+
+                                @else
+                                    KOSONG
+                                @endif
+                                @foreach ($orderan as $orderannya)
+                                        <tr hidden>
+                                            <th scope="row">
+                                                <form action="{{ route('orderan.destroy', $orderannya->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i
+                                                            class="bi bi-trash3-fill"></i></button>
+                                                </form>
+                                            </th>
+                                            <td>
+                                                <small>{{ $orderannya->produk->kategori }}</small>
+                                                <p>{{ $orderannya->produk->nama }}</p>
+                                            </td>
+                                            <td>{{ $orderannya->produk->harga }}</td>
+                                            <td>
+                                                <form action="{{ route('orderan.update', $orderannya->id) }}"
+                                                    method="Post">
+                                                    <input type="hidden" name="_method" value="PUT">
+                                                    @csrf
+
+
+
+                                                    <input name="qty" type="number" value="{{ $orderannya->qty }}"
+                                                        style="width: 40px;">
+
+                                                    <input name="harga" value="{{ $orderannya->produk->harga }}"
+                                                        style="width: 40px;" hidden>
+                                                    <button type="submit" class="btn btn-primary btn-sm"><i
+                                                            class="bi bi-check-all"></i></button>
+                                                </form>
+                                            </td>
+                                            <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
+                                        </tr>
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="4" class="text-end">Total Rp</td>
+                                        <td class="text-end font-weight-bold">{{ $total }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Ongkir Rp</td>
+                                        <td class="text-end font-weight-bold">{{ $order->ongkir }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-end">Grand Total</td>
+                                        <td class="text-end font-weight-bold">{{ $grandtotal }}</td>
+                                    </tr>
+                            </tbody>
+
+                        </table>
+
+
+                            <table class="table table-bordered table-hover nowrap align-middle">
+                                <thead hidden>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Item</th>
+                                        <th>Harga</th>
+                                        <th>QTY</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                </tbody>
+                            </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="PembayaranModal" tabindex="-1" aria-labelledby="PembayaranModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -667,11 +702,11 @@ Atas Nama : {{ $order->klien->nama }}
 {{ $order->detail }}
 
 *Rincian :*
-@foreach ($orderan as $index => $ord)
-{{ $ord->qty }} x {{ $ord->produk->kategori }} - {{ $ord->produk->nama }} Rp {{ number_format($ord->produk->harga, 0, ',', '.') }}
+@foreach ($orderankatalog as $rinciankatalog )
+{{ $rinciankatalog->qty }} x {{ $rinciankatalog->katalog->nama }} {{ number_format($rinciankatalog->katalog->harga, 0, ',', '.') }} = Rp. {{ number_format($rinciankatalog->katalog->harga * $rinciankatalog->qty, 0, ',', '.') }}
 @endforeach
 
-Harga : Rp {{ number_format($total, 0, ',', '.') }}
+Jumlah : Rp {{ number_format($total, 0, ',', '.') }}
 Ongkos Kirim : Rp {{ number_format($order->ongkir, 0, ',', '.') }}
 *TOTAL : Rp {{ number_format($grandtotal, 0, ',', '.') }}*
 
@@ -741,36 +776,7 @@ Follow : kaoskerenid
 
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog        ">
-            <form action="{{ route('tambahpaket') }}" method="post">
-                @csrf
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <label>Pilih Katalog</label>
-                        <input value="{{ $order->id }}" name="order_id" hidden>
-                        <select class="form-select select2-multiple" aria-label="Default select example" name="paket_id">
-                            <option selected>Pilih Paket</option>
-                            @foreach ($paket as $katalog)
-                                <option value="{{ $katalog->id }}">{{ $katalog->nama }}</option>
-                            @endforeach
-
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-            </form>
-        </div>
-    </div>
-    </div>
-
+    @include('orders.pilihkatalog')
 
 
 
