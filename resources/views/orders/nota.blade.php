@@ -40,7 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($orderankatalog as $rinciankatalog )
+                        @forelse ($orderankatalog as $rinciankatalog )
                 <tr>
 
                     <td class="description">{{ $rinciankatalog->katalog->nama }}</td>
@@ -49,8 +49,17 @@
 
                     <td class="text-end">{{ number_format($rinciankatalog->katalog->harga * $rinciankatalog->qty, 0, ',', '.') }}</td>
                 </tr>
+                @empty
+                @foreach ($orderan as $index => $ord)
+                <tr>
+                    <td>{{ $ord->produk->nama }}</td>
+                    <td>{{ number_format($ord->produk->harga, 0, ',', '.') }}</td>
+                    <td>{{ $ord->qty }}</td>
+                    <td class="text-end">{{ number_format($ord->produk->harga * $ord->qty, 0, ',', '.') }}</td>
+                </tr>
 
                 @endforeach
+                @endforelse
                    <tr>
                     <td colspan="3" class="text-end me-2 fst-italic">Jumlah : </td>
                     <td class="text-end">{{ number_format($order->total, 0, ',', '.') }}</td>

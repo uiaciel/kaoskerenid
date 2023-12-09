@@ -473,8 +473,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($orderankatalog)
-                                @foreach ($orderankatalog as $katalogini)
+
+                                @forelse ($orderankatalog as $katalogini)
 
                                 <tr>
                                     <td>{{ $loop->iteration }}
@@ -504,50 +504,51 @@
 
 
                                 </tr>
+@empty
+@foreach ($orderan as $orderannya)
+                                <tr>
+                                    <th scope="row">
+                                        <form action="{{ route('orderan.destroy', $orderannya->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="bi bi-trash3-fill"></i></button>
+                                        </form>
+                                    </th>
+                                    <td>
+                                        <small>{{ $orderannya->produk->kategori }}</small>
+                                        <p>{{ $orderannya->produk->nama }}</p>
+                                    </td>
+                                    <td>{{ $orderannya->produk->harga }}</td>
+                                    <td>
+                                        <form action="{{ route('orderan.update', $orderannya->id) }}"
+                                            method="Post">
+                                            <input type="hidden" name="_method" value="PUT">
+                                            @csrf
 
+
+
+                                            <input name="qty" type="number" value="{{ $orderannya->qty }}"
+                                                style="width: 40px;">
+
+                                            <input name="harga" value="{{ $orderannya->produk->harga }}"
+                                                style="width: 40px;" hidden>
+                                            <button type="submit" class="btn btn-primary btn-sm"><i
+                                                    class="bi bi-check-all"></i></button>
+                                        </form>
+                                    </td>
+                                    <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
+                                </tr>
                             @endforeach
+                            @endforelse
 
 
 
-                                @else
-                                    KOSONG
-                                @endif
-                                @foreach ($orderan as $orderannya)
-                                        <tr hidden>
-                                            <th scope="row">
-                                                <form action="{{ route('orderan.destroy', $orderannya->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i
-                                                            class="bi bi-trash3-fill"></i></button>
-                                                </form>
-                                            </th>
-                                            <td>
-                                                <small>{{ $orderannya->produk->kategori }}</small>
-                                                <p>{{ $orderannya->produk->nama }}</p>
-                                            </td>
-                                            <td>{{ $orderannya->produk->harga }}</td>
-                                            <td>
-                                                <form action="{{ route('orderan.update', $orderannya->id) }}"
-                                                    method="Post">
-                                                    <input type="hidden" name="_method" value="PUT">
-                                                    @csrf
 
 
 
-                                                    <input name="qty" type="number" value="{{ $orderannya->qty }}"
-                                                        style="width: 40px;">
 
-                                                    <input name="harga" value="{{ $orderannya->produk->harga }}"
-                                                        style="width: 40px;" hidden>
-                                                    <button type="submit" class="btn btn-primary btn-sm"><i
-                                                            class="bi bi-check-all"></i></button>
-                                                </form>
-                                            </td>
-                                            <td class="text-end font-weight-bold">{{ $orderannya->harga }}</td>
-                                        </tr>
-                                    @endforeach
                                     <tr>
                                         <td colspan="4" class="text-end">Total Rp</td>
                                         <td class="text-end font-weight-bold">{{ $total }}</td>
@@ -702,9 +703,13 @@ Atas Nama : {{ $order->klien->nama }}
 {{ $order->detail }}
 
 *Rincian :*
-@foreach ($orderankatalog as $rinciankatalog )
+@forelse ($orderankatalog as $rinciankatalog )
 {{ $rinciankatalog->qty }} x {{ $rinciankatalog->katalog->nama }} {{ number_format($rinciankatalog->katalog->harga, 0, ',', '.') }} = Rp. {{ number_format($rinciankatalog->katalog->harga * $rinciankatalog->qty, 0, ',', '.') }}
+@empty
+@foreach ($orderan as $index => $ord)
+{{ $ord->qty }} x {{ $ord->produk->kategori }} - {{ $ord->produk->nama }} Rp {{ number_format($ord->produk->harga, 0, ',', '.') }}
 @endforeach
+@endforelse
 
 Jumlah : Rp {{ number_format($total, 0, ',', '.') }}
 Ongkos Kirim : Rp {{ number_format($order->ongkir, 0, ',', '.') }}
