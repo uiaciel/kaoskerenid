@@ -57,8 +57,9 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form>
-
+                                                <form method="POST" action="{{ route('project.update', $project->id) }}">
+                                                    @csrf
+                                                    @method('PUT')
                                                     <div class="mb-3">
                                                         <label for="namaProject" class="form-label">Nama Project</label>
                                                         <input type="text" class="form-control"
@@ -67,11 +68,18 @@
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label for="jatuhtempo" class="form-label">Klien</label>
-                                                        <input type="text" class="form-control" name="klien_id"
-                                                            value="14" id="jatuhtempo"
-                                                            aria-describedby="jatuhtempohelp">
+                                                        <label for="" class="form-label">Klien</label>
+                                                        <select
+                                                            class="form-select form-select-md"
+                                                            name="klien_id">
+                                                            <option value="{{ $project->klien->id }}">{{ $project->klien->nama }}</option>
+                                                            @foreach ($kliens as $klien)
+
+                                                            <option value="{{ $klien->id }}">{{ $klien->nama }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
+
 
                                                     <div class="mb-3">
                                                         <label for="valueNilai" class="form-label">Nilai Project</label>
@@ -89,6 +97,11 @@
                                                     </div>
 
                                                     <div class="mb-3">
+                                                        <label for="" class="form-label">Layanan</label>
+                                                        <textarea class="form-control" name="" id="" rows="3"></textarea>
+                                                    </div>
+
+                                                    <div class="mb-3">
                                                         <label class="form-label">Kategori</label>
                                                         <select class="form-select" name="kategori"
                                                             aria-label="Default select example">
@@ -97,8 +110,12 @@
                                                             <option value="Domain">Domain</option>
                                                             <option value="Hosting">Hosting</option>
                                                             <option value="Hosting & Domain">Hosting & Domain</option>
-                                                            <option value="Website">Website</option>
-                                                            <option value="Manage Website">Manage Website</option>
+                                                            <option value="Pembuatan Website">Pembuatan Website</option>
+                                                            <option value="Redesign">Redesign</option>
+                                                            <option value="Landing Page">Landing Page</option>
+                                                            <option value="Content Manage">Content Manage</option>
+                                                            <option value="Optimize SEO">Optimize SEO</option>
+                                                            <option value="Suupport Maintenance">Support Maintanance</option>
 
                                                         </select>
                                                     </div>
@@ -113,6 +130,17 @@
                                                             <option value="Non Aktif">Non Aktif</option>
                                                         </select>
                                                     </div>
+
+                                                    <div class="d-grid gap-2">
+                                                        <button
+                                                            type="submit"
+
+                                                            class="btn btn-primary"
+                                                        >
+                                                            Update
+                                                        </button>
+                                                    </div>
+
 
                                                 </form>
                                             </div>
@@ -162,10 +190,18 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="jatuhtempo" class="form-label">Klien</label>
-                                <input type="text" class="form-control" name="klien_id" value="14"
-                                    id="jatuhtempo" aria-describedby="jatuhtempohelp">
+                                <label for="" class="form-label">Klien</label>
+                                <select
+                                    class="form-select form-select-md"
+                                    name="klien_id">
+
+                                    @foreach ($kliens as $klien)
+
+                                    <option value="{{ $klien->id }}">{{ $klien->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+
 
                             <div class="mb-3">
                                 <label for="valueNilai" class="form-label">Nilai Project</label>
@@ -184,12 +220,8 @@
                                 <label class="form-label">Kategori</label>
                                 <select class="form-select" name="kategori" aria-label="Default select example">
                                     <option selected>Pilih Kategori</option>
-                                    <option value="Domain">Domain</option>
-                                    <option value="Hosting">Hosting</option>
-                                    <option value="Hosting & Domain">Hosting & Domain</option>
-                                    <option value="Website">Website</option>
-                                    <option value="Manage Website">Manage Website</option>
-
+                                    <option value="Perorangan">Perorangan</option>
+                                    <option value="Perusahaan">Perusahaan</option>
                                 </select>
                             </div>
 

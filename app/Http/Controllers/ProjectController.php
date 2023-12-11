@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Klien;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,11 @@ class ProjectController extends Controller
     public function index()
     {
         $project = Project::All();
+        $kliens = Klien::OrderBy('created_at', 'DESC')->get();
 
         return view('project.index', [
-            'projects' => $project
+            'projects' => $project,
+            'kliens' => $kliens
         ]);
     }
 

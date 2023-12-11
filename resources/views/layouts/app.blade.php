@@ -1112,7 +1112,8 @@
                         },
                         {
                             data: 'nama',
-                            name: 'nama'
+                            name: 'nama',
+
                         },
                         {
                             data: 'hp',
@@ -1164,7 +1165,8 @@
                     },
                     {
                         data: 'nama',
-                        name: 'nama'
+                        name: 'nama',
+                        class : 'text-wrap'
                     },
                     {
                         data: 'hp',

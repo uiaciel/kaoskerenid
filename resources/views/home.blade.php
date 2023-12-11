@@ -225,71 +225,9 @@
                 @include('kliens.create')
             </div>
 
-            <div class="list-group mb-3">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    KLIEN BARU
-                </a>
-                @foreach ($kliens as $klien)
-                    <a href="https://api.whatsapp.com/send?phone={{ Str::replaceFirst('0', '62', $klien->hp) }}&text=KaosKerenID"
-                        class="list-group-item list-group-item-action"><i class="fa-brands fa-whatsapp"></i>
-                        {{ $klien->nama }}</a>
-                @endforeach
 
-            </div>
 
-            <div class="card mb-3">
-                <div class="card-body">
-                    <form action="{{ route('keuangan.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="" class="form-label">Tanggal</label>
-                            <input type="date" name="tanggal" id="date" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Nominal</label>
-                            <input type="text" name="nominal" id="" class="form-control" placeholder=""
-                                aria-describedby="helpId">
-                            <small id="helpId" class="text-muted">Ketik Angka saja</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Jenis</label>
-                            <select class="form-control" name="jenis" id="">
 
-                                <option>Pengeluaran</option>
-                                <option>Pemasukan</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Kategori</label>
-                            <select class="form-control" name="kategori">
-                                <option value="orderan">Orderan</option>
-                                <option value="ongkos cetak">Ongkos Cetak</option>
-                                <option value="Makan Cemilan">Makan</option>
-                                <option value="Listrik">Listrik</option>
-                                <option value="Internet">Internet</option>
-                                <option value="Belanja Bahan">Belanja Bahan</option>
-                                <option value="Belanja Sablon">Belanja Sablon</option>
-                                <option value="Perlengkapan">Perlengkapan</option>
-                                <option value="Tagihan">Tagihan</option>
-                                <option value="Lainnya">Lainnya</option>
-
-                            </select>
-                        </div>
-                        <input type="text" name="order_id" id="" class="form-control" placeholder=""
-                            aria-describedby="helpId" hidden>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label">Metode</label>
-                            <select class="form-control" name="metode" id="">
-                                <option>Transfer</option>
-                                <option>Tunai</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 @endsection

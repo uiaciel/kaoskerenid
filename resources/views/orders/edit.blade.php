@@ -301,8 +301,11 @@
                         </table>
                     </div>
                 </div>
+                <div class="card-footer">
+                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                  </div>
             </div>
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
                 <div class="card-header">
                     <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -375,8 +378,8 @@
                     <!-- Button trigger modal -->
 
                 </div>
-            </div>
-            <div class="card mb-3">
+            </div> --}}
+            {{-- <div class="card mb-3">
                 <div class="card-header">
                     <form action="{{ route('design.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -432,7 +435,8 @@
                     </div>
 
                 </div>
-            </div>
+            </div> --}}
+
         </div>
     </div>
     <div class="row">
