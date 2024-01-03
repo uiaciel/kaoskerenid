@@ -40,7 +40,7 @@
                         id=""
                     >
                             @foreach ($namas as $namas )
-                                <option value="{{ $kate }}">{{ $kate }}</option>
+                                <option value="{{ $namas }}">{{ $namas }}</option>
                             @endforeach
 
                     </select>
