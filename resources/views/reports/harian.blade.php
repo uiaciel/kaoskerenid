@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
-        <h3 class="text-white">Hari ini</h3>
+        <h3 class="text-white">Hari ini </h3>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
@@ -473,39 +473,32 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Jenis</label>
                             <select class="form-control" name="jenis" id="">
-
-                                <option value="Pengeluaran">Pengeluaran</option>
-                                <option value="Pemasukan">Pemasukan</option>
+                                <option>Pengeluaran</option>
+                                <option>Pemasukan</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Kategori</label>
-                            <select class="form-control" name="kategori">
-                                <option value="Makan Cemilan">Makan</option>
-                                <option value="Cash">Cash</option>
+                            <select class="form-control" name="kategori" id="">
+                                <option value="Saldo Awal">Saldo Awal</option>
                                 <option value="orderan">Orderan</option>
                                 <option value="ongkos cetak">Ongkos Cetak</option>
+                                <option value="Makan Cemilan">Makan</option>
                                 <option value="Listrik">Listrik</option>
                                 <option value="Internet">Internet</option>
-                                <option value="Belanja Bahan">Belanja Kaos/Hoodie/Bahan</option>
+                                <option value="Belanja Bahan">Belanja Bahan</option>
                                 <option value="Belanja Sablon">Belanja Sablon</option>
-                                <option value="Perlengkapan">Perlengkapan Toko</option>
-                                <option value="Ongkir">Ongkos Kirim</option>
-
                             </select>
                         </div>
                         <input type="text" name="order_id" id="" class="form-control" placeholder=""
-                            aria-describedby="helpId" hidden>
-
+                                aria-describedby="helpId" hidden>
                         <div class="mb-3">
                             <label for="" class="form-label">Metode</label>
                             <select class="form-control" name="metode" id="">
-                                <option value="Transfer">Transfer</option>
-                                <option value="Tunai">Tunai</option>
+                                <option>Transfer</option>
+                                <option>Tunai</option>
                             </select>
-
                         </div>
-
                         <div class="mb-3">
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Detail</label>

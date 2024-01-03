@@ -39,7 +39,7 @@
                         name="nama"
                         id=""
                     >
-                            @foreach ($kategoris as $kate )
+                            @foreach ($namas as $namas )
                                 <option value="{{ $kate }}">{{ $kate }}</option>
                             @endforeach
 

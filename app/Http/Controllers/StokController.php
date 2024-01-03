@@ -7,13 +7,13 @@ class StokController extends Controller
     public function index(Request $request)
     {
         $stoks = Stok::all();
-        $kategori = collect(Stok::pluck('kategori'))->unique()->values()->all();
-        $bahan = collect(Stok::pluck('supplier'))->unique()->values()->all();
+        $namas = collect(Stok::pluck('nama'))->unique()->values()->all();
+        $bahan = collect(Stok::pluck('kategori'))->unique()->values()->all();
 
 
         return view('stoks.index', [
             'stoks' => $stoks,
-            'kategoris' => $kategori,
+            'namas' => $namas,
             'bahans' => $bahan
 
         ]);

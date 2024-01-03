@@ -78,6 +78,12 @@
                                 <option>Tunai</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Detail</label>
+                                <textarea class="form-control" name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
