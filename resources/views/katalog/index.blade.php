@@ -67,8 +67,9 @@
                                         <div class="mb-3">
                                             <label for="nama" class="form-label">Kategori</label>
                                             <select class="form-select" name="kategori" aria-label="Default select example">
-                                                <option value="JASA SABLON">JASA SABLON</option>
-                                                <option value="SABLON SATUAN">SABLON SATUAN</option>
+                                                <option value="PAKET SABLON">PAKET SABLON</option>
+                                                <option value="SABLON AJA">SABLON AJA</option>
+                                                <option value="CUSTOM">CUSTOM</option>
                                                 <option value="CETAK DIGITAL">CETAK DIGITAL</option>
                                                 <option value="MERCHANDISE">MERCHANDISE</option>
 

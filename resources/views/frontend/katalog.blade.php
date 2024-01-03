@@ -45,7 +45,10 @@
                                         <h6>Rp.
                                             {{ number_format($katalog->katalogproduk->where('katalog_id', $katalog->id)->sum('produk.harga')) }}
                                         </h6>
-                                        <p>{{ $katalog->detail }}</p>
+                                        <div class="alert alert-warning">
+                                            <p class="text-black">{{ $katalog->detail }}</p>
+                                        </div>
+
 
                                     </div>
                                 </div>

@@ -15,7 +15,7 @@
                         model
                         kaos dan bahan. Pengerjaan Cepat dan Gratis bantuan design.</h5>
 
-                    {{-- <a class="btn custom-btn smoothscroll" href="#section_2">SABLON SEHARI LANGSUNG JADI!</a> --}}
+                    <a class="btn custom-btn smoothscroll" href="/katalog">HARGA & KATALOG</a>
                 </div>
 
                 <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">

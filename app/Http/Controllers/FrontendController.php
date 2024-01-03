@@ -29,7 +29,7 @@ class FrontendController extends Controller
     public function katalog()
     {
 
-        $katalogs = Katalog::all();
+        $katalogs = Katalog::where('status', 'AKTIF')->get();
         return view('frontend.katalog', [
             'katalogs' => $katalogs
         ]);
