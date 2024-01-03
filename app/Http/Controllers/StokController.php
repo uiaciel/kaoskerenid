@@ -4,11 +4,18 @@ use App\Models\Stok;
 use Illuminate\Http\Request;
 class StokController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $stoks = Stok::all();
+        $kategori = collect(Stok::pluck('kategori'))->unique()->values()->all();
+        $bahan = collect(Stok::pluck('supplier'))->unique()->values()->all();
+
+
         return view('stoks.index', [
-            'stoks' => $stoks
+            'stoks' => $stoks,
+            'kategoris' => $kategori,
+            'bahans' => $bahan
+
         ]);
     }
 

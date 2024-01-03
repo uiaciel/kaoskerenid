@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
+
+
+
 <div class="card mb-3">
     <div class="card-body">
+        <h3>Jumlah Stok Tersedia : {{ $stoks->pluck('qty')->sum() }} <small>pcs</small></h3>
+
         <div
             class="table-responsive"
         >
@@ -15,7 +20,7 @@
                         <th scope="col">Jenis</th>
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Kategori</th>
-                        <th scope="col">QTY</th>
+
                         <th scope="col">Kode Barang</th>
                         <th scope="col">ACTION</th>
                     </tr>
@@ -23,11 +28,23 @@
                 <tbody>
                     <form action="{{route('stok.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="number"
+                            class="form-control" name="qty" value="0" hidden>
                     <tr class="">
 
                         <td scope="row">
-                            <input type="text"
-                  class="form-control" name="nama" id="" aria-describedby="helpId" placeholder="">
+
+                  <select
+                        class="form-select"
+                        name="nama"
+                        id=""
+                    >
+                            @foreach ($kategoris as $kate )
+                                <option value="{{ $kate }}">{{ $kate }}</option>
+                            @endforeach
+
+                    </select>
+
                   <small id="helpId" class="form-text text-muted">Kaos Pendek</small>
                         </td>
                         <td scope="row">
@@ -36,15 +53,19 @@
                   <small id="helpId" class="form-text text-muted">Hitam XL</small>
                         </td>
                         <td scope="row">
-                            <input type="text"
-                  class="form-control" name="kategori" id="" aria-describedby="helpId" placeholder="">
+                            <select
+                            class="form-select"
+                            name="kategori"
+                            id=""
+                        >
+                                @foreach ($bahans as $bahan )
+                                    <option value="{{ $bahan }}">{{ $bahan }}</option>
+                                @endforeach
+
+                        </select>
                   <small id="helpId" class="form-text text-muted">Combed 30s</small>
                         </td>
-                        <td scope="row">
-                            <input type="number"
-                  class="form-control" name="qty" id="" aria-describedby="helpId" placeholder="">
-                  <small id="helpId" class="form-text text-muted">Qty</small>
-                        </td>
+
                         <td scope="row">
                             <input type="text"
                   class="form-control" name="kode" id="" aria-describedby="helpId" placeholder="">
@@ -196,6 +217,58 @@
         </div>
     </div>
 
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <form method="POST"  >
+                @csrf
+              <div class="mb-3">
+                <label for="" class="form-label">Input Kode Barang</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="kode"
+                    id=""
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+                <input
+                    type="text"
+                    class="form-control"
+                    name="qty"
+                    id=""
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+                <small id="helpId" class="form-text text-muted">Help text</small>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Button
+              </button>
+
+            </form>
+
+            </div>
+          </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">CART</h5>
+
+            <h6 class="card-subtitle mb-2 text-muted ">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            b5
+          </div>
+        </div>
+    </div>
 </div>
 
 @endsection

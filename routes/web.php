@@ -83,6 +83,7 @@ Route::group([
     Route::get('/eps', [DesignController::class, 'listeps'])->name('design.eps');
 
     Route::post('/upload/data', [BlogController::class, 'tinimyce'])->name('upload');
+
     Route::get('/delete/designs', [DesignController::class, 'deleteimages'])->name('deleteimages');
 });
 

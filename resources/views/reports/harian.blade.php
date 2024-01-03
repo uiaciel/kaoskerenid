@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
+        <h3 class="text-white">Hari ini</h3>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-body">
@@ -96,7 +97,7 @@
     </div>
 
     <div class="row mb-3">
-        <h3 class="text-white">Hari ini</h3>
+
         <div class="col-md-8">
 
             <div class="card border-0">
@@ -241,12 +242,12 @@
                     <div class="row py-3">
                         <div class="col-md-12 d-flex flex-column text-end  justify-content-around">
                             <div>
-                                <h6 class="fw-bold text-uppercase text-success op-8">Pendapatan</h6>
+                                <h6 class="fw-bold text-uppercase text-success op-8">Pendapatan Bulan ini</h6>
                                 <h3 class="fw-bold">Rp
                                     {{ number_format($pemasukans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
                             </div>
                             <div class="mb-4">
-                                <h6 class="fw-bold text-uppercase text-danger op-8">Pengeluaran</h6>
+                                <h6 class="fw-bold text-uppercase text-danger op-8">Pengeluaran Bulan ini</h6>
                                 <h3 class="fw-bold">Rp
                                     {{ number_format($pengeluarans->pluck('nominal')->sum(), 0, ',', '.') }}</h3>
                             </div>
