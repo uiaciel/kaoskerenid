@@ -153,7 +153,7 @@ class KlienController extends Controller
 
     public function exportklienlastmonth()
     {
-        $carbon = Carbon::now()->format('F');
+        $carbon = Carbon::now()->subMonths(1)->format('F');
         return Excel::download(new KlienLastMonth, $carbon . '-kliens.csv', \Maatwebsite\Excel\Excel::CSV, [
             'Content-Type' => 'text/csv',
         ]);

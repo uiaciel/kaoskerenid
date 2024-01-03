@@ -1,5 +1,5 @@
  <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="pilihkatalog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-xl      ">
 
             <div class="modal-content">
@@ -95,7 +95,7 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary">Close</button>
                 </div>
 
             </div>

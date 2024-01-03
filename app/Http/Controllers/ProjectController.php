@@ -36,6 +36,7 @@ class ProjectController extends Controller
         $project->nama = $request->nama;
         $project->klien_id = $request->klien_id;
         $project->nilai = $request->nilai;
+        $project->url = $request->url;
         $project->status = $request->status;
         $project->kategori = $request->kategori;
         $project->jatuhtempo = $request->jatuhtempo;

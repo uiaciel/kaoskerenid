@@ -39,7 +39,7 @@
                                     <td>{{ $project->status }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-primary">View</button>
+                                            <a href="{{ $project->url }}" class="btn btn-primary" target="_blank">View</a>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#staticBackdrop{{ $project->id }}">
                                                 Edit
@@ -52,7 +52,7 @@
                                     <div class="modal-dialog modal-md">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ $project->nama }}</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -64,6 +64,13 @@
                                                         <label for="namaProject" class="form-label">Nama Project</label>
                                                         <input type="text" class="form-control"
                                                             value="{{ $project->nama }}" name="nama" id="namaProject"
+                                                            aria-describedby="namaProjectHelp">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="namaProject" class="form-label">Domain</label>
+                                                        <input type="text" class="form-control"
+                                                            value="{{ $project->url }}" name="url" id="namaProject"
                                                             aria-describedby="namaProjectHelp">
                                                     </div>
 
@@ -98,7 +105,7 @@
 
                                                     <div class="mb-3">
                                                         <label for="" class="form-label">Layanan</label>
-                                                        <textarea class="form-control" name="" id="" rows="3"></textarea>
+                                                        <textarea class="form-control" name="detail" rows="3"></textarea>
                                                     </div>
 
                                                     <div class="mb-3">
@@ -107,7 +114,10 @@
                                                             aria-label="Default select example">
                                                             <option value="{{ $project->kategori }}">
                                                                 {{ $project->kategori }}</option>
-                                                            <option value="Domain">Domain</option>
+
+                                                            <option value="Perorangan">Perorangan</option>
+                                                            <option value="Perusahaan">Perusahaan</option>
+                                                            {{-- <option value="Domain">Domain</option>
                                                             <option value="Hosting">Hosting</option>
                                                             <option value="Hosting & Domain">Hosting & Domain</option>
                                                             <option value="Pembuatan Website">Pembuatan Website</option>
@@ -115,7 +125,7 @@
                                                             <option value="Landing Page">Landing Page</option>
                                                             <option value="Content Manage">Content Manage</option>
                                                             <option value="Optimize SEO">Optimize SEO</option>
-                                                            <option value="Suupport Maintenance">Support Maintanance</option>
+                                                            <option value="Suupport Maintenance">Support Maintanance</option> --}}
 
                                                         </select>
                                                     </div>
@@ -132,13 +142,7 @@
                                                     </div>
 
                                                     <div class="d-grid gap-2">
-                                                        <button
-                                                            type="submit"
-
-                                                            class="btn btn-primary"
-                                                        >
-                                                            Update
-                                                        </button>
+                                                        <button type="submit"class="btn btn-primary">Update</button>
                                                     </div>
 
 
@@ -186,6 +190,12 @@
                             <div class="mb-3">
                                 <label for="namaProject" class="form-label">Nama Project</label>
                                 <input type="text" class="form-control" name="nama" id="namaProject"
+                                    aria-describedby="namaProjectHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="namaProject" class="form-label">Domain</label>
+                                <input type="text" class="form-control" name="url" id="urlProject"
                                     aria-describedby="namaProjectHelp">
                             </div>
 

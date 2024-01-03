@@ -1,7 +1,9 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
 return new class extends Migration
 {
     /**
@@ -11,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stoks', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('kategori');
-            $table->string('supplier');
-            $table->string('kode');
-            $table->integer('qty');
-            $table->timestamps();
+        Schema::table('datastoks', function (Blueprint $table) {
+            $table->integer('modal')->nullable();
+            $table->integer('hargajual')->nullable();
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stoks');
+        Schema::table('datastoks', function (Blueprint $table) {
+            //
+        });
     }
 };

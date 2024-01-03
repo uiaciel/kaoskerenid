@@ -233,28 +233,33 @@
                     <h2 class="mb-4">Artikel & Informasi Sablon</h1>
                 </div>
 
-                <div class="col-12 col-md-12 col-sm-12">
-                    <div class="list-group">
-                        @foreach ($blogs as $blog)
-                            <a href="{{ $blog->slug }}" class="list-group-item list-group-item-action"
-                                aria-current="true">
-                                <div class="d-flex w-100 justify-content-between">
+                <div class="row p-5">
+                    @foreach ($blogs as $post)
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                @foreach ($post->gambar() as $gam)
+                                    @if ($loop->first)
+                                        <a href="{{ $post->slug }}" target="_blank"><img src="{{ '/' . $gam }} "
+                                                class="card-img-top" alt="...">
+                                        </a>
+                                    @endif
+                                @endforeach
 
-                                    <h5 class="mb-1"><span
-                                            class="badge bg-warning">{{ Str::upper($blog->kategori) }}</span>
-                                        {{ $blog->judul }}</h5>
-                                    <small>{{ $blog->dibaca }}x -
-                                        {{ Carbon::parse($blog->created_at)->diffForHumans() }}</small>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+
+                                        {{ $post->judul }}
+                                    </h5>
+
                                 </div>
-                                {{-- <p class="mb-1">Some placeholder content in a paragraph.</p> --}}
-                                {{-- <small>{{ $blog->kategori }}</small> --}}
-                            </a>
-                        @endforeach
-
-                    </div>
+                            </div>
+                        </div>
+                    @endforeach
 
 
                 </div>
+
+
             </div>
         </div>
     </section>

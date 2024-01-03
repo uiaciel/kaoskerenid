@@ -446,7 +446,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
+                                data-bs-target="#pilihkatalog">
                                 <i class="bi bi-ui-checks-grid"></i> Paket
                             </button>
 

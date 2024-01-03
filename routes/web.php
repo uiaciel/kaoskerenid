@@ -47,7 +47,7 @@ Route::group([
 
     Route::get('/produk/list', [ProdukController::class, 'list']);
     Route::get('/klien/export', [KlienController::class, 'export'])->name('klien.export');
-    Route::get('/klien/exportlastmonth', [KlienController::class, 'exportlastmonth'])->name('klien.exportlastmonth');
+    Route::get('/klien/exportlastmonth', [KlienController::class, 'exportklienlastmonth'])->name('klien.exportlastmonth');
 
     Route::resource('/order', OrderController::class);
     Route::resource('/katalog', KatalogController::class);
