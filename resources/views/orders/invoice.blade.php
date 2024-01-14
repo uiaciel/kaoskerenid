@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>INVOICE</title>
+    <title>INVOICE - {{ $order->inv }}</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <script src="/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -41,11 +41,11 @@
         <div class="col-md-12">
             <div class="card card-invoice">
                 <div class="card-header">
-                    <div class="invoice-header fs-5 text-center">
+                    <div class="invoice-header fs-5">
                         SABLON SATUAN KAOSKERENID
 
                     </div>
-                    <div class="invoice-desc text-center">
+                    <div class="invoice-desc">
                         Jalan Sancang no 22, Bogor Tengah Kota Bogor<br>www.kaoskeren.id
                     </div>
                 </div>

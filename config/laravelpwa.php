@@ -5,7 +5,7 @@ return [
     'manifest' => [
         'name' => env('APP_NAME', 'KaoskerenID App'),
         'short_name' => 'PWA',
-        'start_url' => '/home',
+        'start_url' => '/admin/home',
         'background_color' => '#ffffff',
         'theme_color' => '#000000',
         'display' => 'standalone',

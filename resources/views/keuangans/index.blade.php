@@ -3,6 +3,31 @@
 @section('content')
 <div class="row mb-3">
 
+    <form>
+        <div class="row">
+            <div class="col">
+                Tampilkan Data
+            </div>
+            <div class="col">
+              <input type="text" name="bulan" class="form-control" placeholder="Bulan">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="2023" value="Tahun" name="tahun">
+            </div>
+            <div class="col-lg-3">
+
+<button
+type="submit"
+class="btn btn-primary"
+>
+Submit
+</button>
+            </div>
+          </div>
+
+
+
+</form>
     <div
         class="modal fade"
         id="modalId"
@@ -48,6 +73,15 @@
                         <h5 class="mb-0">Catatan Keuangan</h5>
 
                     </div>
+                    <a
+                        name=""
+                        id=""
+                        class="btn btn-primary"
+                        href="print/"
+                        role="button"
+                        >Print</a
+                    >
+
                     <button
         type="button"
         class="btn btn-primary"

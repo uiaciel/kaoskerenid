@@ -9,6 +9,7 @@ class Orderan extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     public function produk()
     {
         return $this->belongsTo('App\Models\Produk', 'produk_id');

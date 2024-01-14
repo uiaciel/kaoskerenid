@@ -68,6 +68,7 @@ Route::group([
     Route::resource('/project', ProjectController::class);
 
     // Route::get('/toko/create', [TokoController::class, 'create']);
+    Route::get('/print/keuangan/bulan={bulan}&tahun={tahun}', [KeuanganController::class, 'print']);
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
     Route::get('/tambahkatalog/{id}', [HomeController::class, 'tambahkatalog'])->name('tambahkatalog');

@@ -12,9 +12,7 @@ class Blog extends Model
 
     public function gambar()
     {
-        // preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $this->konten, $image);
         preg_match_all('@src="([^"]+)"@', $this->konten, $match);
-
         $src = array_pop($match);
 
         return $src;

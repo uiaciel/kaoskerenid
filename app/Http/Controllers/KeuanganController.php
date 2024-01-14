@@ -5,29 +5,33 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 class KeuanganController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
-        // $keuangans = Keuangan::orderBy('created_at', 'desc')->limit(100)->get();
-        $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', date('m'))
-        ->whereYear('created_at', date('Y'))
-        ->where('jenis', 'Pemasukan')
-        ->get();
-        $pengeluaran = Keuangan::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'))
-        ->whereYear('created_at', date('Y'))
-        ->where('jenis', 'Pengeluaran')
-        ->get();
-
-        $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', date('m'))
-        ->whereYear('created_at', date('Y'))->get();
-
+        if (empty($request->bulan)) {
+            $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))
+                ->where('jenis', 'Pemasukan')
+                ->get();
+            $pengeluaran = Keuangan::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))
+                ->where('jenis', 'Pengeluaran')
+                ->get();
+            $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', date('m'))
+                ->whereYear('created_at', date('Y'))->get();
+        } else {
+            $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $request->bulan)
+                ->whereYear('created_at', $request->tahun)
+                ->where('jenis', 'Pemasukan')
+                ->get();
+            $pengeluaran = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $request->bulan)
+                ->whereYear('created_at', $request->tahun)
+                ->where('jenis', 'Pengeluaran')
+                ->get();
+            $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', $request->bulan)
+                ->whereYear('created_at', $request->tahun)->get();
+        }
         $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');
         $kredit = $keuangans->where('jenis', 'Pengeluaran')->sum('nominal');
-
         return view('keuangans.index', [
             'pemasukans' => $pemasukan,
             'pengeluarans' => $pengeluaran,
@@ -36,11 +40,34 @@ class KeuanganController extends Controller
             'kredit' => $kredit
         ]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function print($bulan, $tahun)
+    {
+        $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->where('jenis', 'Pemasukan')
+        ->get();
+    $pengeluaran = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)
+        ->where('jenis', 'Pengeluaran')
+        ->get();
+    $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', $bulan)
+        ->whereYear('created_at', $tahun)->get();
+
+        $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');
+        $kredit = $keuangans->where('jenis', 'Pengeluaran')->sum('nominal');
+        return view('keuangans.print', [
+            'pemasukans' => $pemasukan,
+            'pengeluarans' => $pengeluaran,
+            'keuangans' => $keuangans,
+            'debit' => $debit,
+            'kredit' => $kredit
+        ]);
+
+
+
+    }
+
     public function create()
     {
         return view('keuangans.create');
@@ -62,20 +89,18 @@ class KeuanganController extends Controller
         $keuangan->jenis = $request->jenis;
         $keuangan->detail = $request->detail;
         $keuangan->save();
-        if($request->status == "LUNAS")
-        {
+        if ($request->status == "LUNAS") {
             Order::where('inv', $request->detail)->update([
                 'pembayaran' => 'LUNAS'
             ]);
         }
-        if($request->status == "MASUK DP")
-        {
+        if ($request->status == "MASUK DP") {
             Order::where('inv', $request->detail)->update([
                 'pembayaran' => 'MASUK DP'
             ]);
         }
         return redirect()->back()
-        ->with('flash_message','Data created successfully.');
+            ->with('flash_message', 'Data created successfully.');
     }
     /**
      * Display the specified resource.
@@ -117,6 +142,6 @@ class KeuanganController extends Controller
     public function destroy(Keuangan $keuangan)
     {
         $keuangan->delete();
-        return redirect()->back()->with('flash_message','Data telah dihapus!');
+        return redirect()->back()->with('flash_message', 'Data telah dihapus!');
     }
 }
