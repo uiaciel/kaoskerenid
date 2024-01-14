@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Keuangan;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 class KeuanganController extends Controller
 {
     public function index(Request $request)
@@ -43,6 +44,11 @@ class KeuanganController extends Controller
 
     public function print($bulan, $tahun)
     {
+
+
+        $tanggal = '01-' . $bulan . '-' . $tahun;
+        $formatbulantahun = Carbon::parse($tanggal)->format('M-Y');
+
         $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $bulan)
         ->whereYear('created_at', $tahun)
         ->where('jenis', 'Pemasukan')
@@ -61,7 +67,8 @@ class KeuanganController extends Controller
             'pengeluarans' => $pengeluaran,
             'keuangans' => $keuangans,
             'debit' => $debit,
-            'kredit' => $kredit
+            'kredit' => $kredit,
+            'formatbulantahun' => $formatbulantahun,
         ]);
 
 

@@ -9,10 +9,10 @@
                 Tampilkan Data
             </div>
             <div class="col">
-              <input type="text" name="bulan" class="form-control" placeholder="Bulan">
+              <input type="text" name="bulan" class="form-control" placeholder="02">
             </div>
             <div class="col">
-              <input type="text" class="form-control" placeholder="2023" value="Tahun" name="tahun">
+              <input type="text" class="form-control" placeholder="2023" value="2023" name="tahun">
             </div>
             <div class="col-lg-3">
 
@@ -76,10 +76,11 @@ Submit
                     <a
                         name=""
                         id=""
+                        target="_blank"
                         class="btn btn-primary"
-                        href="print/"
+                        href="/admin/print/keuangan/bulan={{ request()->get('bulan') }}&tahun={{ request()->get('tahun') }}"
                         role="button"
-                        >Print</a
+                        ><i class="fa fa-print" aria-hidden="true"></i> Print</a
                     >
 
                     <button
@@ -95,48 +96,46 @@ Submit
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="text-white bg-dark">
                                 <tr>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col">Masuk</th>
-                                    <th scope="col">Keluar</th>
-                                    <th scope="col">Saldo</th>
+                                    <th>No</th>
+                                    <th>Tanggal</th>
+                                    <th>Kategori</th>
+                                    <th>Inv Order</th>
+                                    <th>Debit (Nominal)</th>
+                                    <th>Kredit (Nominal)</th>
+                                    <th>Saldo</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($keuangans as $index => $keuangan)
-                                <tr class="">
-                                    <td>{{ \Carbon\Carbon::parse($keuangan->tanggal)->format('d F Y') }}</td>
-                                    <td>{{ $keuangan->metode }}</td>
-                                    <td>@if ($keuangan->jenis == "Pemasukan")
-                                        {{ $keuangan->nominal }}
-                                    @endif</td>
-                                    <td>
-                                        @if ($keuangan->jenis == "Pengeluaran")
-                                        {{ $keuangan->nominal }}
-                                    @endif
-                                    </td>
-                                        <td></td>
-                                </tr>
-                                @endforeach
-                                {{-- @foreach ($pengeluarans as $index => $pengeluaran)
-                                    <tr class="">
-                                        <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $pengeluaran->metode }}</td>
-                                        <td>{{ $pengeluaran->nominal }}</td>
-                                        <td>{{ $pengeluaran->kategori }}</td>
+                                @php
+                                    $saldo = 0;
+                                @endphp
+
+                                @foreach ($keuangans as $key => $transaksi)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($transaksi->tanggal)->format('d-M-Y') }}</td>
+                                        <td>{{ $transaksi->kategori }}</td>
+                                        <td>#{{ $transaksi->order->inv ?? '-' }} </td>
+                                        <td>Rp. {{ $transaksi->jenis == 'Pemasukan' ? number_format($transaksi->nominal, 0, ',', '.') : '-' }}</td>
+                                        <td>Rp. {{ $transaksi->jenis == 'Pengeluaran' ? number_format($transaksi->nominal, 0, ',', '.') : '-' }}</td>
+                                        @php
+                                            $saldo += ($transaksi->jenis == 'Pemasukan') ? $transaksi->nominal : -$transaksi->nominal;
+                                        @endphp
+                                        <td>Rp. {{ number_format($saldo, 0, ',', '.') }}</td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
+
                                 <tr>
                                     <td colspan="5"></td>
 
                                 </tr>
-                                <tr>
-                                    <td colspan="2"></td>
-                                    <td>{{ $debit }}</td>
-                                    <td>{{ $kredit }}</td>
-                                    <td>{{ $debit - $kredit }}</td>
+                                <tr class="bg-dark text-white">
+                                    <td colspan="4"></td>
+                                    <td>Rp. {{  number_format($debit, 0, ',', '.')  }}</td>
+                                    <td>Rp. {{  number_format($kredit, 0, ',', '.')  }}</td>
+                                    <td>Rp. {{  number_format($debit - $kredit, 0, ',', '.')  }}</td>
                                 </tr>
                             </tbody>
                         </table>
