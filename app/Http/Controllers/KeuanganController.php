@@ -91,6 +91,36 @@ class KeuanganController extends Controller
      * @param  \App\Models\Keuangan  $keuangan
      * @return \Illuminate\Http\Response
      */
+
+     public function stores(Request $request)
+     {
+
+        $tanggal = array_filter($request->tanggal);
+
+
+        foreach ($tanggal as $key => $value) {
+
+            $keuangan = new Keuangan;
+            $keuangan->tanggal = $value;
+            $keuangan->kategori = $request->kategori[$key];
+
+            $keuangan->nominal = $request->nominal[$key];
+            $keuangan->metode = $request->metode[$key];
+            $keuangan->jenis =$request->jenis[$key];
+            $keuangan->detail = $request->detail[$key];
+            $keuangan->save();
+
+        }
+        toast('Berhasil terinput', 'success');
+        return redirect()->back()
+            ->with('flash_message', 'Data created successfully.');
+     }
+
+     public function inputs()
+    {
+        return view('keuangans.multiple');
+    }
+
     public function show(Keuangan $keuangan)
     {
         //

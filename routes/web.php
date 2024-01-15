@@ -42,6 +42,7 @@ Route::group([
 ], function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/keuangan/inputs', [KeuanganController::class, 'inputs']);
 
     Route::get('/klien/exports', [KlienController::class, 'exportklien']);
 
@@ -69,6 +70,7 @@ Route::group([
 
     // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/print/keuangan/bulan={bulan}&tahun={tahun}', [KeuanganController::class, 'print']);
+    Route::post('/keuangan/submit', [KeuanganController::class, 'stores'])->name('keuangans.stores');
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');
     Route::get('/tambahkatalog/{id}', [HomeController::class, 'tambahkatalog'])->name('tambahkatalog');
