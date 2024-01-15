@@ -9,33 +9,18 @@ class KeuanganController extends Controller
     public function index(Request $request)
     {
         if (empty($request->bulan)) {
-            $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', date('Y'))
-                ->where('jenis', 'Pemasukan')
-                ->get();
-            $pengeluaran = Keuangan::orderBy('created_at', 'desc')->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', date('Y'))
-                ->where('jenis', 'Pengeluaran')
-                ->get();
-            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', date('Y'))->get();
+
+            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('tanggal', date('m'))
+                ->whereYear('tanggal', date('Y'))->get();
         } else {
-            $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $request->bulan)
-                ->whereYear('created_at', $request->tahun)
-                ->where('jenis', 'Pemasukan')
-                ->get();
-            $pengeluaran = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $request->bulan)
-                ->whereYear('created_at', $request->tahun)
-                ->where('jenis', 'Pengeluaran')
-                ->get();
-            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', $request->bulan)
-                ->whereYear('created_at', $request->tahun)->get();
+
+            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('tanggal', $request->bulan)
+                ->whereYear('tanggal', $request->tahun)->get();
         }
         $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');
         $kredit = $keuangans->where('jenis', 'Pengeluaran')->sum('nominal');
         return view('keuangans.index', [
-            'pemasukans' => $pemasukan,
-            'pengeluarans' => $pengeluaran,
+
             'keuangans' => $keuangans,
             'debit' => $debit,
             'kredit' => $kredit
@@ -46,25 +31,16 @@ class KeuanganController extends Controller
     {
 
 
-        $tanggal = '01-' . $bulan . '-' . $tahun;
+        $tanggal = $tahun . '-' . $bulan . '-01';
         $formatbulantahun = Carbon::parse($tanggal)->format('M-Y');
 
-        $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
-        ->where('jenis', 'Pemasukan')
-        ->get();
-    $pengeluaran = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)
-        ->where('jenis', 'Pengeluaran')
-        ->get();
-    $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', $bulan)
-        ->whereYear('created_at', $tahun)->get();
+        $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('tanggal', $bulan)
+        ->whereYear('tanggal', $tahun)->get();
 
         $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');
         $kredit = $keuangans->where('jenis', 'Pengeluaran')->sum('nominal');
         return view('keuangans.print', [
-            'pemasukans' => $pemasukan,
-            'pengeluarans' => $pengeluaran,
+
             'keuangans' => $keuangans,
             'debit' => $debit,
             'kredit' => $kredit,
