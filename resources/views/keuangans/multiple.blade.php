@@ -43,9 +43,11 @@
                                                   <option value="Tagihan Pascabayar">Tagihan Pascabayar</option>
                                                   <option value="Penjualan Konter">Penjualan Konter</option>
 
+                                                  <option value="Hosting Web">Hosting Web</option>
                                                   <option value="Saldo Awal">Saldo Awal</option>
                                                   <option value="orderan">Orderan</option>
                                                   <option value="Hutang">Hutang</option>
+                                                  <option value="Gaji">Gaji</option>
                                                   <option value="Lainnya">Lainnya</option>
                                               </select>
                                               <select name="jenis[]" hidden>

@@ -26,12 +26,15 @@
             <option value="ongkos cetak">Ongkos Cetak</option>
             <option value="Ongkos Kirim">Ongkos Kirim</option>
             <option value="Makan Cemilan">Makan</option>
+            <option value="Hosting Web">Hosting Web</option>
             <option value="Listrik">Listrik</option>
             <option value="Internet">Internet</option>
+            <option value="Tagihan Pascabayar">Tagihan Pascabayar</option>
             <option value="Penjualan Konter">Penjualan Konter</option>
             <option value="Belanja Bahan">Belanja Bahan</option>
             <option value="Belanja Sablon">Belanja Sablon</option>
             <option value="Hutang">Hutang</option>
+            <option value="Gaji">Gaji</option>
             <option value="Lainnya">Lainnya</option>
         </select>
     </div>
