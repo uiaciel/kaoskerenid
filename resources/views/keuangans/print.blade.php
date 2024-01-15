@@ -3,9 +3,9 @@
 
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 mb-3">
         <div class="text-center">
-            <h2>Laporan Keuangan {{ $formatbulantahun }}</h2>
+            <h3>Laporan Keuangan {{ $formatbulantahun }}</h3>
         </div>
     </div>
     <div class="col-lg-12">
@@ -18,8 +18,8 @@
                         <th>Tanggal</th>
                         <th>Kategori</th>
                         <th>Inv Order</th>
-                        <th>Debit (Nominal)</th>
-                        <th>Kredit (Nominal)</th>
+                        <th>Debit</th>
+                        <th>Kredit</th>
                         <th>Saldo</th>
                     </tr>
                 </thead>

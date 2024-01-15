@@ -623,7 +623,7 @@
         <!-- Button trigger modal -->
 
         <nav
-            class="navbar fixed-bottom navbar-expand-lg bg-dark navbar-dark navbar-theme-primary p-3 d-block d-sm-none">
+            class="navbar fixed-bottom navbar-expand-lg bg-dark navbar-dark navbar-theme-primary mt-3 p-3 d-block d-sm-none">
             <div class="d-grid gap-2 d-md-block">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#menumodal">
                     Quick Menu

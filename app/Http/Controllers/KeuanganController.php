@@ -17,7 +17,7 @@ class KeuanganController extends Controller
                 ->whereYear('created_at', date('Y'))
                 ->where('jenis', 'Pengeluaran')
                 ->get();
-            $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', date('m'))
+            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', date('m'))
                 ->whereYear('created_at', date('Y'))->get();
         } else {
             $pemasukan = Keuangan::orderBy('updated_at', 'desc')->whereMonth('created_at', $request->bulan)
@@ -28,7 +28,7 @@ class KeuanganController extends Controller
                 ->whereYear('created_at', $request->tahun)
                 ->where('jenis', 'Pengeluaran')
                 ->get();
-            $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', $request->bulan)
+            $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', $request->bulan)
                 ->whereYear('created_at', $request->tahun)->get();
         }
         $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');
@@ -57,7 +57,7 @@ class KeuanganController extends Controller
         ->whereYear('created_at', $tahun)
         ->where('jenis', 'Pengeluaran')
         ->get();
-    $keuangans = Keuangan::orderBy('created_at', 'asc')->whereMonth('created_at', $bulan)
+    $keuangans = Keuangan::orderBy('tanggal', 'asc')->whereMonth('created_at', $bulan)
         ->whereYear('created_at', $tahun)->get();
 
         $debit = $keuangans->where('jenis', 'Pemasukan')->sum('nominal');

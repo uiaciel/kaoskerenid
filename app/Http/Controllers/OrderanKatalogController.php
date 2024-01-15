@@ -58,9 +58,10 @@ class OrderanKatalogController extends Controller
             $orderan = new Orderan;
             $orderan->order_id = $order_id;
             $orderan->produk_id = $n->produk->id;
-            $orderan->qty = 1;
-            $orderan->harga = $n->produk->harga * 1;
+            $orderan->qty = $request->qty;
+            $orderan->harga = $n->produk->harga * $request->qty;
             $orderan->save();
+
         }
 
         // foreach ($katalog as $key => $n) {
