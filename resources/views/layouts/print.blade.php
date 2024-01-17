@@ -100,7 +100,7 @@
 
 </head>
 
-<body class="bg-light">
+<body>
 
     <div class="container-fluid">
         @yield('content')

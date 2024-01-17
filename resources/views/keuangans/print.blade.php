@@ -6,13 +6,14 @@
     <div class="col-lg-12 mb-3">
         <div class="text-center">
             <h3>Laporan Keuangan {{ $formatbulantahun }}</h3>
+            <h6>Toko Sablon Satuan Kaoskeren.id</h6>
         </div>
     </div>
     <div class="col-lg-12">
         <div class="table-responsive">
 
-            <table class="table table-bordered">
-                <thead class="text-white bg-dark">
+            <table class="table table-bordered table-striped">
+                <thead>
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
@@ -47,7 +48,7 @@
                         <td colspan="5"></td>
 
                     </tr>
-                    <tr class="bg-dark text-white">
+                    <tr>
                         <td colspan="4"></td>
                         <td>Rp. {{  number_format($debit, 0, ',', '.')  }}</td>
                         <td>Rp. {{  number_format($kredit, 0, ',', '.')  }}</td>
