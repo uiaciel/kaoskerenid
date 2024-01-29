@@ -7,8 +7,7 @@
     </div>
     <div class="mb-3">
         <label for="" class="form-label">Nominal</label>
-        <input type="text" name="nominal" id="" class="form-control" placeholder=""
-            aria-describedby="helpId">
+        <input type="text" name="nominal" id="" class="form-control">
         <small id="helpId" class="text-muted">Ketik Angka saja</small>
     </div>
     <div class="mb-3">

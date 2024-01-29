@@ -59,6 +59,7 @@ Route::group([
     Route::resource('/design', DesignController::class);
     Route::resource('/stok', StokController::class);
     Route::resource('/datastok', DatastokController::class);
+    Route::get('/report/tanggal={tanggal}', [ReportController::class, 'index']);
     Route::resource('/report', ReportController::class);
     Route::resource('/orderankatalog', OrderanKatalogController::class);
 
@@ -70,6 +71,7 @@ Route::group([
 
     // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/print/keuangan/bulan={bulan}&tahun={tahun}', [KeuanganController::class, 'print']);
+
     Route::post('/keuangan/submit', [KeuanganController::class, 'stores'])->name('keuangans.stores');
     Route::get('/nota/{id}', [HomeController::class, 'nota']);
     Route::get('/tambah/{id}', [HomeController::class, 'tambah'])->name('tambah');

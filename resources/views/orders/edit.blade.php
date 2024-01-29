@@ -605,7 +605,7 @@
             </div>
         </div>
         <div class="card-body">
-            <textarea class="form-control" id="myCopy" rows="2">
+<textarea class="form-control" id="myCopy" rows="2">
 𝙏𝙝𝙖𝙣𝙠𝙨 𝙛𝙤𝙧 𝙮𝙤𝙪𝙧 𝙤𝙧𝙙𝙚𝙧
 *SABLON SATUAN KAOSKERENID*
 =============================
@@ -613,6 +613,7 @@ _INV : {{ $order->inv }}_
 Atas Nama : {{ $order->klien->nama }}
 *Detail Order :*
 {{ $order->detail }}
+
 *Rincian :*
 @forelse ($orderankatalog as $rinciankatalog )
 {{ $rinciankatalog->qty }} x {{ $rinciankatalog->katalog->nama }} {{ number_format($rinciankatalog->katalog->harga, 0, ',', '.') }} = Rp. {{ number_format($rinciankatalog->katalog->harga * $rinciankatalog->qty, 0, ',', '.') }}
@@ -621,22 +622,26 @@ Atas Nama : {{ $order->klien->nama }}
 {{ $ord->qty }} x {{ $ord->produk->kategori }} - {{ $ord->produk->nama }} Rp {{ number_format($ord->produk->harga, 0, ',', '.') }}
 @endforeach
 @endforelse
+
 Jumlah : Rp {{ number_format($total, 0, ',', '.') }}
 Ongkos Kirim : Rp {{ number_format($order->ongkir, 0, ',', '.') }}
 *TOTAL : Rp {{ number_format($grandtotal, 0, ',', '.') }}*
+
 _Pembayaran Via Transfer :_
 - BCA 5035139653 an Suria,
 - BNI 0749326737 an Suria,
 - MANDIRI 1200007377893 an Suria,
 - BRI 118001014130509 an Suria,
 _Bayar pakai Gopay, Dana, Ovo, QRIS_ ke nomor *08811722125*
+
 Harap mengirimkan foto bukti transfer/pembayaran kepada kami. _Pesanan akan Kami proses setelah melakukan pembayaran_
 *Estimasi Pengerjaan 2-3 hari kerja setelah pembayaran sesuai antrian order.*
+
 Status orderan bisa dicek dilink :
 https://web.kaoskeren.id/s/{{ $order->inv }}
 =============================
 Follow : kaoskerenid
-                                            </textarea>
+</textarea>
         </div>
     </div>
 </div>

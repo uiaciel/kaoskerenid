@@ -1,6 +1,33 @@
 @extends('layouts.app')
 @section('content')
     <div class="row">
+
+<form>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Tanggal</label>
+            <input
+                type="date"
+                class="form-control"
+                name="tanggal"
+                id=""
+                aria-describedby="helpId"
+                placeholder=""
+            />
+            <small id="helpId" class="form-text text-muted">Help text</small>
+        </div>
+<div class="d-grid gap-2">
+    <button
+        type="submit"
+        name=""
+        id=""
+        class="btn btn-primary"
+    >
+        submit
+    </button>
+</div>
+
+    </form>
         <h3 class="text-white">Hari ini </h3>
         <div class="col-12 col-sm-6 col-xl-4 mb-4">
             <div class="card border-0 shadow">
@@ -253,6 +280,7 @@
 
 
 
+
         </div>
 
 
@@ -262,7 +290,7 @@
     </div>
 
     <div class="row">
-        <h3 class="text-white">Orderan {{ $bt }}</h3>
+        <h3 class="text-white">Orderan {{ \Carbon\Carbon::now()->monthName }} {{ \Carbon\Carbon::now()->year }}</h3>
         <div class="col-md-8">
 
             <div class="card mb-3">
@@ -306,11 +334,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="card-body">
-                    <h3></h3>
 
-
-                </div>
             </div>
         </div>
         <div class="col-md-4">
@@ -328,6 +352,8 @@
                                 </svg></div>
                             <div class="d-block"><label class="mb-0">Orderan</label>
                                 <h4 class="mb-0">{{ $orders->count() }}</h4>
+
+
                                 @if ($orders->count() > $orderbulanlalu->count())
                                     <div class="small d-flex mt-1"><svg class="icon icon-xs text-success"
                                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -411,6 +437,20 @@
                 </div>
             </div>
 
+            <div class="card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Klien Bulan ini</h5>
+                  <ul>
+                      @foreach($kliendibulanini as $client)
+                      <li> <strong>{{ $client->nama }} - {{ $client->orders_count }}</strong></li>
+                      @endforeach
+                  </ul>
+
+                </div>
+              </div>
+
+
         </div>
     </div>
 
@@ -454,4 +494,5 @@
     <script src="{{ $chart->cdn() }}"></script>
 
     {{ $chart->script() }}
+
 @endsection

@@ -19,11 +19,28 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(OrderHarianChart $chart)
+    public function index(OrderHarianChart $chart, Request $request)
     {
-        $orders = Order::orderby('created_at', 'desc')
+        $nilai = $request->tanggal;
+
+        $bulanz = \Carbon\Carbon::parse($nilai)->format('m');
+        $tanggalz = \Carbon\Carbon::parse($nilai)->format('d');
+        $tahunz = \Carbon\Carbon::parse($nilai)->format('Y');
+
+
+
+        if(empty($nilai)) {
+            $orders = Order::orderby('created_at', 'desc')
             ->whereMonth('created_at', date('m'))
             ->whereYear('created_at', date('Y'))->get();
+
+        $kliendibulanini = Order::join('kliens', 'orders.klien_id', '=', 'kliens.id')
+        ->select('kliens.id', 'kliens.nama', DB::raw('COUNT(orders.id) as orders_count'))
+        ->whereMonth('orders.created_at', date('m'))
+        ->whereYear('orders.created_at', date('Y'))
+        ->groupBy('kliens.id', 'kliens.nama')
+        ->orderBy('orders_count', 'desc')
+        ->get();
 
         $orderhariini = Order::orderby('created_at', 'desc')
             ->whereDay('created_at', date('d'))
@@ -77,10 +94,89 @@ class ReportController extends Controller
             ->where('jenis', 'Pengeluaran')
             ->get();
         // ->whereDay('created_at', date('d'))
+
         $bulan = Carbon::now()->format("M");
         $tahun = Carbon::now()->format("Y");
         $bt = $bulan . '-' . $tahun;
         $periode = Order::where('periode', $bt)->get();
+
+        } else {
+            $orders = Order::orderby('created_at', 'desc')
+            ->whereMonth('created_at', $bulanz)
+            ->whereYear('created_at', $tahunz)->get();
+
+        $kliendibulanini = Order::join('kliens', 'orders.klien_id', '=', 'kliens.id')
+        ->select('kliens.id', 'kliens.nama', DB::raw('COUNT(orders.id) as orders_count'))
+        ->whereMonth('orders.created_at', $bulanz)
+        ->whereYear('orders.created_at', $tahunz)
+        ->groupBy('kliens.id', 'kliens.nama')
+        ->orderBy('orders_count', 'desc')
+        ->get();
+
+        $orderhariini = Order::orderby('created_at', 'desc')
+            ->whereDay('created_at', $tanggalz)
+            ->whereMonth('created_at', $bulanz)
+            ->whereYear('created_at', $tahunz)->get();
+
+        $orderbulanlalu =
+            Order::orderby('created_at', 'desc')
+            ->whereMonth('created_at', date('m', strtotime("-1 months")))
+            ->whereYear('created_at', $tahunz)->get();
+
+        $kliens = Klien::orderby('created_at', 'desc')
+            ->whereMonth('created_at', $bulanz)
+            ->whereYear('created_at', $tahunz)->get();
+
+        $klienbulanlalu = Klien::orderby('created_at', 'desc')
+            ->whereMonth('created_at', date('m', strtotime("-1 months")))
+            ->whereYear('created_at', $tahunz)->get();
+
+        $keuanganhariini = Keuangan::orderBy('tanggal', 'asc')
+            ->whereDay('tanggal', $tanggalz)
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->get();
+
+        $keuanganbulanan = Keuangan::orderBy('tanggal', 'asc')
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->get();
+
+        $pemasukan = Keuangan::orderBy('tanggal', 'desc')
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->where('jenis', 'Pemasukan')
+            ->get();
+        $pemasukanharian = Keuangan::orderBy('tanggal', 'desc')
+            ->whereDay('tanggal', $tanggalz)
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->where('jenis', 'Pemasukan')
+            ->get();
+        $pengeluaranharian = Keuangan::orderBy('tanggal', 'desc')
+            ->whereDay('tanggal', $tanggalz)
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->where('jenis', 'Pengeluaran')
+            ->get();
+        $pengeluaran = Keuangan::orderBy('tanggal', 'desc')
+            ->whereMonth('tanggal', $bulanz)
+            ->whereYear('tanggal', $tahunz)
+            ->where('jenis', 'Pengeluaran')
+            ->get();
+        // ->whereDay('created_at', $tanggalz)
+
+
+        $bulan = Carbon::now()->format("M");
+        $tahun = Carbon::now()->format("Y");
+        $bt = $bulanz. '-' . $tahunz;
+        $periode = Order::where('periode', $bt)->get();
+        }
+
+
+
+
+
         return view('reports.harian', [
             'orders' => $orders,
             'orderhariini' => $orderhariini,
@@ -95,7 +191,8 @@ class ReportController extends Controller
             'bt' => $bt,
             'periode' => $periode,
             'keuanganbulanan' => $keuanganbulanan,
-            'keuanganhariini' => $keuanganhariini
+            'keuanganhariini' => $keuanganhariini,
+            'kliendibulanini' => $kliendibulanini
         ]);
     }
     /**
