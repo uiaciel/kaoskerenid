@@ -246,7 +246,7 @@
                                     </form>
                                 </td>
                                 <td><small>{{ $bayar->metode }}</small>
-                                    <p>{{ $bayar->tanggal }}</p>
+                                    <p style=" margin-bottom: 0px; ">{{ $bayar->tanggal }}</p>
                                 </td>
                                 <td>Rp. {{ number_format($bayar->nominal, 0, ',', '.') }}</td>
                             </tr>

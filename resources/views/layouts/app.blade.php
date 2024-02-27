@@ -3,8 +3,6 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- Primary Meta Tags -->
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Kaoskerenid') }}</title>
@@ -13,7 +11,6 @@
     <meta name="author" content="Uiaciel">
     <meta name="description" content="Website pencatat pesanan Sablon Satuan Kaoskerenid.">
 
-    <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="120x120" href="../../assets/icons/ios/120.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/icon-72x72.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/ios/16.png">
@@ -22,81 +19,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Scripts -->
     @vite('resources/sass/app.scss')
-    @laravelPWA
-
-    <!-- Sweet Alert -->
-    {{-- <link type="text/css" href="../../vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet"> --}}
-
-    <!-- Notyf -->
-    {{-- <link type="text/css" href="../../vendor/notyf/notyf.min.css" rel="stylesheet"> --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Volt CSS -->
+
     <link type="text/css" href="/css/volt.css" rel="stylesheet">
     <link type="text/css" href="/css/dt.min.css" rel="stylesheet">
-    <style>
-        .chat-online {
-            color: #34ce57
-        }
-
-        .chat-offline {
-            color: #e4606d
-        }
-
-        .chat-messages {
-            display: flex;
-            flex-direction: column;
-            max-height: 800px;
-            overflow-y: scroll
-        }
-
-        .chat-message-left,
-        .chat-message-right {
-            display: flex;
-            flex-shrink: 0
-        }
-
-        .chat-message-left {
-            margin-right: auto
-        }
-
-        .chat-message-right {
-            flex-direction: row-reverse;
-            margin-left: auto
-        }
-
-        .py-3 {
-            padding-top: 1rem !important;
-            padding-bottom: 1rem !important;
-        }
-
-        .px-4 {
-            padding-right: 1.5rem !important;
-            padding-left: 1.5rem !important;
-        }
-
-        .flex-grow-0 {
-            flex-grow: 0 !important;
-        }
-
-        .border-top {
-            border-top: 1px solid #dee2e6 !important;
-        }
-    </style>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
-    <style>
-        #btn-back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: none;
-        }
-    </style>
-
-    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
 </head>
 
@@ -614,14 +542,10 @@
     </nav>
     <div class="pt-4 pb-4">
         @yield('title')
-
     </div>
     <main class="container">
         @yield('content')
-        <!-- Back to top button -->
         @include('sweetalert::alert')
-        <!-- Button trigger modal -->
-
         <nav
             class="navbar fixed-bottom navbar-expand-lg bg-dark navbar-dark navbar-theme-primary mt-3 p-3 d-block d-sm-none">
             <div class="d-grid gap-2 d-md-block">
@@ -631,10 +555,6 @@
 
             </div>
         </nav>
-
-
-
-        <!-- Modal -->
         <div class="modal fade" id="menumodal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm modal-fullscreen-md-down">
@@ -657,10 +577,6 @@
                                     @else
                                         <h2 class="h5 mb-3">Hi, {{ Auth::user()->name }}</h2>
                                     @endguest
-
-
-
-
                                     <a href="href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
@@ -905,7 +821,7 @@
         </div>
     </main>
 
-    <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+    <button type="button" class="btn btn-danger btn-floating btn-lg align-items-end" id="btn-back-to-top">
         <i class="bi bi-arrow-up-square-fill"></i>
     </button>
     <!-- Core -->
@@ -914,10 +830,7 @@
     <script src="../../vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <script>
-        //Get the button
         let mybutton = document.getElementById("btn-back-to-top");
-
-        // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function() {
             scrollFunction();
         };
@@ -932,7 +845,7 @@
                 mybutton.style.display = "none";
             }
         }
-        // When the user clicks on the button, scroll to the top of the document
+
         mybutton.addEventListener("click", backToTop);
 
         function backToTop() {
@@ -941,35 +854,7 @@
         }
     </script>
 
-    <!-- Vendor JS -->
-    {{-- <script src="../../vendor/onscreen/dist/on-screen.umd.min.js"></script> --}}
-
-    <!-- Slider -->
-    {{-- <script src="../../vendor/nouislider/distribute/nouislider.min.js"></script> --}}
-
-    <!-- Smooth scroll -->
-    {{-- <script src="../../vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script> --}}
-
-    <!-- Charts -->
-    {{-- <script src="../../vendor/chartist/dist/chartist.min.js"></script> --}}
-    {{-- <script src="../../vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script> --}}
-
-    <!-- Datepicker -->
     <script src="../../vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
-
-    <!-- Sweet Alerts 2 -->
-    {{-- <script src="../../vendor/sweetalert2/dist/sweetalert2.all.min.js"></script> --}}
-
-    <!-- Moment JS -->
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> --}}
-
-    <!-- Vanilla JS Datepicker -->
-    {{-- <script src="../../vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script> --}}
-
-    <!-- Notyf -->
-    {{-- <script src="../../vendor/notyf/notyf.min.js"></script> --}}
-
-    <!-- Simplebar -->
     <script src="../../vendor/simplebar/dist/simplebar.min.js"></script>
 
     <!-- Datatables -->
@@ -980,10 +865,6 @@
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-    <!-- Github buttons -->
-    {{-- <script async defer src="https://buttons.github.io/buttons.js"></script> --}}
-
-    <!-- Volt JS -->
     <script src="../../assets/js/volt.js"></script>
     <script src="../../assets/js/dt.min.js"></script>
 

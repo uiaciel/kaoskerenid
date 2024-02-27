@@ -75,7 +75,7 @@
                                                 <a href="{{ route('blog.edit', $blog->id) }}" type="button"
                                                     class="btn btn-success">Edit</a>
 
-                                                <a href="{{ $blog->slug }}" target="_blank" type="button"
+                                                <a href="/{{ $blog->slug }}" target="_blank" type="button"
                                                     class="btn btn-primary">View</a>
                                                 <button type="submit" class="btn btn-danger">Delete</button>
                                             </div>

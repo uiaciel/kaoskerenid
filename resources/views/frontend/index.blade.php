@@ -7,7 +7,7 @@
             <div class="row">
 
                 <div class="col-12 mt-auto mb-5 text-center">
-                    <small>I <i class="fa fa-heart" aria-hidden="true"></i>KEBANGGAAN KOTA BOGOR</small>
+                    {{-- <small>I <i class="bi bi-heart" aria-hidden="true"></i> KOTA BOGOR</small> --}}
 
                     <h1 class="text-white mb-2">SABLON SATUAN</h1>
                     <h5 class="text-white mb-4">Jasa Sablon Satuan dan Pembuatan Kaos Custom dengan design bebas! Tersedia
@@ -16,6 +16,10 @@
                         kaos dan bahan. Pengerjaan Cepat dan Gratis bantuan design.</h5>
 
                     <a class="btn custom-btn smoothscroll" href="/katalog">HARGA & KATALOG</a>
+                    <a href="https://wa.me/628811722125?text=Hai%20Admin%20Web%20Kaoskerenid%20Saya%20Mau%20Tanya-tanya%20Sablon"
+                    class="btn custom-btn d-lg-none "><i class="bi bi-whatsapp"></i>
+                    CHAT</a>
+
                 </div>
 
                 <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">

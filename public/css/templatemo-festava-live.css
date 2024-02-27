@@ -1022,4 +1022,17 @@ strong {
     .chat {
         display: none;
     }
+    .sticky-wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin-top: 74px;
+    }
+    .hero-section {
+        position: relative;
+        overflow: hidden;
+        padding-top: 100px;
+        height: calc(125vh - 0px);
+    }
 }
