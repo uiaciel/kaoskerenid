@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+Route::get('/v2', [FrontendController::class, 'index2'])->name('frontend.index2');
 
 Route::get('/katalog', [FrontendController::class, 'katalog'])->name('frontend.katalog');
 
@@ -68,6 +69,7 @@ Route::group([
 
     Route::resource('/toko', TokoController::class);
     Route::resource('/project', ProjectController::class);
+    Route::put('/produk/update-multiple', [ProdukController::class, 'updateMultiple'])->name('update_multiple');
 
     // Route::get('/toko/create', [TokoController::class, 'create']);
     Route::get('/print/keuangan/bulan={bulan}&tahun={tahun}', [KeuanganController::class, 'print']);
@@ -89,9 +91,10 @@ Route::group([
 
     Route::post('/upload/data', [BlogController::class, 'tinimyce'])->name('upload');
 
+
     Route::get('/delete/designs', [DesignController::class, 'deleteimages'])->name('deleteimages');
 });
 
-Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/{slug}', [BlogController::class, 'show'])->name('blog.shows');
 Route::get('/n/{id}', [HomeController::class, 'nota']);
 Route::get('/invoice/{id}', [FrontendController::class, 'invoice']);

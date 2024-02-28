@@ -24,7 +24,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="data">
                                 <thead class="bg-dark text-white">
                                     <tr>
                                         <th scope="col">Pilih</th>
@@ -32,7 +32,7 @@
                                         <th scope="col">data</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Aksi</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,13 +60,6 @@
                                                     @endif
                                                 </select>
                                             </td>
-                                            <td>
-
-                                                <button type="button" class="btn btn-sm btn-round btn-primary"
-                                                    data-bs-toggle="modal" data-bs-target="#pro{{ $data->id }}">
-                                                    Edit
-                                                </button>
-                                            </td>
 
                                         </tr>
                                     @endforeach
@@ -80,4 +73,6 @@
             </div>
         </div>
     </form>
+
+
 @endsection

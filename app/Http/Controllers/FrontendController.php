@@ -26,6 +26,16 @@ class FrontendController extends Controller
         ]);
     }
 
+    public function index2()
+    {
+
+        $blogs = Blog::latest()->limit(12)->get();
+
+        return view('frontend.index2', [
+            'blogs' => $blogs
+        ]);
+    }
+
     public function katalog()
     {
 

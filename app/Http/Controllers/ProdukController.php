@@ -98,7 +98,7 @@ class ProdukController extends Controller
      */
     public function list()
     {
-        $data = Produk::orderBy('status', 'desc')->get();
+        $data = Produk::orderBy('status', 'asc')->get();
 
         return view('produks.list', [
             'datas' => $data
@@ -123,5 +123,29 @@ class ProdukController extends Controller
 
         Session::flash('flash_message', 'Produk berhasil di update');
         return redirect()->back();
+    }
+
+    public function updateMultiple(Request $request)
+    {
+        $selectedProducts = $request->input('selected_products');
+
+        if (!empty($selectedProducts)) {
+            // Lakukan update status untuk setiap produk yang dipilih
+            foreach ($selectedProducts as $productId) {
+                $produk = Produk::find($productId);
+
+                if ($produk) {
+                    // Update status produk menjadi "Non Aktif"
+                    $produk->status = 'Non Aktif';
+                    $produk->save();
+                }
+            }
+
+            Session::flash('flash_message', 'Produk berhasil di update');
+            return redirect()->back()->with('success', 'Produk berhasil diperbarui.');
+        } else {
+            Session::flash('flash_message', 'Tidak ada produk yang dipilih.');
+            return redirect()->back()->with('error', 'Tidak ada produk yang dipilih.');
+        }
     }
 }
