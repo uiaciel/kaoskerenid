@@ -269,7 +269,7 @@
                             <td><a href="/admin/order/{{ $periode->inv }}">{{ $periode->inv }}</a></td>
                             <td>{{ $periode->klien->nama }}</td>
                             <td>{{ $periode->qty }}</td>
-                            <td>{{ $periode->total }}</td>
+                            <td>{{ $periode->total}}</td>
                         </tr>
                         @endforeach
                     </tbody>

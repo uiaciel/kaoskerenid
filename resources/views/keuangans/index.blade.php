@@ -25,7 +25,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header align-items-center d-flex justify-content-xl-between">
-                <div class="p-2 flex-xl-grow-1 bd-highlight text-weight">
+                <div class="p-2 bd-highlight text-weight">
                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalId">
                         <i class="bi bi-file-earmark-plus"></i>
                     </button>
@@ -34,22 +34,22 @@
                 </div>
                 <div class="p-2">
                     <form class="row">
-                        <div class="col-6"></div>
-                        <div class="col-2">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-2 col-md-12 mb-3">
                             <label for="staticEmail2" class="visually-hidden">Bulan</label>
                             <input type="text" name="bulan" class="form-control" id="staticEmail2" value="01">
                         </div>
-                        <div class="col-2">
+                        <div class="col-lg-3 col-md-12 mb-3">
                             <label for="inputPassword2" class="visually-hidden">Tahun</label>
                             <input type="text" name="tahun" class="form-control" id="inputPassword2" value="2023">
                         </div>
-                        <div class="col-2">
+                        <div class="col-lg-3 col-md-12 mb-3">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i></button>
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> Cari</button>
                                 <a name="" id="" class="btn btn-primary"
                                     href="/admin/print/keuangan/bulan={{ request()->get('bulan')}}&tahun={{ request()->get('tahun') }}"
-                                    target="_blank" role="button"><i class="fa fa-print" aria-hidden="true"></i><i
-                                        class="bi bi-printer"></i></a>
+                                    target="_blank" role="button"><i
+                                        class="bi bi-printer"></i> Print</a>
                             </div>
                         </div>
                     </form>

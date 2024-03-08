@@ -76,7 +76,15 @@ class KatalogController extends Controller
      */
     public function destroy(Katalog $katalog)
     {
-        Katalogproduk::where('katalog_id', $katalog->id)->delete();
+        $datakatalog = Katalogproduk::where('katalog_id', $katalog->id)->get();
+
+        if ($datakatalog->isNotEmpty()) {
+            // Jika ada data Katalogproduk terkait, hapus satu per satu
+            foreach ($datakatalog as $produk) {
+                $produk->delete();
+            }
+        }
+
         $katalog->delete();
 
 
